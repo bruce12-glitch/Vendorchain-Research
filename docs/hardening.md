@@ -20,8 +20,12 @@ them against the manuscript before publication.
 - The receipt attests that an authorized worker reported a result. It is not a
   cryptographic proof of OCR correctness, government registration, or malware
   absence. No GST government integration or identity-certification claim is made.
-- Fabric's `PASS` is a worker policy decision. It is not an OPA execution result;
-  this implementation does not pretend to run OPA or an AI risk model.
+- Fabric mode now executes the new reference OPA bundle and signs its decision;
+  its exact bytes contribute to the policy hash and are rechecked before delivery.
+  The policy checks format, worker digest/identity outcomes and SBOM presence. It
+  is not the missing manuscript Listing 1, a government lookup or an AI risk model.
+  Empty expected OCR terms establish no vendor credential match. The new GSTIN
+  checksum/PAN component is tested separately; it is not wired to a vendor registry.
 - SQLite plus Fabric cannot perform a shared atomic commit. `PREPARED` and
   `PENDING` are visible recovery states. A lost response after an external commit
   can leave the SQL projection behind until reconciliation succeeds.

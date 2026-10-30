@@ -1,5 +1,10 @@
 # Evidence status — 30 October 2026
 
+**Updated checklist:** see [the current audit](evidence-checklist.md) and
+[new supplementary evidence](../research/results/claim-audit/README.md). The
+local tables below describe the earlier retained run with three warm-ups. They
+must not be substituted for the new five-warm-up data or for a Fabric sweep.
+
 The repository has been repaired and tested, but the requested publication matrix
 is not complete. The absent manuscript and private corporate corpus cannot be
 reconstructed from the supplied repository or audit notes.
@@ -69,11 +74,14 @@ retained in `research/results/bft-smoke/`. All orderers and peers shared one
 GitHub runner; development certificates were used. No malicious-orderer or
 cross-host network-partition test was executed.
 
-A separate 100-upload, 50-trial campaign was launched at source commit
-`7c87d18cb60ca6dfcd6ce2e48f2e5f5564dff911`:
-[run 41027758083](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41027758083).
-Its final outcome will be recorded with the downloaded raw artifact. Starting a
-run is not a measured result.
+A separate independent-deployment 100-upload campaign completed all 50 jobs:
+[run 41033853808](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808),
+source `6332c83e6ee716ba9b343a77c2c36a7726c4f00f`. Job conclusions and all 50
+artifact records were checked; the raw artifact contents have not been downloaded
+and recomputed here. It used one warm-up per deployment, so it does not meet the
+requested five-warm-up protocol. Its expiring artifact URLs and digests are indexed
+in `research/results/claim-audit/previous-campaign.json`. The earlier pilot is a
+separate cohort and is not pooled into this campaign.
 
 The final XML-encoding fix also passed **44 Python, 7 Gateway and 7 Go tests**,
 Go race/vet, and BFT integration in
@@ -88,7 +96,7 @@ uses the earlier tested commit and PNG inputs, which do not exercise XML metadat
 | Requested evidence | Status |
 | --- | --- |
 | Multi-node consensus execution | Four-orderer BFT integration passed; all nodes colocated |
-| 100-upload N ≥ 50 campaign | Running; pending final raw artifact review |
+| 100-upload N ≥ 50 campaign | 50 jobs passed; one warm-up, raw review and requested protocol incomplete |
 | 250–10,000 upload N ≥ 50 sweeps | Runner implemented; not executed |
 | Production workload/host/network fidelity | Not established by the colocated test network |
 | Historical corporate false-rejection study | Corpus not supplied; manifest evaluator implemented |

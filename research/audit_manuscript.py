@@ -71,14 +71,19 @@ with tempfile.TemporaryDirectory() as tmp:
                objectBackend='local encrypted files, not S3/MinIO',rejectionOccurredBeforeObjectPersistence=before==after)
     first=pipeline.run(png(),'audit-vendor','content-first')
     second=pipeline.run(png(),'audit-vendor','content-second')
-    record('H7_content_digest_replay_window',False,sameContentDigest=True,differentSubmissionIDs=True,
+    record('content_digest_replay_window',False,sameContentDigest=True,differentSubmissionIDs=True,
            firstCommitted=first['ack']['successful'],secondCommitted=second['ack']['successful'],
            note='Request-ID idempotency exists; content-digest/retention-window replay rejection does not.')
 
-record('Section_6_3_five_warmups',False,retainedIndependentDeployments=50,
+record('previous_BFT_campaign_five_warmups',False,verifiedSuccessfulCampaignJobs=50,
+       rawCampaignContentsReviewed=False,independentDeploymentClaimRecomputed=False,
        observedWarmupsPerDeployment=1,requiredWarmups=5,
-       observedExecution='parallel independent runners',requiredExecution='sequential trials with no competing load')
+       observedExecution='parallel independent runners',
+       manuscriptExecutionOrderDefinitionRecovered=False)
 record('Table_9_historical_timers',False,originalTerminalOutputsRecovered=False,
        claimedHeaderGateMs=1.2,claimedEnvelope5MBMs=4.8,claimedLuhnMs=.04,claimedIngestionToCommitMs=342,
        note='Claims are not observations from this audit. Current BFT measurements use another implementation/testbed/load.')
-(out/'observations.json').write_text(json.dumps({'observations':observations,'suiteInventory':suites},indent=2))
+(out/'observations.json').write_text(json.dumps({
+    'allRequestedEvidenceObtained':all(r['requirementMet'] for r in observations),
+    'scope':'Diagnostic inventory; exit code zero does not certify manuscript completeness',
+    'observations':observations,'suiteInventory':suites},indent=2))

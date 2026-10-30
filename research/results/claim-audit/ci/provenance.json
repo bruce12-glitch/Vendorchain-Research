@@ -1,0 +1,28 @@
+{
+  "runID": 41074705369,
+  "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41074705369",
+  "sourceCommit": "6dc7661f85aa8be00adc5d836f19bc72f5f87dc4",
+  "status": "completed",
+  "conclusion": "success",
+  "checkedAtUTC": "2026-10-30T14:57:52.738Z",
+  "jobs": [
+    {
+      "id": 124127675069,
+      "name": "unit",
+      "conclusion": "success"
+    },
+    {
+      "id": 124128899660,
+      "name": "bft-integration",
+      "conclusion": "success"
+    }
+  ],
+  "functionalCounts": {
+    "python": 59,
+    "gateway": 9,
+    "go": 7,
+    "rego": 6
+  },
+  "scope": "Actual functional/race/vet and colocated BFT integration evidence; manuscript completeness is not certified",
+  "applicationRuntimeSourceUnchangedAfterThisRun": true
+}

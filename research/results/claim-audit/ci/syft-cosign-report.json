@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "signatureSystem": "real Cosign",
+  "sbomSource": "real-Syft-CycloneDX",
+  "originalSHA256": "fac5b2aba4a4b754c42cc91fa4c9f196274d0e95358c109f7da00a3f614466ca",
+  "mutatedSHA256": "00b8d9de299d620f89a2478107ad0133cb8dc42825d11358274eb70d087f36bc",
+  "originalVerificationExitCode": 0,
+  "mutatedVerificationExitCode": 1,
+  "transparencyLogTested": false,
+  "privateKeyRetained": false,
+  "scope": "Offline public-key blob signatures; no Rekor/Fulcio, software-safety or pipeline-Cosign claim",
+  "operations": [
+    {
+      "operation": "version",
+      "exitCode": 0,
+      "command": [
+        "cosign",
+        "version"
+      ]
+    },
+    {
+      "operation": "generate-key",
+      "exitCode": 0,
+      "command": [
+        "cosign",
+        "generate-key-pair",
+        "--output-key-prefix",
+        "/tmp/tmppe8yadtq/validation-key"
+      ]
+    },
+    {
+      "operation": "sign",
+      "exitCode": 0,
+      "command": [
+        "cosign",
+        "sign-blob",
+        "--yes",
+        "--key",
+        "/tmp/tmppe8yadtq/validation-key.key",
+        "--tlog-upload=false",
+        "--output-signature",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/sbom.sig",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/sbom.json"
+      ]
+    },
+    {
+      "operation": "verify-original",
+      "exitCode": 0,
+      "command": [
+        "cosign",
+        "verify-blob",
+        "--offline",
+        "--insecure-ignore-tlog=true",
+        "--key",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/cosign.pub",
+        "--signature",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/sbom.sig",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/sbom.json"
+      ]
+    },
+    {
+      "operation": "verify-mutated",
+      "exitCode": 1,
+      "command": [
+        "cosign",
+        "verify-blob",
+        "--offline",
+        "--insecure-ignore-tlog=true",
+        "--key",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/cosign.pub",
+        "--signature",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/sbom.sig",
+        "/home/runner/work/Vendorchain-Research/Vendorchain-Research/.runtime/cosign-proof/mutated-sbom.json"
+      ]
+    }
+  ]
+}

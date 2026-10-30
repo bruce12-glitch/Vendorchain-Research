@@ -10,6 +10,7 @@ existing Fabric sample network rather than destroying one.
 pip install -r research/requirements.txt
 export PYTHONPATH="$PWD/research"
 bash research/scripts/install-syft.sh
+bash research/scripts/install-validation-tools.sh
 export PATH="$PWD/.runtime/bin:$PATH"
 (cd research/gateway && npm ci --ignore-scripts)
 bash research/scripts/bootstrap-bft.sh
@@ -44,7 +45,7 @@ node research/gateway/server.mjs
 python -m vendorchain serve --state .runtime/study --source "$PWD/chaincode" --workers 8
 # Another terminal with API_TOKEN:
 node research/load.mjs --file /absolute/path/to/reviewed-sample.pdf \
-  --concurrency 100,250,500,1000,2500,5000,10000 --trials 50 --warmups 3 \
+  --concurrency 100,250,500,1000,2500,5000,10000 --trials 50 --warmups 5 \
   --metadata .runtime/network-metadata.json --output research/results/bft-load
 python research/summarize.py research/results/bft-load/trials.jsonl \
   --output research/results/bft-load/summary.json
@@ -119,7 +120,7 @@ cover unseen exploit families. Keep all per-specimen decisions and hashes.
 ## 3. Stage and resource ablations
 
 ```bash
-python -m vendorchain ablation --trials 50 --warmups 3 \
+python -m vendorchain ablation --trials 50 --warmups 5 \
   --source "$PWD/chaincode" --output research/results/full-ablation
 python research/plot.py research/results/full-ablation/raw.jsonl \
   --output research/results/full-ablation/figures

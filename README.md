@@ -4,6 +4,10 @@ This repository now contains an executable document-ingestion research pipeline,
 Fabric chaincode, and reproducible experiment runners. It does **not** contain
 the Next.js/PostgreSQL/BullMQ application described by the previous README.
 
+**The full requested empirical checklist is not complete.** See the
+[requirement-by-requirement audit](docs/evidence-checklist.md) and
+[new supplementary evidence](research/results/claim-audit/README.md).
+
 The original snapshot was `8640146b86877a8a0f61ff15bbe172fef9cc7812`.
 The repair replaces nondeterministic endorsement timestamps, unsigned compliance
 writes, and unrestricted record overwrites with proposal timestamps, pinned
@@ -20,6 +24,8 @@ Ed25519 worker keys, immutable namespaced records, and commit-confirmed receipts
   `COMMITTED` only after a matching valid ledger result and local finalization.
 - A Fabric Gateway bridge that waits for `getStatus()` and reads the committed
   receipt back. Lost acknowledgements reconcile by immutable receipt hash.
+- Real reference OPA decisions in Fabric mode, signed policy hashes with
+  commit-time checks, explicit executable-spoof rejection and owned-buffer wiping.
 - A pinned four-orderer Fabric BFT network, healthy/crash integration scripts,
   a 100–10,000 offered-concurrency sweep, independent-trial statistics, adversarial
   corpus evaluation, stage/resource logs, and comparison plots.
@@ -37,6 +43,8 @@ Linux/WSL2, Python 3.12+, Node 22.12+, Tesseract and Poppler are required.
 python -m venv .venv
 source .venv/bin/activate
 pip install -r research/requirements.txt
+bash research/scripts/install-validation-tools.sh
+export PATH="$PWD/.runtime/bin:$PATH"
 export PYTHONPATH="$PWD/research"
 python -m unittest discover -s research/tests -v
 node --test research/gateway/test.mjs
@@ -68,7 +76,7 @@ Read [the experiment instructions](docs/experiments.md),
 python -m vendorchain corpus --generate .runtime/corpus --benign 1000 \
   --output research/results/ingress.json
 # Real OCR; Syft is explicitly not measured unless --source is supplied:
-python -m vendorchain ablation --trials 50 --warmups 3 \
+python -m vendorchain ablation --trials 50 --warmups 5 \
   --output research/results/ablation
 python research/plot.py research/results/ablation/raw.jsonl \
   --output research/results/figures
