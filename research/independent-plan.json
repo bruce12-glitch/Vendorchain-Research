@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "condition": "100 concurrent document uploads, hardened pipeline",
+  "measuredTrials": 50,
+  "warmupBurstsPerDeployment": 1,
+  "uploadsPerBurst": 100,
+  "trialUnit": "one measured burst on a fresh GitHub-hosted runner and fresh four-orderer BFT deployment",
+  "pipelineWorkers": 8,
+  "realOCR": true,
+  "realSyft": true,
+  "sameSyntheticPNG": true,
+  "pilotRun": 41027758083,
+  "pilotUse": "retained separately; never pooled into this preregistered cohort",
+  "failurePolicy": "retain failed trials and all warm-up/request logs; no success-only trial selection",
+  "analysis": "sample SD and two-sided 95% Student-t CI across 50 independent-deployment trial means",
+  "limitations": [
+    "colocated orderers within each deployment",
+    "single small synthetic image and fixed code project",
+    "not production workload fidelity or full concurrency sweep"
+  ]
+}

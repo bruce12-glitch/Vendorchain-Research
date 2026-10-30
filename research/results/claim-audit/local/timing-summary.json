@@ -1,0 +1,97 @@
+{
+  "measuredTrials": 50,
+  "discardedWarmups": 5,
+  "freshProcessCount": 55,
+  "metrics": {
+    "direct_structural_gate_ms": {
+      "n": 50,
+      "mean": 0.92990322,
+      "stddev": 1.2437388885754557,
+      "median": 0.5334425,
+      "p50": 0.5334425,
+      "p95": 2.6004755499999956,
+      "p99": 5.91091240999999,
+      "quantileMethod": "linear interpolation over trial means (R7)",
+      "ci95": [
+        0.5764365388091016,
+        1.2833699011908983
+      ],
+      "publicationNMet": true,
+      "unit": "independent trial mean",
+      "method": "two-sided Student t"
+    },
+    "envelope_encrypt_5MiB_pdf_ms": {
+      "n": 50,
+      "mean": 15.50446314,
+      "stddev": 8.937969034175012,
+      "median": 13.318152999999999,
+      "p50": 13.318152999999999,
+      "p95": 35.46753619999999,
+      "p99": 48.43724866999997,
+      "quantileMethod": "linear interpolation over trial means (R7)",
+      "ci95": [
+        12.964320445969257,
+        18.044605834030744
+      ],
+      "publicationNMet": true,
+      "unit": "independent trial mean",
+      "method": "two-sided Student t"
+    },
+    "envelope_decrypt_5MiB_pdf_ms": {
+      "n": 50,
+      "mean": 8.85984318,
+      "stddev": 5.589116933635477,
+      "median": 6.812663000000001,
+      "p50": 6.812663000000001,
+      "p95": 22.200687699999982,
+      "p99": 27.83189337,
+      "quantileMethod": "linear interpolation over trial means (R7)",
+      "ci95": [
+        7.271433722462862,
+        10.448252637537138
+      ],
+      "publicationNMet": true,
+      "unit": "independent trial mean",
+      "method": "two-sided Student t"
+    },
+    "luhn_mod36_ms": {
+      "n": 50,
+      "mean": 0.1509621,
+      "stddev": 0.46849649840292945,
+      "median": 0.036608,
+      "p50": 0.036608,
+      "p95": 0.30393409999999976,
+      "p99": 2.2725275799999967,
+      "quantileMethod": "linear interpolation over trial means (R7)",
+      "ci95": [
+        0.017816868343127207,
+        0.28410733165687274
+      ],
+      "publicationNMet": true,
+      "unit": "independent trial mean",
+      "method": "two-sided Student t"
+    },
+    "local_ingestion_to_commit_ms": {
+      "n": 50,
+      "mean": 904.07883464,
+      "stddev": 642.4884709411067,
+      "median": 740.666211,
+      "p50": 740.666211,
+      "p95": 1980.064446549998,
+      "p99": 3660.5164295499994,
+      "quantileMethod": "linear interpolation over trial means (R7)",
+      "ci95": [
+        721.4856315062779,
+        1086.6720377737222
+      ],
+      "publicationNMet": true,
+      "unit": "independent trial mean",
+      "method": "two-sided Student t"
+    }
+  },
+  "fiveWarmupCountMet": true,
+  "trialCountMet": true,
+  "historicalTimingsRecovered": false,
+  "fabricConsensusExecuted": false,
+  "scope": "Sequential fresh-process feasibility trials on a shared host, synthetic PNG and 5 MiB PDF; host caches persist; independence/no-competing-load not proven"
+}

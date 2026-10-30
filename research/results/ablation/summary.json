@@ -1,0 +1,166 @@
+{
+  "kind": "local-stage-ablation",
+  "trialsPerVariant": 50,
+  "warmupsDiscardedPerVariant": 3,
+  "syftExecuted": false,
+  "variants": {
+    "structural_inline": {
+      "elapsed_ms": {
+        "n": 50,
+        "mean": 242.02364642,
+        "stddev": 29.23961065842233,
+        "ci95": [
+          233.71384101495696,
+          250.33345182504306
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "peak_rss_kib": {
+        "n": 50,
+        "mean": 93780,
+        "stddev": 0.0,
+        "ci95": [
+          93780.0,
+          93780.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "disk_growth_bytes": {
+        "n": 50,
+        "mean": 0,
+        "stddev": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      }
+    },
+    "isolated_pipeline": {
+      "elapsed_ms": {
+        "n": 50,
+        "mean": 364.71423584,
+        "stddev": 34.416642985633345,
+        "ci95": [
+          354.93313412676383,
+          374.4953375532362
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "peak_rss_kib": {
+        "n": 50,
+        "mean": 93780,
+        "stddev": 0.0,
+        "ci95": [
+          93780.0,
+          93780.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "disk_growth_bytes": {
+        "n": 50,
+        "mean": 0,
+        "stddev": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      }
+    },
+    "hardened": {
+      "elapsed_ms": {
+        "n": 50,
+        "mean": 403.93560808,
+        "stddev": 46.97955702639313,
+        "ci95": [
+          390.58416570051673,
+          417.2870504594833
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "peak_rss_kib": {
+        "n": 50,
+        "mean": 94189.6,
+        "stddev": 52.14109586066465,
+        "ci95": [
+          94174.7816645143,
+          94204.41833548571
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "disk_growth_bytes": {
+        "n": 50,
+        "mean": 38202,
+        "stddev": 0.0,
+        "ci95": [
+          38202.0,
+          38202.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      }
+    },
+    "hardened_crypto_x10": {
+      "elapsed_ms": {
+        "n": 50,
+        "mean": 405.12630884,
+        "stddev": 67.4365028363214,
+        "ci95": [
+          385.9610667882886,
+          424.2915508917114
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "peak_rss_kib": {
+        "n": 50,
+        "mean": 94195.28,
+        "stddev": 18.686500638761903,
+        "ci95": [
+          94189.96935527824,
+          94200.59064472176
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      },
+      "disk_growth_bytes": {
+        "n": 50,
+        "mean": 38202,
+        "stddev": 0.0,
+        "ci95": [
+          38202.0,
+          38202.0
+        ],
+        "publicationNMet": true,
+        "unit": "independent trial mean",
+        "method": "two-sided Student t"
+      }
+    }
+  },
+  "fabricBenchmarkExecuted": false,
+  "limitations": [
+    "same synthetic image; no historical corporate documents",
+    "local SQLite ledger double; no Raft/BFT measurement",
+    "fresh process per trial, shared host caches; randomized variant order"
+  ]
+}

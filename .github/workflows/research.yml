@@ -1,0 +1,113 @@
+name: Research validation
+on:
+  pull_request:
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - 'research/policies/**'
+      - 'research/manuscript/**'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - 'research/policies/**'
+      - 'research/manuscript/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: research-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache-dependency-path: chaincode/go.sum
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils
+      - run: python -m pip install -r research/requirements.txt
+      - run: bash research/scripts/install-validation-tools.sh
+      - run: echo "$GITHUB_WORKSPACE/.runtime/bin" >> "$GITHUB_PATH"
+      - run: PYTHONPATH=research python research/collect_local_evidence.py --output .runtime/local-evidence --trials 50 --warmups 5
+      - run: PYTHONPATH=research python research/audit_manuscript.py
+      - run: python research/validate_manuscript_policy.py --output .runtime/manuscript-policy
+      - run: |
+          set -o pipefail
+          mkdir -p ../.runtime/ci-logs
+          go test -race -v ./... 2>&1 | tee ../.runtime/ci-logs/go-tests.log
+        working-directory: chaincode
+      - run: |
+          set -o pipefail
+          go vet ./... 2>&1 | tee ../.runtime/ci-logs/go-vet.log
+        working-directory: chaincode
+      - run: for file in research/scripts/*.sh scripts/*.sh; do bash -n "$file"; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: functional-and-security-evidence
+          include-hidden-files: true
+          path: |
+            .runtime/local-evidence/
+            .runtime/ci-logs/
+            .runtime/manuscript-policy/
+            research/results/manuscript-audit/
+  bft-integration:
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache-dependency-path: chaincode/go.sum
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils
+      - run: python -m pip install -r research/requirements.txt
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: research/gateway
+      - run: bash research/scripts/install-syft.sh
+      - run: bash research/scripts/install-validation-tools.sh
+      - run: bash research/scripts/bootstrap-bft.sh
+      - run: bash research/scripts/integration-smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bft-integration-evidence
+          include-hidden-files: true
+          path: |
+            research/gateway/package-lock.json
+            .runtime/network-metadata.json
+            .runtime/channel-config.json
+            .runtime/container-images.txt
+            .runtime/gateway.log
+            .runtime/api.log
+            .runtime/bft-healthy/
+            .runtime/bft-one-crash/
+            .runtime/ledger-proof/
+            .runtime/cosign-proof/

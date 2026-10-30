@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # VendorChain SBOM Verifier
 # Usage: ./scripts/verify-sbom.sh <sbom-file>
 
-SBOM_FILE=${1}
+SBOM_FILE=${1:-}
 PUB_KEY="keys/cosign.pub"
 BUNDLE_FILE="${SBOM_FILE}.bundle"
 
@@ -20,16 +21,15 @@ fi
 
 echo "Verifying SBOM: $SBOM_FILE"
 
-cosign verify-blob \
-  --key $PUB_KEY \
-  --bundle $BUNDLE_FILE \
-  $SBOM_FILE
-
-if [ $? -eq 0 ]; then
-  echo "RESULT: SBOM is GENUINE and UNTAMPERED"
-  echo "Safe to proceed with compliance check."
+if cosign verify-blob \
+  --key "$PUB_KEY" \
+  --bundle "$BUNDLE_FILE" \
+  "$SBOM_FILE"; then
+  echo "RESULT: Signature matches the configured public key"
+  echo "Signature verification does not establish software safety or compliance."
 else
   echo "RESULT: SBOM VERIFICATION FAILED"
   echo "This SBOM may have been tampered with. Blocking."
   exit 1
 fi
+
