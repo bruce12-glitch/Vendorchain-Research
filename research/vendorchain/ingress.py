@@ -4,6 +4,7 @@ import struct
 import warnings
 import zlib
 import zipfile
+from xml.parsers import expat
 from PIL import Image
 from pypdf import PdfReader, filters
 from pypdf.generic import DictionaryObject, ArrayObject, IndirectObject, StreamObject
@@ -144,10 +145,15 @@ def pdf_gate(data):
                 if expanded > MAX_EXPANDED:
                     raise Rejected("pdf_expansion_limit")
                 if str(obj.get('/Subtype', '')) == '/XML' or str(obj.get('/Type', '')) == '/Metadata':
-                    # Metadata is not interpreted by the pipeline. Reject DTDs
-                    # before any downstream component could process entities.
-                    if b'<!DOCTYPE' in decoded.upper() or b'<!ENTITY' in decoded.upper():
-                        raise Rejected("xml_dtd_forbidden")
+                    # Parse the declared XML encoding rather than searching UTF-8
+                    # bytes: UTF-16 DTDs otherwise evade a raw marker check.
+                    parser = expat.ParserCreate()
+                    def forbid_entity(*_):
+                        raise Rejected('xml_dtd_forbidden')
+                    parser.StartDoctypeDeclHandler = forbid_entity
+                    parser.EntityDeclHandler = forbid_entity
+                    parser.ExternalEntityRefHandler = forbid_entity
+                    parser.Parse(decoded, True)
             for value in obj.values():
                 walk(value, depth+1)
         elif isinstance(obj, ArrayObject):

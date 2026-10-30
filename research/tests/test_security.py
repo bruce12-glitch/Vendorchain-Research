@@ -36,6 +36,22 @@ class GateTests(unittest.TestCase):
             with self.assertRaises(Rejected):validate(pdf(action=kind))
     def test_xxe_metadata(self):
         with self.assertRaises(Rejected):validate(pdf(xxe=True))
+    def test_encoded_xml_dtd_rejected_but_passive_metadata_accepted(self):
+        from pypdf import PdfWriter
+        from pypdf.generic import DecodedStreamObject,NameObject
+        for encoding in ['utf-8','utf-16','utf-16-be']:
+            for dtd in [False,True]:
+                writer=PdfWriter();writer.add_blank_page(612,792)
+                source='<?xml version="1.0" encoding="'+('UTF-16' if '16' in encoding else 'UTF-8')+'"?>'
+                if dtd:source+='<!DOCTYPE x [<!ENTITY e SYSTEM "file:///NONEXISTENT_VENDORCHAIN_TEST_ONLY">]>'
+                source+='<x>'+('&e;' if dtd else 'passive metadata')+'</x>'
+                stream=DecodedStreamObject();stream.set_data(source.encode(encoding))
+                stream[NameObject('/Type')]=NameObject('/Metadata');stream[NameObject('/Subtype')]=NameObject('/XML')
+                writer._root_object[NameObject('/Metadata')]=writer._add_object(stream)
+                out=io.BytesIO();writer.write(out)
+                if dtd:
+                    with self.assertRaises(Rejected):validate(out.getvalue())
+                else:self.assertEqual(validate(out.getvalue())['format'],'PDF')
     def test_pdf_decompression_limit(self):
         with self.assertRaises(Rejected):validate(pdf(expansion=True))
     def test_empty_and_oversized(self):
