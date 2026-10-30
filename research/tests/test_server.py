@@ -11,7 +11,7 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         self.token='test-token-'+'x'*32
         self.calls=[]
         def run(body,vendor,rid):
-            self.calls.append((body,vendor,rid))
+            self.calls.append((bytes(body),vendor,rid))
             return {'ack':{'successful':True,'transactionID':'local-test'},'evidence':'local-non-consensus','stages':{}}
         pipeline=SimpleNamespace(ledger=SimpleNamespace(kind='local-non-consensus'),run=run)
         self.task=asyncio.create_task(serve(pipeline,self.token,self.port,workers=1))
@@ -32,6 +32,17 @@ class ServerTests(unittest.IsolatedAsyncioTestCase):
         h=f'POST /v1/uploads HTTP/1.1\r\nAuthorization: Bearer {self.token}\r\nContent-Length: 3\r\nX-Vendor-ID: vendor\r\nX-Request-ID: r1\r\n\r\n'.encode()
         result=await self.request(h,b'abc');self.assertTrue(result.startswith(b'HTTP/1.1 200'))
         self.assertEqual(self.calls,[(b'abc','vendor','r1')])
+        self.assertIn(b'queue_dispatch_ms',result)
+    async def test_oversized_length_rejected_before_body_or_pipeline(self):
+        header=f'POST /v1/uploads HTTP/1.1\r\nAuthorization: Bearer {self.token}\r\nContent-Length: 1073741824\r\n\r\n'.encode()
+        self.assertTrue((await self.request(header)).startswith(b'HTTP/1.1 400'))
+        self.assertEqual(self.calls,[])
+    async def test_health_exposes_owned_buffer_limit(self):
+        header=f'GET /health HTTP/1.1\r\nAuthorization: Bearer {self.token}\r\n\r\n'.encode()
+        result=await self.request(header)
+        payload=json.loads(result.split(b'\r\n\r\n',1)[1])
+        self.assertEqual(payload['bufferedBytes'],0)
+        self.assertEqual(payload['bufferLimitBytes'],64*1024*1024)
     async def test_unauthorized_request_cannot_execute_pipeline(self):
         result=await self.request(b'POST /v1/uploads HTTP/1.1\r\nContent-Length: 3\r\n\r\n',b'abc')
         self.assertTrue(result.startswith(b'HTTP/1.1 401'));self.assertEqual(self.calls,[])

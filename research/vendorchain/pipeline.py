@@ -14,6 +14,7 @@ from .ingress import POLICY
 from .sandbox import isolated
 from .store import Store, Conflict
 from .trust import sign, verify
+from .policy import REFERENCE_POLICY, evaluate
 from cryptography.exceptions import InvalidSignature
 
 IDENTIFIER = re.compile(r'^[A-Za-z0-9_-]{1,128}$')
@@ -44,20 +45,40 @@ def durable_write(path, data):
         raise
 
 class Pipeline:
-    def __init__(self, root, kek, private_key, key_id, registry, ledger, *, source=None, sbom=True, ocr=True, expected=()):
+    def __init__(self, root, kek, private_key, key_id, registry, ledger, *, source=None, sbom=True, ocr=True, expected=(), opa=None):
         self.root = Path(root).resolve()
         self.store = Store(self.root)
         self.kek, self.private_key, self.key_id = kek, private_key, key_id
         self.registry, self.ledger = registry, ledger
         self.source, self.sbom, self.ocr, self.expected = source, sbom, ocr, tuple(expected)
-        if ledger.kind != 'local-non-consensus' and (not sbom or not ocr or not source):
-            raise ValueError('Fabric mode requires real OCR and Syft; ablations are local only')
+        self.opa = ledger.kind != 'local-non-consensus' if opa is None else opa
+        if self.opa and not shutil.which('opa'):
+            raise ValueError('OPA is required for the policy-enabled pipeline')
+        if ledger.kind != 'local-non-consensus' and (not sbom or not ocr or not source or not self.opa):
+            raise ValueError('Fabric mode requires real OCR, Syft and OPA; ablations are local only')
         if sbom and (not source or not shutil.which('syft')):
             raise ValueError('Syft and a host-controlled source directory are required')
         (self.root/'blobs').mkdir(exist_ok=True, mode=0o700)
         (self.root/'sbom').mkdir(exist_ok=True, mode=0o700)
 
+    def policy_hash(self):
+        config = {'ingress':POLICY,'ocr':self.ocr,'sbom':self.sbom,'expected':list(self.expected),
+                  'opaPolicySHA256':digest(REFERENCE_POLICY.read_bytes()) if self.opa else None}
+        return digest(canonical(config))
+
     def ingest(self, data, vendor, rid=None, metrics=None):
+        """Consume a caller-owned bytearray, wiping it on every exit path.
+
+        Immutable bytes remain supported, but cannot provide erasure evidence.
+        Library/parser copies are outside this best-effort ownership guarantee.
+        """
+        try:
+            return self._ingest(data, vendor, rid, metrics)
+        finally:
+            if isinstance(data, bytearray):
+                data[:] = b'\x00' * len(data)
+
+    def _ingest(self, data, vendor, rid=None, metrics=None):
         metrics = {} if metrics is None else metrics
         rid = rid or uuid.uuid4().hex
         if not IDENTIFIER.fullmatch(vendor) or not IDENTIFIER.fullmatch(rid):
@@ -110,11 +131,19 @@ class Pipeline:
                     durable_write(self.root/'sbom'/(rid+'.json'),sbom)
             if not self.sbom:
                 metrics['syft_ms'] = None
+            decision = not self.ocr or worker['ocr']['expectedMatches']
+            if self.opa:
+                with timed(metrics, 'opa_ms'):
+                    decision = evaluate({'format':worker['info']['format'], 'documentIntact':True,
+                                         'ocrExpectedMatches':bool(self.ocr and decision),
+                                         'sbomValid':bool(self.sbom)})
+            else:
+                metrics['opa_ms'] = None
             now = int(time.time())
             receipt = {'version':'vendorchain.receipt.v1','recordID':rid,'vendorID':row['vendor_id'],
                        'documentHash':row['document_hash'],'ciphertextHash':row['cipher_hash'],
-                       'sbomHash':digest(sbom),'policyHash':digest(canonical({'ingress':POLICY,'ocr':self.ocr,'sbom':self.sbom,'expected':list(self.expected)})),
-                       'decision':'PASS' if not self.ocr or worker['ocr']['expectedMatches'] else 'FAIL',
+                       'sbomHash':digest(sbom),'policyHash':self.policy_hash(),
+                       'decision':'PASS' if decision else 'FAIL',
                        'keyID':self.key_id,'issuedAt':now,'expiresAt':now+600,'nonce':rid}
             with timed(metrics,'attest_ms'):
                 payload = sign(receipt,self.private_key)
@@ -169,6 +198,8 @@ class Pipeline:
             row = self.store.get(rid)
             if row['state']!='PREPARED' or row['version']!=pending['snapshot']:
                 raise Conflict('stale outbox snapshot')
+            if receipt['policyHash'] != self.policy_hash():
+                raise Conflict('commit-time policy binding changed')
             data = Path(row['blob_path']).read_bytes()
             if digest(data)!=row['cipher_hash'] or digest(data)!=receipt['ciphertextHash'] or row['document_hash']!=receipt['documentHash'] or row['vendor_id']!=receipt['vendorID']:
                 raise Conflict('commit-time document binding changed')

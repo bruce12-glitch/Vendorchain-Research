@@ -4,11 +4,13 @@ import io
 import json
 from pathlib import Path
 import sqlite3
+import shutil
 import tempfile
 import time
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+from cryptography.exceptions import InvalidTag
 from vendorchain.crypto import encrypt,decrypt,load_kek,encode
 from vendorchain.corpus import png,jpeg,pdf,polyglot,nested_polyglot,rate
 from vendorchain.ingress import validate,Rejected
@@ -58,7 +60,9 @@ class GateTests(unittest.TestCase):
         for b in [b'',b'x'*(5*1024*1024+1)]:
             with self.assertRaises(Rejected):validate(b)
     def test_signature_spoof(self):
-        with self.assertRaises(Rejected):validate(b'MZ inert .pdf')
+        for prefix in [b'MZ',b'\x7fELF']:
+            with self.assertRaisesRegex(Rejected,'^EXECUTABLE_SPOOF$'):
+                validate(prefix+b' inert .pdf')
     def test_truncated_image(self):
         with self.assertRaises(Rejected):validate(png()[:40])
     def test_parser_subprocess(self):
@@ -84,10 +88,10 @@ class CryptoTests(unittest.TestCase):
     def test_vendor_or_document_swap(self):
         a={'recordID':'1','vendorID':'v'};key=b'k'*32;c,m=encrypt(b'private',key,a)
         for other in [{'recordID':'2','vendorID':'v'},{'recordID':'1','vendorID':'other'}]:
-            with self.assertRaises(Exception):decrypt(c,m,key,other)
+            with self.assertRaises(InvalidTag):decrypt(c,m,key,other)
     def test_tamper_authentication(self):
         c,m=encrypt(b'private',b'k'*32,{'id':'1'})
-        with self.assertRaises(Exception):decrypt(bytes([c[0]^1])+c[1:],m,b'k'*32,{'id':'1'})
+        with self.assertRaises(InvalidTag):decrypt(bytes([c[0]^1])+c[1:],m,b'k'*32,{'id':'1'})
 
 class PipelineTests(unittest.TestCase):
     def setUp(self):
@@ -104,6 +108,23 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(r['evidence'],'local-non-consensus')
         self.assertEqual(self.pipeline.store.get('r1')['state'],'COMMITTED')
         self.assertTrue(self.pipeline.store.verify_audit())
+    def test_rejected_receive_buffer_wiped_before_any_persistence(self):
+        for prefix in [b'MZ',b'\x7fELF']:
+            receive=bytearray(prefix+b' inert .pdf')
+            with self.assertRaisesRegex(Rejected,'^EXECUTABLE_SPOOF$'):
+                self.pipeline.ingest(receive,'vendor','rejected')
+            self.assertEqual(receive,bytearray(len(receive)))
+            self.assertEqual(list((self.root/'state/blobs').iterdir()),[])
+            self.assertIsNone(self.pipeline.store.get('rejected'))
+    def test_successful_receive_buffer_wiped_and_envelope_still_valid(self):
+        receive=bytearray(png())
+        result=self.pipeline.run(receive,'vendor','mutable')
+        self.assertTrue(result['ack']['successful'])
+        self.assertEqual(receive,bytearray(len(receive)))
+    def test_invalid_identifier_receive_buffer_wiped(self):
+        receive=bytearray(png())
+        with self.assertRaises(ValueError):self.pipeline.ingest(receive,'../invalid','id')
+        self.assertEqual(receive,bytearray(len(receive)))
     def test_unsigned_or_tampered_receipt(self):
         p=self.prepared();p['signature']=encode(b'0'*64)
         with self.assertRaises(Exception):verify(p,self.registry)
@@ -120,6 +141,19 @@ class PipelineTests(unittest.TestCase):
     def test_ciphertext_swap_at_commit(self):
         self.prepared();row=self.pipeline.store.get('r1');Path(row['blob_path']).write_bytes(b'changed')
         with self.assertRaises(Conflict):self.pipeline.deliver('r1')
+    def test_policy_binding_changed_at_commit(self):
+        self.prepared();self.pipeline.expected=('changed-expected-credential',)
+        with self.assertRaisesRegex(Conflict,'policy binding changed'):
+            self.pipeline.deliver('r1')
+    @unittest.skipUnless(shutil.which('opa'),'OPA unavailable; pipeline policy not measured')
+    def test_pipeline_uses_real_opa_and_denies_missing_sbom(self):
+        self.pipeline.opa=True;self.pipeline.ocr=True
+        result=self.pipeline.run(png(),'vendor','opa-deny')
+        self.assertGreater(result['stages']['opa_ms'],0)
+        pending=self.pipeline.store.pending('opa-deny')
+        from vendorchain.crypto import decode
+        receipt=json.loads(decode(json.loads(pending['payload'])['receipt']))
+        self.assertEqual(receipt['decision'],'FAIL')
     def test_idempotent_completed_request(self):
         a=self.pipeline.run(png(),'v','r1');b=self.pipeline.run(png(),'v','r1')
         self.assertEqual(a['ack']['transactionID'],b['ack']['transactionID'])

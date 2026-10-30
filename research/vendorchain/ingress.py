@@ -178,6 +178,8 @@ def pdf_gate(data):
 def validate(data):
     if not 0 < len(data) <= MAX_BYTES:
         raise Rejected("file_size_limit")
+    if data.startswith((b'MZ', b'\x7fELF')):
+        raise Rejected("EXECUTABLE_SPOOF")
     try:
         # A complete ZIP directory can be hidden inside legal image metadata or
         # between a PDF's last xref and a forged final EOF marker. No extraction.
