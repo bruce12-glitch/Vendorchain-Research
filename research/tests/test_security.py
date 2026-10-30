@@ -10,7 +10,7 @@ import unittest
 from concurrent.futures import ThreadPoolExecutor
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from vendorchain.crypto import encrypt,decrypt,load_kek,encode
-from vendorchain.corpus import png,jpeg,pdf,polyglot,rate
+from vendorchain.corpus import png,jpeg,pdf,polyglot,nested_polyglot,rate
 from vendorchain.ingress import validate,Rejected
 from vendorchain.sandbox import isolated
 from vendorchain.trust import verify
@@ -28,6 +28,9 @@ class GateTests(unittest.TestCase):
     def test_independently_valid_polyglots_are_rejected(self):
         for image in [png(),jpeg(),pdf()]:
             with self.assertRaises(Rejected):validate(polyglot(image))
+    def test_polyglot_inside_valid_metadata_and_final_eof(self):
+        for kind,data in [('PNG',png()),('JPEG',jpeg()),('PDF',pdf())]:
+            with self.assertRaises(Rejected):validate(nested_polyglot(data,kind))
     def test_pdf_active_content(self):
         for kind in ['JavaScript','Launch','EmbeddedFile']:
             with self.assertRaises(Rejected):validate(pdf(action=kind))

@@ -2,6 +2,7 @@
 import hashlib
 import io
 import json
+import re
 from pathlib import Path
 import struct
 import zipfile
@@ -65,6 +66,27 @@ def polyglot(image):
             im.load()
     return data
 
+def nested_polyglot(primary, kind):
+    archive=io.BytesIO()
+    with zipfile.ZipFile(archive,'w') as z:
+        z.writestr('INERT.txt',b'Inert nested polyglot regression')
+    payload=archive.getvalue()
+    if kind=='PNG':
+        chunk=b'vpAg'+payload
+        data=primary[:-12]+struct.pack('>I',len(payload))+chunk+struct.pack('>I',zlib.crc32(chunk)&0xffffffff)+primary[-12:]
+    elif kind=='JPEG':
+        data=primary[:2]+b'\xff\xef'+struct.pack('>H',len(payload)+2)+payload+primary[2:]
+    else:
+        offset=re.search(rb'startxref\s+(\d+)\s+%%EOF\s*$',primary).group(1)
+        data=polyglot(primary)+b'\nstartxref\n'+offset+b'\n%%EOF\n'
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        assert z.testzip() is None and z.read('INERT.txt')
+    if kind=='PDF':
+        assert len(PdfReader(io.BytesIO(data)).pages)==1
+    else:
+        with Image.open(io.BytesIO(data)) as image:image.load()
+    return data
+
 def fixtures(benign=300):
     for i in range(benign):
         if i%3==0:
@@ -77,6 +99,9 @@ def fixtures(benign=300):
         yield 'adversarial','png-zip-polyglot-'+str(i),polyglot(png(i))
         yield 'adversarial','jpeg-zip-polyglot-'+str(i),polyglot(jpeg(i))
         yield 'adversarial','pdf-zip-polyglot-'+str(i),polyglot(pdf(i))
+        yield 'adversarial','png-metadata-zip-'+str(i),nested_polyglot(png(i),'PNG')
+        yield 'adversarial','jpeg-metadata-zip-'+str(i),nested_polyglot(jpeg(i),'JPEG')
+        yield 'adversarial','pdf-zip-final-eof-'+str(i),nested_polyglot(pdf(i),'PDF')
     for i in range(8):
         for action in ['JavaScript','Launch','EmbeddedFile']:
             yield 'adversarial','pdf-'+action+'-'+str(i),pdf(i,action=action)

@@ -3,6 +3,7 @@ import io
 import struct
 import warnings
 import zlib
+import zipfile
 from PIL import Image
 from pypdf import PdfReader, filters
 from pypdf.generic import DictionaryObject, ArrayObject, IndirectObject, StreamObject
@@ -15,7 +16,7 @@ MAX_EXPANDED = 16 * 1024 * 1024
 POLICY = {"version": "vendorchain.ingress.v1", "types": ["PDF", "PNG", "JPEG"],
           "maxBytes": MAX_BYTES, "maxPixels": MAX_PIXELS, "maxSide": MAX_SIDE,
           "maxPages": MAX_PAGES, "maxExpandedBytes": MAX_EXPANDED,
-          "activeContent": "deny", "trailingImageBytes": "deny"}
+          "activeContent": "deny", "trailingImageBytes": "deny", "secondaryZipContainer": "deny"}
 
 class Rejected(ValueError):
     pass
@@ -172,6 +173,10 @@ def validate(data):
     if not 0 < len(data) <= MAX_BYTES:
         raise Rejected("file_size_limit")
     try:
+        # A complete ZIP directory can be hidden inside legal image metadata or
+        # between a PDF's last xref and a forged final EOF marker. No extraction.
+        if zipfile.is_zipfile(io.BytesIO(data)):
+            raise Rejected('secondary_zip_container')
         if data.startswith(b'\x89PNG\r\n\x1a\n'):
             return image_gate(data, "PNG")
         if data.startswith(b'\xff\xd8\xff'):

@@ -4,5 +4,5 @@
   "type": "module",
   "engines": {"node": ">=22.12.0"},
   "scripts": {"start": "node server.mjs", "test": "node --test test.mjs"},
-  "dependencies": {"@grpc/grpc-js": "1.14.0", "@hyperledger/fabric-gateway": "1.13.1"}
+  "dependencies": {"@grpc/grpc-js": "1.14.0", "@hyperledger/fabric-gateway": "1.13.0"}
 }

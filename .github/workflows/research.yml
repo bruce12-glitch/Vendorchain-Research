@@ -60,7 +60,9 @@ jobs:
         if: always()
         with:
           name: bft-integration-evidence
+          include-hidden-files: true
           path: |
+            research/gateway/package-lock.json
             .runtime/network-metadata.json
             .runtime/channel-config.json
             .runtime/container-images.txt
