@@ -18,3 +18,23 @@ keys/*.key
 
 # Ignore compiled executables
 *.exe
+
+
+# Research state, plaintext corpora and generated credentials
+.runtime/
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+research/private-corpus/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.private
+master.hex
+.env.*
+!.env.example
+outputs/
+*.tar.gz
+*.block
+*.tx
