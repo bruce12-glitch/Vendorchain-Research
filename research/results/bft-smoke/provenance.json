@@ -1,0 +1,14 @@
+{
+  "kind": "four-orderer-BFT-integration",
+  "workflowRun": 41026779493,
+  "sourceCommit": "b2947886d01aefa3b2d7efbbb1b4714c8eb07fb8",
+  "workflowURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41026779493",
+  "artifactSHA256": "c9e9bd7f24d99af4bd1912343838ef63b682b458e01dc56c7de3b4714138be54",
+  "healthyTrials": 1,
+  "warmupTrials": 1,
+  "crashTrials": 1,
+  "concurrency": 3,
+  "realSyft": true,
+  "realTesseract": true,
+  "publicationSweep": false
+}

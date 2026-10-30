@@ -1,191 +1,96 @@
-# VendorChain — Zero-Trust OS
+# VendorChain research validation
 
-```
-╔═══════════════════════════════════════════════════════════════════════════════════╗
-║  "Never Trust. Always Verify. Continuously Monitor."                              ║
-║  Enterprise B2B Vendor Verification & Cryptographic Supply Chain Integrity        ║
-╚═══════════════════════════════════════════════════════════════════════════════════╝
-```
+This repository now contains an executable document-ingestion research pipeline,
+Fabric chaincode, and reproducible experiment runners. It does **not** contain
+the Next.js/PostgreSQL/BullMQ application described by the previous README.
 
-> **Framework:** Next.js 14 & Vite 5  |  **Language:** TypeScript (Strict)  |  **Storage:** PostgreSQL 15 & Redis 7  |  **Tests:** 44/44 Green  |  **License:** MIT
+The original snapshot was `8640146b86877a8a0f61ff15bbe172fef9cc7812`.
+The repair replaces nondeterministic endorsement timestamps, unsigned compliance
+writes, and unrestricted record overwrites with proposal timestamps, pinned
+Ed25519 worker keys, immutable namespaced records, and commit-confirmed receipts.
 
-[Open Obsidian Note] : `obsidian://open?vault=Bruce&file=Block%20Chain%20-%20Security%2FVendor%20Chain.canvas`
+## What runs
 
-## ⚡ 1. Problem → Answer
+- Structural PDF/PNG/JPEG parsing in a process with memory, CPU, file-size and
+  wall-clock bounds. Active PDF objects, DTD-bearing XML metadata, image trailers,
+  excessive expansion and excessive pixel dimensions are rejected.
+- Context-bound AES-256-GCM envelope encryption with chunked cipher operations.
+  Tesseract and Poppler work through pipes; OCR text stays in a disposable process.
+- An atomic SQLite reference state machine and durable outbox. A request becomes
+  `COMMITTED` only after a matching valid ledger result and local finalization.
+- A Fabric Gateway bridge that waits for `getStatus()` and reads the committed
+  receipt back. Lost acknowledgements reconcile by immutable receipt hash.
+- A pinned four-orderer Fabric BFT network, healthy/crash integration scripts,
+  a 100–10,000 offered-concurrency sweep, independent-trial statistics, adversarial
+  corpus evaluation, stage/resource logs, and comparison plots.
 
-**The Vulnerability of Assumed Trust**
-Modern B2B software supply chains operate on blind faith. Vendors upload unauthenticated tax certificates, sensitive permanent account numbers (PANs) reside unencrypted in object storage, and internal platform administrators possess unrestricted, unaudited access to raw identity files. A single forged document or insider breach compromises the entire enterprise perimeter.
+SQLite is the reference implementation here. PostgreSQL, production identity
+management, a distributed deployment, and production workload evidence remain
+separate integration work. An outbox coordinates two durable systems; it does
+not turn them into a distributed atomic transaction.
 
-**The Zero-Trust Architecture**
-VendorChain terminates assumed trust at the intake perimeter:
-- 🔒 **Cryptographic Ingestion**: Files are inspected by raw magic byte signatures, encrypted via dedicated AES-256-GCM envelope keys before touching disk, and cross-referenced against official credentials using in-memory OCR extraction.
-- 📐 **Deterministic Validation**: Verification executes mathematically via the Indian GSTIN Luhn Mod-36 algorithm inside an asynchronous queue with automatic retries and dead-letter fault isolation.
-- 📜 **Immutable Accountability**: Every state transition and every decrypted document access appends a non-repudiable, tamper-evident `VerificationEvent` to the audit ledger.
+## Local tests
 
----
+Linux/WSL2, Python 3.12+, Node 22.12+, Tesseract and Poppler are required.
 
-## 🎯 2. Problem Statement & Project Scope
-
-
-<img width="1748" height="663" alt="image" src="https://github.com/user-attachments/assets/d0876eea-f5d1-4c40-9adc-3c91a4cf35a4" />
-<img width="1442" height="1009" alt="image" src="https://github.com/user-attachments/assets/f432e7b2-37db-4564-b70a-162343034294" />
-
-## 📂 3. Repository Blueprint
-
-```
-landing-page-/
-├── 🌐 index.html                 # Dark Web3 Landing Page (Strict CSP, 0 Inline Styles)
-├── 🛑 404.html                   # Zero-Trust Error Recovery Route
-├── 🎨 css/style.css              # Design System Tokens (--bg: #050507, --blue: #00E5FF)
-├── ⚡ js/app.js                  # Labeled DEMO Verifier & Early Access Capture Pipeline
-├── 📋 CHANGELOG.md               # Phased Verification Changelog
-├── 🔐 SECURITY.md                # Production Headers & CSP Implementation Guide
-├── 🖼️ assets/                    # README diagrams (problem-scope.svg, architecture.svg)
-└── 🏢 platform/                  # Core Zero-Trust Onboarding Engine (Module 1, Slices 1–3)
-    ├── 🐳 docker-compose.yml     # PostgreSQL 15 + Redis 7 + MinIO (S3 Emulation)
-    ├── 🗄️ prisma/schema.prisma   # Vendor, Document, and VerificationEvent Schemas
-    ├── 🚀 src/app/api/           # Next.js 14 REST API Route Handlers
-    ├── 🧩 src/lib/               # Crypto (Envelope/GCM), OCR, Queue, Storage Drivers
-    └── 🧪 src/tests/             # 12 Test Suites (44 Comprehensive Tests)
-```
-
----
-
-
-## 🏗️ 5. System Architecture
-
-```
-[ Client / API Request ]
-          │
-          ▼
-   ( Magic-Byte Gate ≤5MB ) ──► [ AES-256-GCM Envelope Encryption ]
-                                               │
-                                     ( Ciphertext on Disk/S3 )
-                                               │
-                                   [ BullMQ Asynchronous Queue ]
-                                               │
-                                               ▼
-[ Append-Only VerificationEvent ] ◄── ( RAM Zeroing ) ◄── [ In-Memory Decryption & OCR ]
-                                                                 │
-                                                    [ GstSandboxAdapter (Mod-36) ]
-```
-
----
-
-## 🔄 6. State Machine & Lifecycle Transitions
-
-### Vendor Verification Lifecycle (7 States)
-```
-UNVERIFIED ──► [ Doc Upload ] ──► PENDING ──► [ Verify Trigger ] ──► IN_PROGRESS
-                                                                          │
-         ┌──────────────────────────────┬─────────────────────────────────┴──────────────────────────────┐
-         ▼                              ▼                                                                ▼
-   [ VERIFIED ]                    [ FAILED ]                                                       [ FLAGGED ]
-(All 3 Docs Pass)               (Checksum Mismatch)                                              (OCR Forgery)
-```
-
-| Transition | Originating Component | Verified Business Condition |
-|---|---|---|
-| `UNVERIFIED` → `PENDING` | `POST /api/vendors/:id/documents` | First required identity document successfully ingested. |
-| `PENDING` → `IN_PROGRESS` | `POST .../verify` | Asynchronous verification job enqueued in BullMQ. |
-| `IN_PROGRESS` → `VERIFIED` | `worker.ts` | All 3 documents (`GST_CERT`, `PAN_CARD`, `BANK_PROOF`) cryptographically verified. |
-| `IN_PROGRESS` → `FAILED` | `worker.ts` | Invalid GSTIN checksum or corrupted binary payload. |
-| `IN_PROGRESS` → `FLAGGED` | `ocr/extractor.ts` | Extracted document credential does not match registered vendor PAN/GSTIN. |
-
----
-
-## 🔐 7. Security Architecture & Disclosures
-
-```
-[Master KEK (32-byte hex)] ──wraps──► [Document DEK (256-bit)] ──encrypts──► [Ciphertext File]
-```
-1. **Zero Plaintext at Rest**: PAN numbers and document files are encrypted before database insertion.
-2. **Ephemeral Memory Hygiene**: Decrypted buffers live in RAM during verification and are zeroed (`buffer.fill(0)`) in `finally` blocks.
-3. **Timing-Safe Authentication**: API key validation uses `crypto.timingSafeEqual` over fixed-length buffers.
-
-> ⚠️ **Honesty Disclosures**:
-> - **🧪 Sandbox Mode**: `GstSandboxAdapter` executes official Mod-36 checksums locally and does not query live government servers.
-> - **🔑 API Keys**: `x-admin-key` header is a developer placeholder for the Slice 4 OIDC Identity Provider.
-> - **📦 S3 Storage**: MinIO container in `docker-compose.yml` provides local S3 API parity for development.
-
----
-
-## 🚀 8. Quickstart Guide
-
-### Option A: Static Landing Page (Vite)
 ```bash
-npm install
-npm run dev # Access UI at http://localhost:5173
+python -m venv .venv
+source .venv/bin/activate
+pip install -r research/requirements.txt
+export PYTHONPATH="$PWD/research"
+python -m unittest discover -s research/tests -v
+node --test research/gateway/test.mjs
+(cd chaincode && go test -race ./... && go vet ./...)
 ```
 
-### Option B: Backend Platform API (Next.js 14)
+A deliberately labelled local demonstration can run without Fabric or Syft:
+
 ```bash
-cd platform
-docker compose up -d # Boot PostgreSQL 15, Redis 7, MinIO
-npm install
-cp .env.example .env
-npm run dev # API live at http://localhost:3001
+python -m vendorchain init --state .runtime/demo
+export API_TOKEN="$(python -c 'import secrets; print(secrets.token_hex(32))')"
+python -m vendorchain serve --state .runtime/demo --local --no-sbom
 ```
 
-#### Verbatim End-to-End API Walkthrough:
+The upload route is `POST http://127.0.0.1:8090/v1/uploads`, with the document as
+its raw body, `Authorization: Bearer $API_TOKEN`, `X-Vendor-ID`, and a unique
+`X-Request-ID`. It returns a receipt and stage times after commitment. Its local
+mode returns `evidence: local-non-consensus` and cannot supply consensus results.
+The API is a bounded loopback research server, intended for controlled experiments.
+
+## Research workflow
+
+Read [the experiment instructions](docs/experiments.md),
+[the hardening/control mapping](docs/hardening.md), and
+[the evidence status](docs/validation.md) before using results in a manuscript.
+
 ```bash
-# 1. Health Verification (Public)
-curl -s http://localhost:3001/api/health
-
-# 2. Register Vendor (Returns 201 + Masked PAN)
-curl -s -X POST http://localhost:3001/api/vendors \
-  -H "Content-Type: application/json" \
-  -H "x-admin-key: vc_admin_sec_placeholder_key_32bytes_min" \
-  -d '{"legalName":"Acme Defense Labs","gstNumber":"27ABCDE1234F1Z0","panNumber":"ABCDE1234F"}'
-
-# 3. Ingest GST Certificate (Returns 201 + Document ID)
-curl -s -X POST http://localhost:3001/api/vendors/<VENDOR_ID>/documents \
-  -H "x-admin-key: vc_admin_sec_placeholder_key_32bytes_min" \
-  -F "type=GST_CERT" \
-  -F "file=@sample.pdf"
-
-# 4. Trigger Asynchronous Verification (Returns 202 Accepted)
-curl -s -X POST http://localhost:3001/api/vendors/<VENDOR_ID>/documents/<DOC_ID>/verify \
-  -H "x-admin-key: vc_admin_sec_placeholder_key_32bytes_min"
-
-# 5. Audited Byte Retrieval (Streams decrypted PDF + appends ADMIN_READ audit event)
-curl -s http://localhost:3001/api/vendors/<VENDOR_ID>/documents/<DOC_ID>/bytes \
-  -H "x-admin-key: vc_admin_sec_placeholder_key_32bytes_min" -o verified_document.pdf
+# Inert generated fixtures, including independently parsed image/ZIP polyglots:
+python -m vendorchain corpus --generate .runtime/corpus --benign 1000 \
+  --output research/results/ingress.json
+# Real OCR; Syft is explicitly not measured unless --source is supplied:
+python -m vendorchain ablation --trials 50 --warmups 3 \
+  --output research/results/ablation
+python research/plot.py research/results/ablation/raw.jsonl \
+  --output research/results/figures
 ```
 
-- **Fail-Closed Production Boot Guard**:
-```bash
-NODE_ENV=production node -e "require('./src/lib/queue/boot-check.ts')"
-# Output: {"level":"fatal","msg":"Production boot failed: Redis connection required for BullMQ queue in production (REDIS_URL missing)"}
-```
+No corpus can establish universal zero bypasses. The evaluator reports observed
+errors, denominators, specimen hashes and exact binomial confidence intervals.
+Generated documents are not historical corporate records.
 
----
+## Layout
 
-## 📜 10. Audited Work-Order Protocol
+| Path | Purpose |
+| --- | --- |
+| `chaincode/` | Authorized worker registry and immutable signed receipts |
+| `research/vendorchain/` | Gate, encryption, OCR isolation, state machine, outbox, API |
+| `research/gateway/` | TLS Fabric client and commit/readback bridge |
+| `research/scripts/` | Verified BFT bootstrap and integration smoke test |
+| `research/load*.mjs` | Fresh-process load trials and raw request logs |
+| `research/results/` | Measured local evidence, explicitly scoped |
+| `docs/` | Protocol, limitations, acceptance criteria |
+| `config/` | Historical upstream sample configuration; not the research launcher |
 
-| Phase / Milestone | Commit Reference | Focus Area | Verification Result |
-|---|---|---|---|
-| **Landing Phase 1** | `44677be` | Trust & Integrity Pass | Labeled DEMO verifier; zero dead links. |
-| **Landing Phase 2** | `d9f6131` | Conversion Core | Accessible early-access capture form; 0 PII stored. |
-| **Landing Phase 3** | `2703e09` | Launch Hardening | Strict CSP meta tag; 0 inline styles; 404 & sitemap. |
-| **Module 1 (Slice 1)** | `06a942b` | Secure Foundation | AES-256-GCM envelope intake; magic byte validation. |
-| **Module 1 (Slice 2)** | `c76027d` | Async Pipeline | Mod-36 GST sandbox adapter; BullMQ worker & DLQ. |
-| **Module 1 (Slice 3)** | `8af6762` | Document Intelligence | OCR forgery detection; audited byte streaming. |
-
----
-
-## 🛡️ 12. Threat Model & Mitigations
-
-| Threat Vector | Potential Vulnerability | Mitigation Strategy | Implemented In |
-|---|---|---|---|
-| **T1: Disguised Executables** | Malicious binary disguised as PDF | Strict magic byte signature inspection (`%PDF-`, `\x89PNG`) | `src/lib/crypto/magic-bytes.ts` |
-| **T2: Database Breach** | SQL exfiltration leaks plaintext PANs | AES-256-GCM encryption at rest; no plaintext PAN column | `src/lib/crypto/pan-encryption.ts` |
-| **T3: Timing Attacks** | Side-channel inspection on API key | `crypto.timingSafeEqual` comparison on fixed-length buffers | `src/lib/auth.ts` |
-| **T4: Unauthorized Document Peeking** | Admin views documents without record | Every read stream logs an immutable `ADMIN_READ` event | `api/vendors/.../bytes/route.ts` |
-| **T5: Identity Forgery** | Document text differs from vendor PAN | In-memory OCR cross-check flags mismatches to `FLAGGED` | `src/lib/ocr/extractor.ts` |
-| **T6: Queue Outage Data Loss** | Production queue fails silently | Fail-closed boot check enforces Redis connection in production | `src/lib/queue/boot-check.ts` |
-| **T7: Automated Form Spam** | Bot floods early access form | Honeypot field + 3-second minimum-time-to-submit guard | `js/app.js` |
-| **T8: XSS & Script Injection** | Malicious payload injected in DOM | Strict Content Security Policy (`default-src 'self'`) | `index.html` |
-
----
-
+The tracked cosign key is a **public** verification key. The supplied audit's
+claim that this alone proves exposed private keys is not supported by this tree.
+Runtime secrets and generated artifacts are ignored. No Git history is rewritten.
