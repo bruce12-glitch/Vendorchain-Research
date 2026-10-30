@@ -13,7 +13,7 @@ export MASTER_KEK_HEX="$(cat "$STATE/master.hex")"
 node research/gateway/server.mjs register-key "$STATE/worker-public.json"
 node research/gateway/server.mjs > "$ROOT/.runtime/gateway.log" 2>&1 &
 GATEWAY_PID=$!
-python -m vendorchain serve --state "$STATE" --source "$ROOT/chaincode" --workers 2 > "$ROOT/.runtime/api.log" 2>&1 &
+python -m vendorchain serve --state "$STATE" --source "$ROOT/chaincode" --workers "${UPLOAD_WORKERS:-2}" > "$ROOT/.runtime/api.log" 2>&1 &
 API_PID=$!
 cleanup() {
   kill "$API_PID" "$GATEWAY_PID" 2>/dev/null || true
@@ -33,7 +33,7 @@ from vendorchain.corpus import png
 from pathlib import Path
 Path('.runtime/smoke.png').write_bytes(png())
 PY
-node research/load.mjs --file .runtime/smoke.png --concurrency 3 --trials 1 --warmups 1 --metadata .runtime/network-metadata.json --output .runtime/bft-healthy
+node research/load.mjs --file .runtime/smoke.png --concurrency "${LOAD_CONCURRENCY:-3}" --trials "${LOAD_TRIALS:-1}" --warmups "${LOAD_WARMUPS:-1}" --metadata .runtime/network-metadata.json --output .runtime/bft-healthy
 # A crash test is not an active Byzantine/malicious-orderer test.
 docker stop orderer4.example.com
 node research/load.mjs --file .runtime/smoke.png --concurrency 3 --trials 1 --warmups 0 --metadata .runtime/network-metadata.json --output .runtime/bft-one-crash

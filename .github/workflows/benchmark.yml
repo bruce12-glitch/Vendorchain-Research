@@ -1,0 +1,50 @@
+name: BFT measured load campaign
+on:
+  push:
+    branches: ['bench/research-validation-*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bft-100:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils
+      - run: python -m pip install -r research/requirements.txt
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: research/gateway
+      - run: bash research/scripts/install-syft.sh
+      - run: bash research/scripts/bootstrap-bft.sh
+      - run: bash research/scripts/integration-smoke.sh
+        env:
+          UPLOAD_WORKERS: '8'
+          LOAD_CONCURRENCY: '100'
+          LOAD_TRIALS: '50'
+          LOAD_WARMUPS: '3'
+      - run: PYTHONPATH=research python research/summarize.py .runtime/bft-healthy/trials.jsonl --output .runtime/bft-healthy/summary.json
+        if: always()
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bft-100-load-evidence
+          include-hidden-files: true
+          path: |
+            research/gateway/package-lock.json
+            .runtime/network-metadata.json
+            .runtime/channel-config.json
+            .runtime/container-images.txt
+            .runtime/gateway.log
+            .runtime/api.log
+            .runtime/bft-healthy/
+            .runtime/bft-one-crash/
