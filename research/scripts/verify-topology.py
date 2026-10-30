@@ -24,5 +24,11 @@ report={'consensus':consensus,'ordererCount':len(membership),'channelConfigSha25
         'samplesCommit':'5789681b4f4d24e58fa40f19a69f5496892374b6','fabricVersion':'3.1.5',
         'colocated':True,'productionDeployment':False,'platform':platform.platform(),
         'cpuCount':__import__('os').cpu_count(), 'membership':membership,
+        'sourceCommit':__import__('os').environ.get('GITHUB_SHA'),
+        'cpuAffinityCount':len(__import__('os').sched_getaffinity(0)),
+        'cpuModel':next((l.split(':',1)[1].strip() for l in Path('/proc/cpuinfo').read_text().splitlines() if l.startswith('model name')),None),
+        'memoryTotalKiB':next((int(l.split()[1]) for l in Path('/proc/meminfo').read_text().splitlines() if l.startswith('MemTotal:')),None),
+        'nodeVersion':subprocess.run(['node','--version'],capture_output=True,text=True,check=True).stdout.strip(),
+        'goVersion':subprocess.run(['go','version'],capture_output=True,text=True,check=True).stdout.strip(),
         'limitations':'One Docker host, development certificates; this checks integration, not production workload fidelity.'}
 Path(sys.argv[2]).write_text(json.dumps(report,indent=2))
