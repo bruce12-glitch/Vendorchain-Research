@@ -19,3 +19,6 @@ test('lost acknowledgement reconciles without duplicate submission',async()=>{co
 test('conflicting replay cannot be accepted',async()=>assert.rejects(commitRecord(fake({existing:true,mismatch:true}),payload)));
 test('readback outage cannot be accepted',async()=>assert.rejects(commitRecord(fake({outage:true}),payload)));
 test('receipt digest is validated before submission',async()=>{const c=fake();await assert.rejects(commitRecord(c,{...payload,receiptHash:'x'}));assert.equal(c.submissions,0);});
+
+test('historical query confirms existing record without writing',async()=>{const c=fake({existing:true});assert.equal((await commitRecord(c,payload,{queryOnly:true})).recovered,true);assert.equal(c.submissions,0);});
+test('historical query cannot create a missing record',async()=>{const c=fake();await assert.rejects(commitRecord(c,payload,{queryOnly:true}));assert.equal(c.submissions,0);});

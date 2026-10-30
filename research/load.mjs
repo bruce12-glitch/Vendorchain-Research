@@ -9,7 +9,7 @@ const option=(name,fallback)=>{const i=args.indexOf('--'+name);return i<0?fallba
 const url=option('url','http://127.0.0.1:8090');
 const file=resolve(option('file',''));
 const output=resolve(option('output','research/results/load-'+Date.now()));
-const trials=Number(option('trials','50')),warmups=Number(option('warmups','3'));
+const trials=Number(option('trials','50')),warmups=Number(option('warmups','5'));
 const levels=option('concurrency','100,250,500,1000,2500,5000,10000').split(',').map(Number);
 const reset=option('reset-script',null);
 const metadata=option('metadata',null);

@@ -9,11 +9,12 @@ import shutil
 import subprocess
 import time
 import uuid
-from .crypto import canonical, encrypt, decrypt
+from .crypto import canonical, encrypt, decrypt, decode
 from .ingress import POLICY
 from .sandbox import isolated
 from .store import Store, Conflict
 from .trust import sign, verify
+from cryptography.exceptions import InvalidSignature
 
 IDENTIFIER = re.compile(r'^[A-Za-z0-9_-]{1,128}$')
 def digest(data):
@@ -130,6 +131,18 @@ class Pipeline:
             # Python/crypto libraries may make copies: this is best-effort hygiene,
             # not a claim that all heap copies or swap have been erased.
 
+    def historical_commit(self, rid, row, payload):
+        raw=decode(payload['receipt']);receipt=json.loads(raw)
+        if (payload['recordID']!=rid or receipt['recordID']!=rid or receipt['nonce']!=rid
+            or digest(raw)!=payload['receiptHash'] or receipt['vendorID']!=row['vendor_id']
+            or receipt['documentHash']!=row['document_hash'] or receipt['ciphertextHash']!=row['cipher_hash']):
+            raise Conflict('historical receipt binding mismatch')
+        ack=self.ledger.lookup(payload)
+        if (not ack or ack.get('successful') is not True or not ack.get('transactionID')
+            or ack.get('receiptHash')!=payload['receiptHash'] or ack.get('kind')!=self.ledger.kind):
+            raise ValueError('historical commitment not confirmed by ledger')
+        return ack
+
     def deliver(self, rid, metrics=None):
         metrics = {} if metrics is None else metrics
         pending = self.store.pending(rid)
@@ -137,10 +150,23 @@ class Pipeline:
             raise ValueError('no prepared outbox entry')
         payload = json.loads(pending['payload'])
         with timed(metrics,'commit_revalidate_ms'):
-            receipt = verify(payload,self.registry)
+            if pending['status']=='CONFIRMED':
+                row=self.store.get(rid)
+                if row['state']!='COMMITTED':raise Conflict('inconsistent cached commitment')
+                ack=self.historical_commit(rid,row,payload)
+                if ack['transactionID']!=pending['tx_id']:raise Conflict('cached transaction differs from ledger')
+                return ack
+            try:
+                receipt = verify(payload,self.registry)
+            except (ValueError,KeyError,InvalidSignature):
+                # Expiry/revocation blocks new writes, not recovery of a past commit.
+                row=self.store.get(rid)
+                if row['state']!='PREPARED' or row['version']!=pending['snapshot']:
+                    raise Conflict('stale recovery snapshot')
+                ack=self.historical_commit(rid,row,payload)
+                self.store.finish(rid,pending['snapshot'],ack['transactionID'],ack['receiptHash'])
+                return ack
             row = self.store.get(rid)
-            if row['state']=='COMMITTED' and pending['status']=='CONFIRMED':
-                return {'successful':True,'transactionID':pending['tx_id'],'receiptHash':payload['receiptHash'],'kind':self.ledger.kind}
             if row['state']!='PREPARED' or row['version']!=pending['snapshot']:
                 raise Conflict('stale outbox snapshot')
             data = Path(row['blob_path']).read_bytes()

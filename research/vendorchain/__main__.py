@@ -14,7 +14,7 @@ def main():
     server.add_argument('--port',type=int,default=8090);server.add_argument('--workers',type=int,default=8)
     reconcile=sub.add_parser('reconcile');reconcile.add_argument('--state',required=True);reconcile.add_argument('--source');reconcile.add_argument('record_id')
     corpus=sub.add_parser('corpus');corpus.add_argument('--generate');corpus.add_argument('--benign',type=int,default=300);corpus.add_argument('--manifest');corpus.add_argument('--output',required=True)
-    abl=sub.add_parser('ablation');abl.add_argument('--output',required=True);abl.add_argument('--trials',type=int,default=50);abl.add_argument('--warmups',type=int,default=3);abl.add_argument('--source')
+    abl=sub.add_parser('ablation');abl.add_argument('--output',required=True);abl.add_argument('--trials',type=int,default=50);abl.add_argument('--warmups',type=int,default=5);abl.add_argument('--source')
     args=parser.parse_args()
     if args.command=='init':
         public=initialize(args.state);print(json.dumps({'created':True,'workerKeyID':public['keyID']}))

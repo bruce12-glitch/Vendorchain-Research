@@ -174,6 +174,24 @@ class PipelineTests(unittest.TestCase):
         with self.assertRaises(OSError):self.pipeline.deliver('r1')
         self.assertEqual(self.pipeline.store.get('r1')['state'],'PREPARED')
         self.pipeline.store.finish=original;self.pipeline.deliver('r1')
+    def test_historical_readback_survives_worker_revocation(self):
+        first=self.pipeline.run(png(),'v','r1');self.registry['test']['revoked']=True
+        again=self.pipeline.run(png(),'v','r1')
+        self.assertEqual(first['ack']['transactionID'],again['ack']['transactionID'])
+    def test_lost_ack_reconciles_after_worker_revocation(self):
+        self.prepared();original=self.ledger.submit
+        def lost(payload):original(payload);raise ConnectionError('lost ack')
+        self.ledger.submit=lost
+        with self.assertRaises(ConnectionError):self.pipeline.deliver('r1')
+        self.registry['test']['revoked']=True;self.ledger.submit=original
+        self.pipeline.deliver('r1')
+        self.assertEqual(self.pipeline.store.get('r1')['state'],'COMMITTED')
+    def test_forged_SQL_confirmation_cannot_fake_ledger_commit(self):
+        self.prepared()
+        with self.pipeline.store.connection(True) as con:
+            con.execute("UPDATE submissions SET state='COMMITTED' WHERE id='r1'")
+            con.execute("UPDATE outbox SET status='CONFIRMED',tx_id='fake' WHERE id='r1'")
+        with self.assertRaises(ValueError):self.pipeline.deliver('r1')
     def test_false_ack_never_finalizes(self):
         self.prepared();self.ledger.submit=lambda _: {'successful':True,'receiptHash':'wrong','transactionID':'tx','kind':self.ledger.kind}
         with self.assertRaises(ValueError):self.pipeline.deliver('r1')

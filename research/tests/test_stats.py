@@ -3,6 +3,8 @@ from vendorchain.stats import summarize,summarize_campaign
 class StatsTests(unittest.TestCase):
     def test_sample_sd_and_t_interval(self):
         result=summarize([1,2,3,4,5]);self.assertAlmostEqual(result['mean'],3)
+        self.assertEqual(result['median'],3);self.assertEqual(result['p50'],3)
+        self.assertAlmostEqual(result['p95'],4.8);self.assertAlmostEqual(result['p99'],4.96)
         self.assertAlmostEqual(result['stddev'],1.5811388300841898)
         self.assertAlmostEqual(result['ci95'][0],1.0367568385,places=8)
     def test_fifty_independent_trials_required(self):

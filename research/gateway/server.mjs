@@ -25,11 +25,11 @@ if (process.argv[2] === 'register-key') {
   const server = createServer(async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     if (!timingSafeEqual(hash(req.headers.authorization || ''), hash('Bearer '+secret))) { res.writeHead(401).end('{}'); return; }
-    if (req.method !== 'POST' || req.url !== '/records') { res.writeHead(404).end('{}'); return; }
+    if (req.method !== 'POST' || !['/records','/records/query'].includes(req.url)) { res.writeHead(404).end('{}'); return; }
     try {
       let bytes = 0; const chunks = [];
       for await (const chunk of req) { bytes += chunk.length; if (bytes > 20000) throw new Error('payload too large'); chunks.push(chunk); }
-      const result = await commitRecord(contract, JSON.parse(Buffer.concat(chunks).toString()));
+      const result = await commitRecord(contract, JSON.parse(Buffer.concat(chunks).toString()), {queryOnly:req.url==='/records/query'});
       res.writeHead(200).end(JSON.stringify(result));
     } catch {
       res.writeHead(503).end(JSON.stringify({ error: 'commit unconfirmed; reconcile the durable outbox' }));

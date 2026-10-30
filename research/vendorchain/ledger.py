@@ -13,6 +13,12 @@ class LocalLedger:
         self.path, self.registry = path, registry
         with sqlite3.connect(path) as con:
             con.execute('CREATE TABLE IF NOT EXISTS records(id TEXT PRIMARY KEY, hash TEXT NOT NULL, tx TEXT NOT NULL)')
+    def lookup(self, payload):
+        with sqlite3.connect(self.path,timeout=60) as con:
+            row=con.execute('SELECT hash,tx FROM records WHERE id=?',(payload['recordID'],)).fetchone()
+        if row is None:return None
+        if row[0]!=payload['receiptHash']:raise ValueError('conflicting historical receipt')
+        return {'successful':True,'transactionID':row[1],'receiptHash':row[0],'kind':self.kind}
     def submit(self, payload):
         verify(payload,self.registry)
         with sqlite3.connect(self.path, timeout=60) as con:
@@ -31,7 +37,11 @@ class FabricLedger:
             raise ValueError('gateway requires TLS outside loopback')
         self.url, self.token = url.rstrip('/'), token
     def submit(self, payload):
-        request = urllib.request.Request(self.url+'/records', canonical(payload),
+        return self._request(payload,'/records')
+    def lookup(self, payload):
+        return self._request(payload,'/records/query')
+    def _request(self, payload, path):
+        request = urllib.request.Request(self.url+path, canonical(payload),
                     {'Content-Type':'application/json','Authorization':'Bearer '+self.token})
         with urllib.request.urlopen(request,timeout=150) as response:
             result = json.load(response)

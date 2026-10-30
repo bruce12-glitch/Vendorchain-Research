@@ -58,7 +58,7 @@ def trial(variant,source=None):
                 'disk_growth_bytes':disk_bytes(root)-before,'input_bytes':len(data),'evidence':'local-non-consensus',
                 'syftExecuted':bool(source),'pid':os.getpid()}
 
-def campaign(output,trials=50,warmups=3,source=None):
+def campaign(output,trials=50,warmups=5,source=None):
     if trials<1 or warmups<0:raise ValueError('invalid trial counts')
     out=Path(output);out.mkdir(parents=True,exist_ok=True)
     if (out/'raw.jsonl').exists():

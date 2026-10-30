@@ -3,13 +3,22 @@ import math
 import statistics
 from scipy.stats import t
 
+def percentile(values, probability):
+    ordered=sorted(values)
+    position=(len(ordered)-1)*probability
+    lower=math.floor(position);upper=math.ceil(position)
+    return ordered[lower]+(ordered[upper]-ordered[lower])*(position-lower)
+
 def summarize(values):
     if not values or any(not isinstance(x,(float,int)) or not math.isfinite(x) for x in values):
         raise ValueError('finite measurements are required; missing values cannot be silently dropped')
     n=len(values);mean=statistics.mean(values)
     sd=statistics.stdev(values) if n>1 else None
     half=float(t.ppf(.975,n-1))*sd/math.sqrt(n) if n>1 else None
-    return {'n':n,'mean':mean,'stddev':sd,'ci95':None if half is None else [mean-half,mean+half],
+    return {'n':n,'mean':mean,'stddev':sd,'median':statistics.median(values),
+            'p50':percentile(values,.5),'p95':percentile(values,.95),'p99':percentile(values,.99),
+            'quantileMethod':'linear interpolation over trial means (R7)',
+            'ci95':None if half is None else [mean-half,mean+half],
             'publicationNMet':n>=50,'unit':'independent trial mean','method':'two-sided Student t'}
 
 def summarize_campaign(rows):
@@ -28,6 +37,8 @@ def summarize_campaign(rows):
             'offered':sum(r['offered'] for r in trials),'failed':failures,
             'trialsWithoutSuccessfulCommits':len(trials)-len(complete),
             'qualifiedForPaper':False,
-            'protocolMinimumMet':len(trials)>=50 and len(complete)==len(trials) and all(r.get('evidence')=='fabric-commit-confirmed' for r in trials),
-            'notes':'Latency uses successful commits within each trial. All failed attempts and empty trials remain visible. Independence and cluster metadata must be reviewed separately.'}
+            'manuscriptSection63Compliant':False,
+            'protocolMinimumMet':False,
+            'countAndCommitMinimumMet':len(trials)>=50 and len(complete)==len(trials) and all(r.get('evidence')=='fabric-commit-confirmed' for r in trials),
+            'notes':'Latency uses successful commits within each trial. All failed attempts and empty trials remain visible. Section 6.3 also requires five discarded warm-ups, sequential trials and no competing load; those conditions are not inferred from N alone.'}
     return result
