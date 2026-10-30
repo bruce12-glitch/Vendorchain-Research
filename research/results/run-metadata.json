@@ -34,7 +34,7 @@
     "research/scripts/verify-topology.py": "5872835cd682e30625c7247d7f732cd9b07243a51c5d4e72d37e5bdd9d72f341",
     "research/security_ablation.py": "5f117dfeb96bc9ff0e9ab7431ad2ace5c4ed8a6345ebfd849ffdbdc29629ddee",
     "research/summarize.py": "103f9121f416ee727931ea68490b1d2e6305fc76f9961f7cafd923bd67445508",
-    "research/tests/test_security.py": "8ce0b10a3b038340143d06bd4269aa51f9599e67c4c182040a3a34ca38764e65",
+    "research/tests/test_security.py": "f92af8270de26c2fd4e5b7a23a0bf4e64827573b84142bb0e4d16d90957286be",
     "research/tests/test_server.py": "9f8285a9e4bdd2662b73adbb181dd324e1d20221f9dd2adfde8ac6439442e570",
     "research/tests/test_stats.py": "04befa5711b2dde5672b0d2f960f5edda1ba9e10b83d5b320121a00e27c46233",
     "research/vendorchain/__init__.py": "9fcf02cee7b6da356c8686fbdfc3b0222dab922ac66603abd644b8584e26e73e",
@@ -42,7 +42,7 @@
     "research/vendorchain/ablation.py": "53a458a4b105b663b3f5b43d8f0f1d72be5cb02336c4ba04628b9b09caba33df",
     "research/vendorchain/corpus.py": "e1ff603872df87cd93b9966d9b8eb4f0fa280ae3cf92ee0e1fefdd89e8095615",
     "research/vendorchain/crypto.py": "e02812afbf78ce2a46f792fefdd980896dc9ef225303633e1c0e92fb6ce4b799",
-    "research/vendorchain/ingress.py": "7678694131086dc597e18324e2a03a79c57fc392ee1983d0cf2d9d5e4e06235f",
+    "research/vendorchain/ingress.py": "c21a84f025449c989fa0edd394d70bd2c3edea7036b4bedd0ccae28ea68d0ca6",
     "research/vendorchain/ledger.py": "0748b898747eb986a65d51a519b6fea16a11df77f108cc5598d1bc5acfaf614e",
     "research/vendorchain/pipeline.py": "c5d2bb32086648c629c8e3cd605cd4f5e3ad8e25c369ae6e57bc13ace1da6db0",
     "research/vendorchain/sandbox.py": "94bd068afcf4087f575c50f888c7472a484701ea35347af0c108b580f1303305",
@@ -60,15 +60,15 @@
   ],
   "cpu.max": "800000 100000",
   "memory.max": "8589934592",
-  "localAblationImplementationCommit": "7c87d18cb60ca6dfcd6ce2e48f2e5f5564dff911",
+  "localAblationImplementationCommit": "37502648bdb151f700193de7dbd59874931afda8",
   "fixtureArchiveSha256": "8238cb4bef2242ae4c2b084e9684cad71d77811e8f508bf3c6c09990193cb2e4",
   "testEvidence": {
-    "pythonTests": 43,
+    "pythonTests": 44,
     "gatewayTests": 7,
     "goTests": 7,
     "goRaceAndVetPassed": true,
     "BFTSmokePassed": true,
-    "workflowRun": 41026779493,
-    "workflowCommit": "b2947886d01aefa3b2d7efbbb1b4714c8eb07fb8"
+    "workflowRun": 41030667638,
+    "workflowCommit": "37502648bdb151f700193de7dbd59874931afda8"
   }
 }

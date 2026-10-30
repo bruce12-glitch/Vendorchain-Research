@@ -1,8 +1,24 @@
 name: Research validation
 on:
   pull_request:
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - '.github/workflows/**'
   push:
     branches: [main, 'fix/research-validation-*']
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - '.github/workflows/**'
   workflow_dispatch:
 permissions:
   contents: read

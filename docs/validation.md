@@ -39,14 +39,14 @@ comparison, not a pure single-variable causal estimate.
 
 | Variant | Mean workload latency | Sample SD | 95% t interval |
 | --- | ---: | ---: | ---: |
-| Structural inline | 230.99 ms | 22.35 ms | 224.64–237.34 ms |
-| Isolated ingress pipeline | 352.41 ms | 30.79 ms | 343.65–361.16 ms |
-| Hardened local outbox | 374.77 ms | 32.67 ms | 365.49–384.05 ms |
-| Hardened plus ten extra AES loops | 383.17 ms | 31.52 ms | 374.21–392.13 ms |
+| Structural inline | 242.02 ms | 29.24 ms | 233.71–250.33 ms |
+| Isolated ingress pipeline | 364.71 ms | 34.42 ms | 354.93–374.50 ms |
+| Hardened local outbox | 403.94 ms | 46.98 ms | 390.58–417.29 ms |
+| Hardened plus ten extra AES loops | 405.13 ms | 67.44 ms | 385.96–424.29 ms |
 
-The paired hardened-minus-isolated delta is **22.36 ms**, 95% CI **12.81–31.91 ms**.
+The paired hardened-minus-isolated delta is **39.22 ms**, 95% CI **24.97–53.47 ms**.
 The directly instrumented local signature/outbox/revalidation/finalization stages
-sum to **6.70 ms**, 95% CI **6.36–7.05 ms**. External consensus latency is absent
+sum to **7.87 ms**, 95% CI **7.09–8.66 ms**. External consensus latency is absent
 from these local deltas. CPU, largest-process RSS and disk-growth measurements
 are retained in raw logs and the figures; largest-process RSS is not aggregate
 concurrent system RSS.
@@ -58,7 +58,7 @@ concurrent system RSS.
 ## Actual Fabric integration
 
 [GitHub run 41026779493](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41026779493)
-passed Python tests, Gateway tests, Go race tests/vet and the BFT integration job
+passed the original Python/Gateway/Go race/vet and BFT integration checks
 at source commit `b2947886d01aefa3b2d7efbbb1b4714c8eb07fb8`.
 The job verified a committed channel with four BFT consenters, executed real
 Tesseract and Syft, and confirmed three uploads per burst. It passed both the
@@ -74,6 +74,14 @@ A separate 100-upload, 50-trial campaign was launched at source commit
 [run 41027758083](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41027758083).
 Its final outcome will be recorded with the downloaded raw artifact. Starting a
 run is not a measured result.
+
+The final XML-encoding fix also passed **44 Python, 7 Gateway and 7 Go tests**,
+Go race/vet, and BFT integration in
+[run 41030667638](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41030667638)
+at commit `37502648bdb151f700193de7dbd59874931afda8`. The archived 86-file adversarial
+corpus was replayed unchanged against this fix. The local 50-trial ablations were
+rerun; the table above uses those final measurements. The larger BFT campaign
+uses the earlier tested commit and PNG inputs, which do not exercise XML metadata.
 
 ## Remaining publication requirements
 

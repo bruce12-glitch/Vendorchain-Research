@@ -7,11 +7,11 @@
     "structural_inline": {
       "elapsed_ms": {
         "n": 50,
-        "mean": 230.99084684,
-        "stddev": 22.351418664921415,
+        "mean": 242.02364642,
+        "stddev": 29.23961065842233,
         "ci95": [
-          224.63864393956075,
-          237.34304974043923
+          233.71384101495696,
+          250.33345182504306
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -19,11 +19,11 @@
       },
       "peak_rss_kib": {
         "n": 50,
-        "mean": 93768,
+        "mean": 93780,
         "stddev": 0.0,
         "ci95": [
-          93768.0,
-          93768.0
+          93780.0,
+          93780.0
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -45,11 +45,11 @@
     "isolated_pipeline": {
       "elapsed_ms": {
         "n": 50,
-        "mean": 352.40507732,
-        "stddev": 30.79309851822038,
+        "mean": 364.71423584,
+        "stddev": 34.416642985633345,
         "ci95": [
-          343.6537755501515,
-          361.15637908984843
+          354.93313412676383,
+          374.4953375532362
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -57,11 +57,11 @@
       },
       "peak_rss_kib": {
         "n": 50,
-        "mean": 93768,
+        "mean": 93780,
         "stddev": 0.0,
         "ci95": [
-          93768.0,
-          93768.0
+          93780.0,
+          93780.0
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -83,11 +83,11 @@
     "hardened": {
       "elapsed_ms": {
         "n": 50,
-        "mean": 374.76972814,
-        "stddev": 32.66751352905746,
+        "mean": 403.93560808,
+        "stddev": 46.97955702639313,
         "ci95": [
-          365.4857235181776,
-          384.05373276182235
+          390.58416570051673,
+          417.2870504594833
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -95,11 +95,11 @@
       },
       "peak_rss_kib": {
         "n": 50,
-        "mean": 94188.32,
-        "stddev": 7.083870727913936,
+        "mean": 94189.6,
+        "stddev": 52.14109586066465,
         "ci95": [
-          94186.3067862144,
-          94190.33321378562
+          94174.7816645143,
+          94204.41833548571
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -121,11 +121,11 @@
     "hardened_crypto_x10": {
       "elapsed_ms": {
         "n": 50,
-        "mean": 383.16885094,
-        "stddev": 31.522649821345468,
+        "mean": 405.12630884,
+        "stddev": 67.4365028363214,
         "ci95": [
-          374.21021298388064,
-          392.1274888961194
+          385.9610667882886,
+          424.2915508917114
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
@@ -133,11 +133,11 @@
       },
       "peak_rss_kib": {
         "n": 50,
-        "mean": 94195.12,
-        "stddev": 13.211992078936376,
+        "mean": 94195.28,
+        "stddev": 18.686500638761903,
         "ci95": [
-          94191.36519339633,
-          94198.87480660366
+          94189.96935527824,
+          94200.59064472176
         ],
         "publicationNMet": true,
         "unit": "independent trial mean",
