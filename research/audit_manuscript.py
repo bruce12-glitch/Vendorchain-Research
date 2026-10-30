@@ -2,6 +2,7 @@
 import ast
 import hashlib
 import json
+import shutil
 from pathlib import Path
 import tempfile
 import time
@@ -28,7 +29,11 @@ for path in sorted((root/'research/tests').glob('test_*.py')):
             cases=[m.name for m in node.body if isinstance(m,(ast.FunctionDef,ast.AsyncFunctionDef)) and m.name.startswith('test_')]
             if cases:suites[str(path.relative_to(root))+':'+node.name]=cases
 record('original_12_suites_44_tests',False,pythonTestClasses=len(suites),pythonTests=sum(map(len,suites.values())),
-       originalHistoricalSuiteRecovered=False,luhnImplementationPresent=False,opaImplementationPresent=False)
+       originalHistoricalSuiteRecovered=False,
+       luhnImplementationPresent=(root/'research/vendorchain/gstin.py').is_file(),
+       opaReferencePolicyPresent=(root/'research/policies/reference.rego').is_file(),
+       opaExecutableAvailable=bool(shutil.which('opa')),
+       originalListing1Recovered=False)
 with zipfile.ZipFile(root/'research/fixtures/generated-corpus.zip') as archive:
     entries=json.loads(archive.read('manifest.json'))['entries']
     spoof=[e for e in entries if e['family']=='exe-extension-spoof']

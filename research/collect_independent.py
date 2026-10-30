@@ -34,8 +34,9 @@ with zipfile.ZipFile(combined,'w',compression=zipfile.ZIP_DEFLATED,compresslevel
                 problems.append({'trial':index,'reason':'no completed trial log'});continue
             rows=[json.loads(l) for l in archive.read(needed).decode().splitlines() if l.strip()]
             measured=[r for r in rows if not r['warmup']]
-            if len(measured)!=1 or len(rows)!=2:
-                problems.append({'trial':index,'reason':'expected one warm-up and one measurement'});continue
+            if len(measured)!=1:
+                problems.append({'trial':index,'reason':'expected exactly one measured burst'});continue
+            warmups=len(rows)-len(measured)
             row=measured[0]
             metadata=json.loads(archive.read('.runtime/network-metadata.json'))
             if row['concurrency']!=100 or metadata['consensus']!='BFT' or metadata['ordererCount']!=4:
@@ -62,7 +63,7 @@ with zipfile.ZipFile(combined,'w',compression=zipfile.ZIP_DEFLATED,compresslevel
                         stages[key]=sum(r['stages'][key] for r in successful)/len(successful)
                         stage_names.add(key)
             crash=json.loads(archive.read('.runtime/bft-one-crash/trials.jsonl').decode().strip()) if '.runtime/bft-one-crash/trials.jsonl' in names else None
-            entry={**row,'deploymentTrial':index,'stages':stages,'metadata':metadata,
+            entry={**row,'deploymentTrial':index,'stages':stages,'metadata':metadata,'discardedWarmups':warmups,
                    'oneCrashPassed':bool(crash and crash['successful']==3 and crash['failed']==0 and crash['evidence']=='fabric-commit-confirmed')}
             trials.append(entry)
             provenance.append({'trial':index,'artifactSHA256':archive_hash,'sourceCommit':metadata.get('sourceCommit'),
@@ -80,7 +81,9 @@ commits=sorted({r['metadata'].get('sourceCommit') for r in trials})
 if len(commits)>1:problems.append({'reason':'mixed source commits in declared cohort'})
 report={'kind':'independent-deployment-BFT-100','expectedTrials':args.expected,'completeTrials':len(trials),
         'freshDeploymentPerTrialVerifiedByDistinctChannelConfigurations':fresh,
-        'warmupsDiscardedPerDeployment':1,'successfulLatencyMs':metric('trialMeanMs'),
+        'observedDiscardedWarmupsPerDeployment':sorted({r['discardedWarmups'] for r in trials}),
+        'fiveWarmupMinimumMet':bool(trials) and all(r['discardedWarmups']>=5 for r in trials),
+        'successfulLatencyMs':metric('trialMeanMs'),
         'successfulThroughputPerSecond':summarize([r['successful']/r['durationSeconds'] for r in trials]) if trials else None,
         'measuredOfferedUploads':sum(r['offered'] for r in trials),'measuredCommittedUploads':sum(r['successful'] for r in trials),
         'measuredFailedUploads':sum(r['failed'] for r in trials),'oneOrdererCrashChecksPassed':sum(r['oneCrashPassed'] for r in trials),
@@ -88,7 +91,7 @@ report={'kind':'independent-deployment-BFT-100','expectedTrials':args.expected,'
         'missingTrials':missing,'provisioningOrProtocolProblems':problems,
         'independentDeploymentMinimumMet':len(valid)>=args.expected and not missing and not problems and fresh,
         'protocolMinimumMet':False,'manuscriptSection63Compliant':False,
-        'section63Protocol':{'requiredWarmupTrials':5,'observedWarmupBurstsPerDeployment':1,'sequentialExecutionRequired':True,'observedExecution':'parallel independent GitHub runners','noCompetingLoadVerified':False},
+        'section63Protocol':{'requiredWarmupTrials':5,'observedExecution':'parallel independent GitHub runners','noCompetingLoadVerified':False},
         'sourceCommits':commits,'publicationMatrixComplete':False,'archiveSHA256':hashlib.sha256(combined.read_bytes()).hexdigest(),
         'limitations':['100 offered concurrency only','one small synthetic PNG and fixed source project','four orderers colocated within each deployment','hardware heterogeneity retained in trial metadata','component timings are not a causal disabled-control comparison','full 250–10000 and corporate-corpus matrices remain unmeasured'],
         'provenance':provenance}

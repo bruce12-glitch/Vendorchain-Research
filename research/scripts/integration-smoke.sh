@@ -34,6 +34,8 @@ from pathlib import Path
 Path('.runtime/smoke.png').write_bytes(png())
 PY
 node research/load.mjs --file .runtime/smoke.png --concurrency "${LOAD_CONCURRENCY:-3}" --trials "${LOAD_TRIALS:-1}" --warmups "${LOAD_WARMUPS:-1}" --metadata .runtime/network-metadata.json --output .runtime/bft-healthy
+python research/verify_ledger.py --requests ".runtime/bft-healthy/requests-c${LOAD_CONCURRENCY:-3}-t0.json" --output .runtime/ledger-proof
+python research/validate_cosign.py --source "$ROOT/chaincode" --output .runtime/cosign-proof
 # A crash test is not an active Byzantine/malicious-orderer test.
 docker stop orderer4.example.com
 node research/load.mjs --file .runtime/smoke.png --concurrency 3 --trials 1 --warmups 0 --metadata .runtime/network-metadata.json --output .runtime/bft-one-crash

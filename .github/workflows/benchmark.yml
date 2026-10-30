@@ -31,6 +31,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: research/gateway
       - run: bash research/scripts/install-syft.sh
+      - run: bash research/scripts/install-validation-tools.sh
       - run: bash research/scripts/bootstrap-bft.sh
       - run: bash research/scripts/integration-smoke.sh
         timeout-minutes: 25
@@ -38,7 +39,7 @@ jobs:
           UPLOAD_WORKERS: '8'
           LOAD_CONCURRENCY: '100'
           LOAD_TRIALS: '1'
-          LOAD_WARMUPS: '1'
+          LOAD_WARMUPS: '5'
       - run: PYTHONPATH=research python research/summarize.py .runtime/bft-healthy/trials.jsonl --output .runtime/bft-healthy/summary.json
         if: always()
       - uses: actions/upload-artifact@v4
@@ -55,3 +56,5 @@ jobs:
             .runtime/api.log
             .runtime/bft-healthy/
             .runtime/bft-one-crash/
+            .runtime/ledger-proof/
+            .runtime/cosign-proof/
