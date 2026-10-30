@@ -106,6 +106,7 @@ class PipelineTests(unittest.TestCase):
     def test_complete_pipeline(self):
         r=self.pipeline.run(png(),'vendor1','r1')
         self.assertEqual(r['evidence'],'local-non-consensus')
+        self.assertEqual(r['decision'],'PASS')
         self.assertEqual(self.pipeline.store.get('r1')['state'],'COMMITTED')
         self.assertTrue(self.pipeline.store.verify_audit())
     def test_rejected_receive_buffer_wiped_before_any_persistence(self):
@@ -149,6 +150,7 @@ class PipelineTests(unittest.TestCase):
     def test_pipeline_uses_real_opa_and_denies_missing_sbom(self):
         self.pipeline.opa=True;self.pipeline.ocr=True
         result=self.pipeline.run(png(),'vendor','opa-deny')
+        self.assertEqual(result['decision'],'FAIL')
         self.assertGreater(result['stages']['opa_ms'],0)
         pending=self.pipeline.store.pending('opa-deny')
         from vendorchain.crypto import decode

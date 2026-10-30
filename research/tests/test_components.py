@@ -22,10 +22,11 @@ class OpaTests(unittest.TestCase):
     def test_real_rego_bundle(self):
         subprocess.run(['opa','test',str(REFERENCE_POLICY.parent),'-v'], check=True, capture_output=True, timeout=10)
     def test_real_allow_and_deny_decisions(self):
-        good={'format':'PNG','documentIntact':True,'ocrExpectedMatches':True,'sbomValid':True}
+        good={'format':'PNG','documentIntact':True,'ocrExpectedMatches':True,'ocrExpectedCount':1,'sbomValid':True}
         self.assertTrue(evaluate(good))
         for key in ['documentIntact','ocrExpectedMatches','sbomValid']:
             self.assertFalse(evaluate({**good,key:False}))
         self.assertFalse(evaluate({}))
+        self.assertFalse(evaluate({**good,'ocrExpectedCount':0}))
 
 if __name__=='__main__':unittest.main()

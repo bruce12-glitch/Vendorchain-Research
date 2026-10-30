@@ -46,7 +46,7 @@ def verify(requests, output):
             'recordID':record['recordID'],'transactionID':record['transactionID'],
             'documentAndSbomPayloadAbsentFromQueriedRecord':True,
             'recordContainsReceiptSignatureAndMetadata':True,'equation9SchemaVerified':False,
-            'scope':'One queried compliance record, not an enumeration of every world-state namespace; manuscript Equation 9 absent'}
+            'scope':'One queried compliance record, not an enumeration of every world-state namespace; signed-receipt schema differs from the manuscript Equation 9 flat tuple'}
     (out/'report.json').write_text(json.dumps(report,indent=2));return report
 
 if __name__=='__main__':

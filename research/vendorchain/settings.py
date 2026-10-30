@@ -19,7 +19,7 @@ def initialize(root):
     durable_write(root/'worker-public.json',json.dumps(public,indent=2).encode())
     return public
 
-def configured(root, *, local=False, source=None, no_ocr=False, no_sbom=False):
+def configured(root, *, local=False, source=None, no_ocr=False, no_sbom=False, expected=()):
     root=Path(root).resolve()
     public=json.loads((root/'worker-public.json').read_text())
     registry={public['keyID']:public}
@@ -29,4 +29,4 @@ def configured(root, *, local=False, source=None, no_ocr=False, no_sbom=False):
         key=(root/'master.hex').read_text()
     kek=load_kek(key)
     ledger=LocalLedger(root/'local-ledger.sqlite3',registry) if local else FabricLedger(os.environ['FABRIC_GATEWAY_URL'],os.environ['GATEWAY_TOKEN'])
-    return Pipeline(root/'pipeline',kek,private,public['keyID'],registry,ledger,source=source,sbom=not no_sbom,ocr=not no_ocr)
+    return Pipeline(root/'pipeline',kek,private,public['keyID'],registry,ledger,source=source,sbom=not no_sbom,ocr=not no_ocr,expected=expected)

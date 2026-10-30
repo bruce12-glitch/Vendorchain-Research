@@ -136,6 +136,7 @@ class Pipeline:
                 with timed(metrics, 'opa_ms'):
                     decision = evaluate({'format':worker['info']['format'], 'documentIntact':True,
                                          'ocrExpectedMatches':bool(self.ocr and decision),
+                                         'ocrExpectedCount':worker['ocr']['expectedCount'] if self.ocr else 0,
                                          'sbomValid':bool(self.sbom)})
             else:
                 metrics['opa_ms'] = None
@@ -222,4 +223,6 @@ class Pipeline:
             self.process(rid,metrics)
         result = self.deliver(rid,metrics)
         metrics['ingestion_to_commit_ms'] = (time.perf_counter_ns()-start)/1e6
-        return {'recordID':rid,'ack':result,'stages':metrics,'evidence':self.ledger.kind}
+        payload = json.loads(self.store.pending(rid)['payload'])
+        decision = json.loads(decode(payload['receipt']))['decision']
+        return {'recordID':rid,'ack':result,'decision':decision,'stages':metrics,'evidence':self.ledger.kind}

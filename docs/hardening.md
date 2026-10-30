@@ -1,19 +1,33 @@
-# Implemented control mapping
+# Manuscript-aligned hardening status
 
-The supplied notes describe seven control gaps but do not include the manuscript's
-formal H1–H7 definitions. The labels below are an **operational mapping for this
-repair**, not a claim that the absent paper uses identical numbering. Reconcile
-them against the manuscript before publication.
+The earlier `VendorChain_complete_position_fixed.tex` was located and read after
+the initial repository-only audit. The table below uses its actual Section 8
+definitions (lines 1950–2065). It supersedes the earlier operational numbering.
+**The full H1–H7 design is not implemented.** The manuscript itself distinguishes
+specified hardening from measured prototype evidence.
 
-| Control | Implemented mechanism | Validation |
+| Manuscript control | Current implementation | Remaining gap |
 | --- | --- | --- |
-| H1: Worker trust | Ed25519 receipts, administrator-pinned validity intervals, revocation, authorized MSP/client roles | Python and Go tests for unknown/revoked/expired/tampered keys; ledger key in Fabric MVCC read set |
-| H2: Document binding | Exactly 64 hex characters decode to a 32-byte KEK; fresh DEK and nonces; vendor/request/type AAD in payload encryption and DEK wrapping | Cross-vendor/request swaps and tampering fail authentication |
-| H3: Hostile ingress | Full bounded parsers, decoded active-PDF object inspection, CRC/segment/trailer checks, page/pixel/expansion limits | Generated polyglots independently validate through both image/PDF and ZIP readers; inert active content, DTD and expansion fixtures rejected |
-| H4: Concurrency | Atomic claim, immutable input bindings, snapshot version, expiring worker lease, deterministic request idempotency | 24 competing claims produce one owner; stale results and conflicting request-ID reuse fail |
-| H5: DB/ledger coordination | Transactional durable outbox, exact receipt-hash reconciliation, valid-commit readback before DB finalization | Ledger outage, lost acknowledgement and local finalization failure remain recoverable; false acknowledgements do not finalize |
-| H6: Ledger integrity | Proposal timestamps; separate composite key namespaces; append-only compliance records; self-certification and old unsigned write route disabled | Go deterministic-timestamp/replay/authorization tests; Gateway tests distinguish endorsement from commit |
-| H7: Revalidation and audit | Recheck current version, worker validity, document/ciphertext/SBOM hashes before delivery; chained local events with update/delete triggers; isolated OCR process | Tampered ciphertext and revoked keys fail before commit; audit mutation tests and chain verification |
+| H1: Signed identity attestation | Signed worker receipts bind submission/vendor/document hashes and a verdict | No complete signed GSTIN, identity-state, checksum/OCR-result, worker/version attestation consumed by the gate; no trusted per-vendor identity registry. A local checksum module and text match are not this attestation. |
+| H2: Signed decision snapshot | Receipt signs a verdict and policy hash; delivery checks the current hash | No complete input snapshot with policy and OPA versions, no independently signed policy bundle verified before evaluation, and no full decision-replay implementation. |
+| H3: Object-hash evidence root | Receipt binds ciphertext, document and SBOM hashes | No specified evRoot over encrypted object, SBOM, artifact digest, identity attestation, decision snapshot and time; complete retention/auditor access and hash agility are absent. |
+| H4: Commit-time revalidation | Go verifies registered worker signatures, expiry, immutable identifiers and MVCC-protected key/record reads; Gateway confirms VALID commit and readback | Complete Delta/ComplianceRecord+ schema is absent. A compromised authorized signer remains trusted; neither evidence-conditional external signing nor independent policy recomputation is implemented. |
+| H5: Ledger-first synchronized dual write | Durable SQLite outbox and post-confirmation finalization; exact-hash recovery through CLI/retries | The manuscript's PostgreSQL integration and automatic divergence-detecting reconciliation job are absent. A recoverable outbox, rather than a shared atomic transaction, is the paper's specified approach. |
+| H6: Key lifecycle and custody | Local 32-byte KEK, fresh DEKs/nonces, worker validity/revocation checks, best-effort buffer wiping | No non-exportable KMS/HSM custody, KEK versioned wrapping, scheduled rotation or authorized KMS revocation checks; worker signing custody remains in-process. |
+| H7: Content-digest replay window | Duplicate request IDs cannot create a second immutable record | Identical content with different submission IDs is still accepted. No digest uniqueness index with a configured retention window is enforced. The diagnostic reproduces this gap. |
+
+Additional working defenses include context-bound AES-GCM, a bounded structural
+parser/OCR subprocess, atomic worker claims, append-only local audit events,
+explicit executable-prefix rejection and owned-buffer wiping. These mechanisms
+are tested, but are not substitutes for the missing formal controls above.
+
+Listing 1 is recovered verbatim in `research/manuscript/listing-1.rego` and tested
+with real OPA in v0-compatible mode on synthetic predicate inputs. The active
+reference policy is intentionally separate: it cannot assert that certificate,
+software-provenance, identity-state and replay predicates have been established.
+Empty expected OCR terms now cause a reference-policy denial. A successful ledger
+acknowledgement means a verdict was committed; the API returns `decision`
+separately so a committed `FAIL` is not confused with an authorization `PASS`.
 
 ## Important boundaries
 
@@ -23,8 +37,8 @@ them against the manuscript before publication.
 - Fabric mode now executes the new reference OPA bundle and signs its decision;
   its exact bytes contribute to the policy hash and are rechecked before delivery.
   The policy checks format, worker digest/identity outcomes and SBOM presence. It
-  is not the missing manuscript Listing 1, a government lookup or an AI risk model.
-  Empty expected OCR terms establish no vendor credential match. The new GSTIN
+  is not the recovered manuscript Listing 1, a government lookup or an AI risk model.
+  Nonempty expected text still establishes no registered vendor identity. The GSTIN
   checksum/PAN component is tested separately; it is not wired to a vendor registry.
 - SQLite plus Fabric cannot perform a shared atomic commit. `PREPARED` and
   `PENDING` are visible recovery states. A lost response after an external commit

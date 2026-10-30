@@ -6,8 +6,9 @@ local tables below describe the earlier retained run with three warm-ups. They
 must not be substituted for the new five-warm-up data or for a Fabric sweep.
 
 The repository has been repaired and tested, but the requested publication matrix
-is not complete. The absent manuscript and private corporate corpus cannot be
-reconstructed from the supplied repository or audit notes.
+is not complete. The earlier manuscript was recovered after the repository-only
+audit; its actual control mapping is now in `docs/hardening.md`. The historical
+raw outputs and representative private corporate corpus remain unavailable.
 
 ## Measured security results
 
@@ -102,7 +103,7 @@ uses the earlier tested commit and PNG inputs, which do not exercise XML metadat
 | Historical corporate false-rejection study | Corpus not supplied; manifest evaluator implemented |
 | GIF/PE and validated live parser-exploit corpus | Not supplied or claimed; inert structural specimens tested |
 | Full OCR/Syft/resource ablation on production topology | Local OCR ablation completed; external full matrix pending |
-| Formal manuscript H1–H7 alignment | Operational mapping implemented; manuscript definitions absent |
+| Formal manuscript H1–H7 alignment | Definitions recovered and mapped; full implementation incomplete |
 | Publication-ready claim that all requested results are obtained | Not supported |
 
 The implementation adds the mechanisms needed to run these experiments. It does

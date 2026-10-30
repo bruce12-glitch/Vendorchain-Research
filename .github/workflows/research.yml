@@ -9,6 +9,7 @@ on:
       - 'research/*.mjs'
       - 'research/requirements.txt'
       - 'research/policies/**'
+      - 'research/manuscript/**'
       - '.github/workflows/**'
   push:
     branches: [main]
@@ -20,6 +21,7 @@ on:
       - 'research/*.mjs'
       - 'research/requirements.txt'
       - 'research/policies/**'
+      - 'research/manuscript/**'
       - '.github/workflows/**'
   workflow_dispatch:
 permissions:
@@ -48,6 +50,7 @@ jobs:
       - run: echo "$GITHUB_WORKSPACE/.runtime/bin" >> "$GITHUB_PATH"
       - run: PYTHONPATH=research python research/collect_local_evidence.py --output .runtime/local-evidence --trials 50 --warmups 5
       - run: PYTHONPATH=research python research/audit_manuscript.py
+      - run: python research/validate_manuscript_policy.py --output .runtime/manuscript-policy
       - run: |
           set -o pipefail
           mkdir -p ../.runtime/ci-logs
@@ -66,6 +69,7 @@ jobs:
           path: |
             .runtime/local-evidence/
             .runtime/ci-logs/
+            .runtime/manuscript-policy/
             research/results/manuscript-audit/
   bft-integration:
     needs: unit

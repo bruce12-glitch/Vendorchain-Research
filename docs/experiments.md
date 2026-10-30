@@ -42,7 +42,7 @@ export MASTER_KEK_HEX="$(cat .runtime/study/master.hex)"
 node research/gateway/server.mjs register-key .runtime/study/worker-public.json
 node research/gateway/server.mjs
 # A separate terminal with the SAME environment:
-python -m vendorchain serve --state .runtime/study --source "$PWD/chaincode" --workers 8
+python -m vendorchain serve --state .runtime/study --source "$PWD/chaincode" --workers 8 --expected-term REVIEWED_EXPECTED_TEXT
 # Another terminal with API_TOKEN:
 node research/load.mjs --file /absolute/path/to/reviewed-sample.pdf \
   --concurrency 100,250,500,1000,2500,5000,10000 --trials 50 --warmups 5 \
@@ -60,6 +60,9 @@ request. Warm-ups are retained but excluded from inference. Mean, sample standar
 deviation and two-sided 95% Student-t intervals use the **trial mean**, not thousands
 of requests treated as independent replications. At least 50 trial means are
 needed per condition. Trials with no valid commits remain counted failures.
+The recovered manuscript's Section 6.3 requires sequential independent trials
+with no competing load. A fresh process or a count of 50 alone does not establish
+those conditions. The earlier parallel BFT campaign fails this requirement.
 Successful-only latency and offered/successful throughput have separate
 interpretations; report error rates and saturation along with latency.
 
@@ -129,8 +132,8 @@ python research/plot.py research/results/full-ablation/raw.jsonl \
 The four variants are structural inline ingress, isolated ingress, local hardened
 outbox, and the hardened variant plus ten extra AES encrypt/decrypt loops.
 All use the same synthetic input and real Tesseract. They are explicit reference
-comparators, not an assertion that the missing paper's original baseline was
-recovered. Randomized variant order within 50 trial blocks reduces order bias.
+comparators, not the recovered paper's seven progressive variants or its original
+baseline implementation. Randomized variant order within 50 trial blocks reduces order bias.
 A new Python process and temporary state are used for every trial; host caches
 persist. Repeated executions must use a new output directory.
 

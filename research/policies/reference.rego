@@ -7,5 +7,6 @@ allow if {
     input.format in {"PDF", "PNG", "JPEG"}
     input.documentIntact == true
     input.ocrExpectedMatches == true
+    input.ocrExpectedCount > 0
     input.sbomValid == true
 }

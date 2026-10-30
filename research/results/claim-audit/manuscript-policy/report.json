@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "positive",
+      "expected": true,
+      "observed": true
+    },
+    {
+      "case": "R1",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R2",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R3-approval",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R3-expiry",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R4",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R5",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R6",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R7",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R8",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R9",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "R10",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "case": "missing-replay-is-not-detection",
+      "expected": true,
+      "observed": true
+    }
+  ],
+  "opaMode": "real OPA --v0-compatible",
+  "scope": "Recovered manuscript rule on synthetic predicate inputs; not active pipeline provenance/identity validation",
+  "boundary": "Missing replay data permits allow in Listing 1; actual digest-index enforcement is a separate H7 requirement"
+}

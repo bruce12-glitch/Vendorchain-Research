@@ -4,6 +4,12 @@ This supplement documents new measurements and the remaining gaps. It does not
 recover the original 12-suite/44-test application or its historical timing logs.
 The complete status is in [the checklist](../../../docs/evidence-checklist.md).
 
+The earlier manuscript was subsequently recovered and its actual H1–H7,
+Equation 9, Listing 1 and statistical protocol were checked. See
+`docs/hardening.md` for that mapping. The raw CI logs remain unchanged historical
+observations from their pinned source commit; their earlier comments about an
+absent manuscript are superseded by this reconciliation.
+
 [Download the retained raw evidence](raw-evidence.zip). The archive contains the
 raw trial/request logs, exact new binary fixtures, per-specimen corpus decisions,
 functional terminal logs, CI logs, actual peer query, signature experiment files,
@@ -12,9 +18,13 @@ included. The checksum of the archive is in `archive-sha256.txt`.
 
 ## Functional and cryptographic observations
 
-- **59 Python tests, 9 Gateway tests and 6 Rego cases passed locally.** The Rego
+- **59 Python tests, 9 Gateway tests and 7 active-reference Rego cases passed locally.** The Rego
   cases also execute inside a Python integration test, so these counts should
   not be summed as distinct tests. Raw logs are under `local/` in the archive.
+- **Recovered Listing 1 passed 13 synthetic-predicate checks in real OPA's v0
+  mode.** This tests the recovered rule separately from the active pipeline. Its
+  missing-replay-input case permits allow, demonstrating why H7 needs an actual
+  digest index. Synthetic certificate/signature flags are not real attestations.
 - **7 Go tests with the race detector and Go vet passed in CI.** The complete
   unit and BFT job logs are retained under `ci/` in the archive. Tested source:
   `6dc7661f85aa8be00adc5d836f19bc72f5f87dc4`.
@@ -38,7 +48,8 @@ included. The checksum of the archive is in `archive-sha256.txt`.
   hashes match its commitment, and its transaction ID matches the upload's
   commit acknowledgement. It contains signed receipt/identity metadata, not
   document bytes or a full SBOM. It is not an enumeration of every namespace or
-  verification against the absent manuscript's Equation 9.
+  the exact Equation 9 schema: the paper specifies a flat five-field tuple,
+  whereas the current implementation stores a signed receipt and metadata.
 
 The passing run is [41074705369](https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41074705369).
 Its four orderers and peers are colocated on one development runner. Healthy and
@@ -58,17 +69,17 @@ using R7 interpolation; they are not production request-tail estimates.
 
 | Measurement | Mean | Sample SD | Median / p50 | p95 | p99 | Two-sided 95% t interval |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| Direct structural gate | 0.716 | 0.401 | 0.540 | 1.533 | 1.975 | 0.602–0.830 |
-| Envelope encryption, 5 MiB PDF | 27.522 | 92.358 | 12.300 | 29.614 | 356.315 | 1.274–53.769 |
-| Envelope decryption, 5 MiB PDF | 8.459 | 3.853 | 7.514 | 14.545 | 20.844 | 7.364–9.554 |
-| Local Luhn mod-36 / PAN check | 0.0629 | 0.0609 | 0.0365 | 0.1692 | 0.3048 | 0.0456–0.0802 |
-| Local ingestion to commit | 940.821 | 1531.037 | 686.619 | 1098.983 | 6576.799 | 505.705–1375.937 |
+| Direct structural gate | 0.930 | 1.244 | 0.533 | 2.600 | 5.911 | 0.576–1.283 |
+| Envelope encryption, 5 MiB PDF | 15.504 | 8.938 | 13.318 | 35.468 | 48.437 | 12.964–18.045 |
+| Envelope decryption, 5 MiB PDF | 8.860 | 5.589 | 6.813 | 22.201 | 27.832 | 7.271–10.448 |
+| Local Luhn mod-36 / PAN check | 0.1510 | 0.4685 | 0.0366 | 0.3039 | 2.2725 | 0.0178–0.2841 |
+| Local ingestion to commit | 904.079 | 642.488 | 740.666 | 1980.064 | 3660.516 | 721.486–1086.672 |
 
 The large SDs and outliers matter. Student-t intervals depend on the sampling
 assumptions; a shared managed host, persistent host caches and fresh-process
 library initialization do not recreate a steady production service. These data
 do not validate the original 4.8 ms encryption or 342 ms Fabric latency claims.
-See `local/timing-raw.jsonl`, `local/timing-summary.json`, `local/metadata.json`
+The prior run is kept separately under `local-before-manuscript/` and is not pooled. See `local/timing-raw.jsonl`, `local/timing-summary.json`, `local/metadata.json`
 and `local/measurement-source.zip` in the archive.
 
 ## Local resource and hardening comparison
@@ -122,5 +133,6 @@ python research/validate_ingress_memory.py --output .runtime/new-oversized-study
 Each output directory must be new. Follow `docs/experiments.md` for the separate
 real Fabric/Syft/OPA integration. Exact fixtures, not just their labels, are
 retained. Historical corporate false-rejection data, full concurrency sweeps,
-the seven-variant external matrix and formal manuscript reconciliation remain
-unobtained.
+the seven-variant external matrix and the complete H1–H7 implementation remain
+unobtained. The four-comparator data are pinned to the earlier runtime revision;
+they are not measurements of the complete formal hardened design.

@@ -61,7 +61,10 @@ python -m vendorchain serve --state .runtime/demo --local --no-sbom
 
 The upload route is `POST http://127.0.0.1:8090/v1/uploads`, with the document as
 its raw body, `Authorization: Bearer $API_TOKEN`, `X-Vendor-ID`, and a unique
-`X-Request-ID`. It returns a receipt and stage times after commitment. Its local
+`X-Request-ID`. It returns commitment acknowledgement, `decision` and stage times.
+Commit confirmation and policy approval are separate outcomes. In real Fabric
+mode, configure trusted nonempty `--expected-term` values for the controlled
+workload; empty expectations deny. This is not a per-vendor registry. Its local
 mode returns `evidence: local-non-consensus` and cannot supply consensus results.
 The API is a bounded loopback research server, intended for controlled experiments.
 

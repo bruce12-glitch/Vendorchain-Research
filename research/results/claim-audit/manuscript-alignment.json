@@ -1,0 +1,56 @@
+{
+  "manuscript": "VendorChain_complete_position_fixed.tex",
+  "sectionsRead": {
+    "H1-H7": "1950-2065",
+    "Listing1": "1498-1532",
+    "Equation9": "1142-1153",
+    "timingProtocol": "1640-1664"
+  },
+  "section63": {
+    "warmupsDiscarded": 5,
+    "minimumIndependentTrials": 50,
+    "sequentialExecutionRequired": true,
+    "noCompetingLoadRequired": true
+  },
+  "controls": {
+    "H1": {
+      "name": "Signed identity attestation",
+      "status": "partial",
+      "missing": "Full signed GSTIN/identity/checksum/OCR/version evidence and trusted identity source"
+    },
+    "H2": {
+      "name": "Signed decision snapshot",
+      "status": "partial",
+      "missing": "Complete snapshot, signed policy bundle, OPA/policy versions, replay reconstruction"
+    },
+    "H3": {
+      "name": "Object-hash evidence root",
+      "status": "partial",
+      "missing": "Complete evRoot and artifact/attestation/snapshot retention with auditor access"
+    },
+    "H4": {
+      "name": "Commit-time revalidation",
+      "status": "partial",
+      "missing": "Full hardened schema and signer-compromise closure by external custody or recomputation"
+    },
+    "H5": {
+      "name": "Ledger-first dual write",
+      "status": "partial",
+      "missing": "PostgreSQL integration and automated divergence reconciliation"
+    },
+    "H6": {
+      "name": "Key lifecycle and custody",
+      "status": "not implemented",
+      "missing": "Non-exportable KMS/HSM custody, versioned KEK rotation/revocation, external worker signing"
+    },
+    "H7": {
+      "name": "Content-digest replay window",
+      "status": "not implemented",
+      "missing": "Digest uniqueness index with configured retention window"
+    }
+  },
+  "originalListing1Recovered": true,
+  "originalListing1ActiveInPipeline": false,
+  "manuscriptRuleSHA256": "7f6bddccbff4518a0f4b61e51ff3c4e144e8fe0912bb4153d847fc1df3782b44",
+  "fullHardenedDesignValidated": false
+}

@@ -24,5 +24,5 @@
     "rego": 6
   },
   "scope": "Actual functional/race/vet and colocated BFT integration evidence; manuscript completeness is not certified",
-  "applicationRuntimeSourceUnchangedAfterThisRun": true
+  "laterChanges": "Manuscript alignment, deny empty OCR expectations, expose committed policy decisions, and recover Listing 1; historical CI logs are unchanged."
 }

@@ -13,7 +13,7 @@ export MASTER_KEK_HEX="$(cat "$STATE/master.hex")"
 node research/gateway/server.mjs register-key "$STATE/worker-public.json"
 node research/gateway/server.mjs > "$ROOT/.runtime/gateway.log" 2>&1 &
 GATEWAY_PID=$!
-python -m vendorchain serve --state "$STATE" --source "$ROOT/chaincode" --workers "${UPLOAD_WORKERS:-2}" > "$ROOT/.runtime/api.log" 2>&1 &
+python -m vendorchain serve --state "$STATE" --source "$ROOT/chaincode" --workers "${UPLOAD_WORKERS:-2}" --expected-term VENDORCHAIN > "$ROOT/.runtime/api.log" 2>&1 &
 API_PID=$!
 cleanup() {
   kill "$API_PID" "$GATEWAY_PID" 2>/dev/null || true
@@ -45,5 +45,6 @@ from pathlib import Path
 for folder in ['bft-healthy','bft-one-crash']:
  rows=[json.loads(l) for l in Path('.runtime',folder,'trials.jsonl').read_text().splitlines()]
  assert rows and all(r['failed']==0 and r['evidence']=='fabric-commit-confirmed' for r in rows),rows
+ assert all(r['policyAllowed']==r['successful'] and r['policyDenied']==0 and r['policyUnknown']==0 for r in rows),rows
 print('BFT healthy + one-orderer crash integration checks passed; publication sweep NOT executed')
 PY

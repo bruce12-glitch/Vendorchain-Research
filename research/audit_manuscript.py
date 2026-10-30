@@ -33,7 +33,8 @@ record('original_12_suites_44_tests',False,pythonTestClasses=len(suites),pythonT
        luhnImplementationPresent=(root/'research/vendorchain/gstin.py').is_file(),
        opaReferencePolicyPresent=(root/'research/policies/reference.rego').is_file(),
        opaExecutableAvailable=bool(shutil.which('opa')),
-       originalListing1Recovered=False)
+       originalListing1Recovered=(root/'research/manuscript/listing-1.rego').is_file(),
+       originalListing1ActiveInPipeline=False)
 with zipfile.ZipFile(root/'research/fixtures/generated-corpus.zip') as archive:
     entries=json.loads(archive.read('manifest.json'))['entries']
     spoof=[e for e in entries if e['family']=='exe-extension-spoof']
@@ -79,7 +80,8 @@ record('previous_BFT_campaign_five_warmups',False,verifiedSuccessfulCampaignJobs
        rawCampaignContentsReviewed=False,independentDeploymentClaimRecomputed=False,
        observedWarmupsPerDeployment=1,requiredWarmups=5,
        observedExecution='parallel independent runners',
-       manuscriptExecutionOrderDefinitionRecovered=False)
+       manuscriptExecutionOrderDefinitionRecovered=True,
+       requiredExecution='sequential independent trials with no competing load')
 record('Table_9_historical_timers',False,originalTerminalOutputsRecovered=False,
        claimedHeaderGateMs=1.2,claimedEnvelope5MBMs=4.8,claimedLuhnMs=.04,claimedIngestionToCommitMs=342,
        note='Claims are not observations from this audit. Current BFT measurements use another implementation/testbed/load.')
