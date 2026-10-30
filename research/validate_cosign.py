@@ -21,6 +21,8 @@ def validate(output, source=None):
             result=subprocess.run(command,env=env,capture_output=True,text=True,timeout=90)
             (out/(name+'.log')).write_text(result.stdout+result.stderr)
             records.append({'operation':name,'exitCode':result.returncode,'command':command})
+            print(json.dumps({'cosignOperation':name,'exitCode':result.returncode,
+                              'stdout':result.stdout,'stderr':result.stderr}))
             return result
         version=run('version',['cosign','version'])
         assert version.returncode==0

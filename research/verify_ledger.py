@@ -26,6 +26,9 @@ def verify(requests, output):
     (out/'peer-query.stdout.json').write_text(result.stdout)
     (out/'peer-query.stderr.log').write_text(result.stderr)
     if result.returncode:raise RuntimeError('peer chaincode query failed; raw logs retained')
+    print('BEGIN_VENDORCHAIN_PEER_QUERY')
+    print(result.stdout.strip())
+    print('END_VENDORCHAIN_PEER_QUERY')
     record=json.loads(result.stdout)
     expected={'recordID','vendorID','receiptHash','receipt','signature','transactionID','timestamp'}
     if set(record)!=expected:raise ValueError('unexpected compliance world-state fields')
