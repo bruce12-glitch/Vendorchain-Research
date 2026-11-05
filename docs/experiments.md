@@ -1,5 +1,9 @@
 # Experiment protocol and commands
 
+For the hardened implementation and seven Table 12 variants, start with
+[the current expansion guide](experimental-expansion.md). Commands below also
+preserve the earlier v1 research path and its bounded smoke observations.
+
 ## 1. Consensus and load
 
 Use a disposable Linux amd64/WSL2 machine with Docker, Go 1.23+, Python 3.12+,

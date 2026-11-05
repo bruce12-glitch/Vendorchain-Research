@@ -1,5 +1,10 @@
 # VendorChain research validation
 
+The new [experimental expansion guide](docs/experimental-expansion.md) documents
+the hardened path, Vault/PostgreSQL adapters, seven cumulative ablation variants,
+statistical exports and four-node Raft/BFT experiment provisioning. New code and
+new measurements have separate provenance from the historical prototype results.
+
 This repository now contains an executable document-ingestion research pipeline,
 Fabric chaincode, and reproducible experiment runners. It does **not** contain
 the Next.js/PostgreSQL/BullMQ application described by the previous README.

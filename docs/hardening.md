@@ -1,5 +1,10 @@
 # Manuscript-aligned hardening status
 
+**5 November 2026:** the implementation has expanded. See the current H1-H7
+mapping, runnable commands and remaining custody/field-validation limits in
+[experimental-expansion.md](experimental-expansion.md). The table below is the
+30 October audit snapshot and describes the older code revision.
+
 The earlier `VendorChain_complete_position_fixed.tex` was located and read after
 the initial repository-only audit. The table below uses its actual Section 8
 definitions (lines 1950–2065). It supersedes the earlier operational numbering.

@@ -1,7 +1,12 @@
 # Publication evidence checklist
 
+**5 November implementation update:** [the expansion guide](experimental-expansion.md)
+documents newly executable controls and experiments. Historical logs/timings are
+still unavailable, and a complete production evaluation must still be collected.
+The following checklist preserves the 30 October evidence audit.
+
 Checked on 30 October 2026. **The complete requested evidence is not present.**
-The repaired research pipeline is in [draft PR #1](https://github.com/bruce12-glitch/Vendorchain-Research/pull/1).
+The repaired research pipeline is in [PR #1](https://github.com/bruce12-glitch/Vendorchain-Research/pull/1).
 The default `main` branch still contains the upstream Fabric/SBOM prototype, not
 the Next.js application described by its old README. A passing CI run validates
 its executed checks; it does not certify the entire manuscript checklist.
