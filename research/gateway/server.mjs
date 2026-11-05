@@ -18,6 +18,14 @@ if (process.argv[2] === 'register-key') {
   const key = JSON.parse(readFileSync(process.argv[3]));
   await contract.submitTransaction('RegisterWorkerKey', key.keyID, key.publicKey, String(key.notBefore), String(key.notAfter));
   gateway.close(); client.close();
+} else if (process.argv[2] === 'register-evidence') {
+  const registration = JSON.parse(readFileSync(process.argv[3]));
+  for (const key of registration.keys) {
+    await contract.submitTransaction('RegisterEvidenceKey', key.keyID, key.publicKey, String(key.notBefore), String(key.notAfter), key.role);
+  }
+  const p = registration.policy;
+  await contract.submitTransaction('RegisterPolicyDigest', p.digest, String(p.notBefore), String(p.notAfter));
+  gateway.close(); client.close();
 } else {
   const secret = required('GATEWAY_TOKEN');
   if (secret.length < 32) throw new Error('GATEWAY_TOKEN must be at least 32 characters');
@@ -31,8 +39,8 @@ if (process.argv[2] === 'register-key') {
       for await (const chunk of req) { bytes += chunk.length; if (bytes > 20000) throw new Error('payload too large'); chunks.push(chunk); }
       const result = await commitRecord(contract, JSON.parse(Buffer.concat(chunks).toString()), {queryOnly:req.url==='/records/query'});
       res.writeHead(200).end(JSON.stringify(result));
-    } catch {
-      res.writeHead(503).end(JSON.stringify({ error: 'commit unconfirmed; reconcile the durable outbox' }));
+    } catch (error) {
+      res.writeHead(error.code === 'NOT_FOUND' ? 404 : 503).end(JSON.stringify({ error: 'commit unconfirmed; reconcile the durable outbox' }));
     }
   });
   server.requestTimeout = 150000;

@@ -2,6 +2,7 @@ import hashlib
 import json
 import sqlite3
 import urllib.request
+import urllib.error
 from urllib.parse import urlparse
 from .crypto import canonical
 from .trust import verify
@@ -20,7 +21,9 @@ class LocalLedger:
         if row[0]!=payload['receiptHash']:raise ValueError('conflicting historical receipt')
         return {'successful':True,'transactionID':row[1],'receiptHash':row[0],'kind':self.kind}
     def submit(self, payload):
-        verify(payload,self.registry)
+        from .evidence import verify_receipt
+        receipt = json.loads(__import__('base64').b64decode(payload['receipt']))
+        (verify_receipt if receipt.get('version') == 'vendorchain.receipt.v2' else verify)(payload,self.registry)
         with sqlite3.connect(self.path, timeout=60) as con:
             tx = 'local-'+hashlib.sha256(canonical(payload)).hexdigest()
             con.execute('INSERT OR IGNORE INTO records VALUES(?,?,?)', (payload['recordID'],payload['receiptHash'],tx))
@@ -39,7 +42,12 @@ class FabricLedger:
     def submit(self, payload):
         return self._request(payload,'/records')
     def lookup(self, payload):
-        return self._request(payload,'/records/query')
+        try:
+            return self._request(payload,'/records/query')
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return None
+            raise
     def _request(self, payload, path):
         request = urllib.request.Request(self.url+path, canonical(payload),
                     {'Content-Type':'application/json','Authorization':'Bearer '+self.token})
