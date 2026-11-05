@@ -31,6 +31,7 @@ def prepare_vault(root, *, address_env='VAULT_ADDR', token_env='VAULT_TOKEN'):
     config['kek']={'kind':'vault-transit','key':kek,'addressEnv':address_env,'tokenEnv':token_env}
     config['researchLocalKeys']=False
     old=json.loads((base/'signed-policy.json').read_text());document=json.loads(decode(old['payload']))['document']
+    document['identityTrust']=registry[config['signers']['identity']['keyID']]
     bundle=sign_document(document,signers['policy'],config['signers']['policy']['keyID'],'vendorchain.policy.v1',now=now,ttl=86400)
     (base/'registry.json').write_bytes(canonical(registry));(base/'signed-policy.json').write_bytes(canonical(bundle))
     (base/'ledger-registration.json').write_bytes(canonical({'keys':list(registry.values()),'policy':{'digest':sha(canonical(bundle)),'notBefore':now-30,'notAfter':now+86400}}))

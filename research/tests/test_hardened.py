@@ -111,6 +111,7 @@ class ReplayTests(unittest.TestCase):
 
 
 class TestProvenance:
+    def trust_configuration(self):return {'unit-test':'provenance-trust-double'}
     def build(self, source, path, metrics):
         value={'bomFormat':'CycloneDX','specVersion':'1.5','version':1,'components':[{'type':'library','name':'fixture'}]}
         durable_write(path,canonical(value));return value,tree_hash(source)
@@ -119,18 +120,26 @@ class TestProvenance:
 
 
 class TestPolicy:
-    def __init__(self):self.digest='c'*64
-    def load(self):return {'parameters':{'max_components':100,'banned_packages':[]}},b'',self.digest
+    def __init__(self,registry):
+        from vendorchain.sandbox import OCR_POLICY
+        self.digest='c'*64;self.identity=copy.deepcopy(registry['identity'])
+        self.controls=copy.deepcopy({'ocrPolicy':OCR_POLICY,'replayRetentionSeconds':86400})
+    def document(self):
+        from vendorchain.sandbox import OCR_POLICY
+        return {'parameters':{'max_components':100,'banned_packages':[]},'policyVersion':'test','opaVersion':'unit-double',
+                'provenanceTrust':{'unit-test':'provenance-trust-double'},'identityTrust':self.identity,
+                'controls':self.controls}
+    def load(self):return self.document(),b'',self.digest
     def evaluate(self,facts):
         validate_facts(facts)
-        return facts['identity']['state']=='verified',self.digest,{'policyVersion':'test','opaVersion':'unit-double'}
+        return facts['identity']['state']=='verified',self.digest,self.document()
 
 
 class PipelineTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
         root=Path(self.tmp.name);self.keys,self.registry=keys();source=root/'artifact';source.mkdir();(source/'code').write_text('fixture')
-        self.policy=TestPolicy()
+        self.policy=TestPolicy(self.registry)
         with patch('vendorchain.pipeline.shutil.which',side_effect=lambda name:name):
             self.p=HardenedPipeline(root/'state',b'k'*32,self.keys['decision'],'decision',self.registry,
                     LocalLedger(root/'ledger.sqlite3',self.registry),identity_signer=self.keys['identity'],identity_key_id='identity',
@@ -182,6 +191,18 @@ class PipelineTests(unittest.TestCase):
     def test_artifact_mutation_is_blocked(self):
         self.prepare();(Path(self.p.source)/'code').write_text('tampered')
         with self.assertRaises(Conflict):self.p.deliver('request')
+
+    def test_unsigned_provenance_trust_change_is_blocked(self):
+        self.prepare();self.p.provenance.trust_configuration=lambda:{'changed':'unapproved key'}
+        with self.assertRaisesRegex(Conflict,'provenance trust'):self.p.deliver('request')
+
+    def test_unsigned_identity_registry_change_is_blocked(self):
+        self.prepare();self.registry['identity']['publicKey']=encode(Ed25519PrivateKey.generate().public_key().public_bytes_raw())
+        with self.assertRaisesRegex(Conflict,'identity trust'):self.p.deliver('request')
+
+    def test_unsigned_replay_window_change_is_blocked(self):
+        self.prepare();self.p.store.retention_seconds=1
+        with self.assertRaisesRegex(Conflict,'worker controls'):self.p.deliver('request')
 
     def test_envelope_mutation_is_cryptographically_bound_even_if_sql_trigger_is_removed(self):
         self.prepare()

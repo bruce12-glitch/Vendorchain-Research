@@ -3,11 +3,10 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
-import time
 import unittest
 import urllib.error
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
-from vendorchain.crypto import canonical, decode, encode, encrypt, decrypt
+from vendorchain.crypto import canonical, decode, encrypt, decrypt
 from vendorchain.kms import VaultTransit, VaultSigner, VaultWrapper
 
 
@@ -56,31 +55,13 @@ class LiveVaultTests(unittest.TestCase):
 
     @unittest.skipUnless(all(shutil.which(x) for x in ('syft','cosign','opa','tesseract')),'requires real provenance, policy and OCR tools')
     def test_hardened_pipeline_with_remote_kek_and_worker_keys(self):
-        from prepare_research import prepare
+        from prepare_vault_research import prepare_vault
         from hardened_cli import configured
-        from vendorchain.evidence import sign_document
         from table12_worker import identity_png
         with tempfile.TemporaryDirectory() as tmp:
-            config_path=prepare(Path(tmp)/'deployment');c=json.loads(config_path.read_text());registry={};now=int(time.time())
-            signers={}
-            for role in ('identity','decision','policy'):
-                name=self.prefix+'-'+role
-                self.vault.call('keys/'+name,{'type':'ed25519','exportable':False,'allow_plaintext_backup':False})
-                pub=self.vault.key(name)['keys']['1']['public_key']
-                registry[name]={'keyID':name,'role':role,'publicKey':pub,'notBefore':now-30,'notAfter':now+86400,'revoked':False}
-                spec={'kind':'vault-transit','keyID':name,'key':name,'version':1,
-                      'addressEnv':'VENDORCHAIN_TEST_VAULT_ADDR','tokenEnv':'VENDORCHAIN_TEST_VAULT_TOKEN'}
-                c['signers'][role]=spec;signers[role]=VaultSigner(self.vault,name,1,decode(pub))
-            kek=self.prefix+'-pipeline-kek'
-            self.vault.call('keys/'+kek,{'type':'aes256-gcm96','derived':True,'exportable':False,'allow_plaintext_backup':False})
-            c['kek']={'kind':'vault-transit','key':kek,'addressEnv':'VENDORCHAIN_TEST_VAULT_ADDR','tokenEnv':'VENDORCHAIN_TEST_VAULT_TOKEN'}
-            c['researchLocalKeys']=False
+            config_path=prepare_vault(Path(tmp)/'deployment',address_env='VENDORCHAIN_TEST_VAULT_ADDR',token_env='VENDORCHAIN_TEST_VAULT_TOKEN')
             root=config_path.parent
-            old=json.loads((root/'signed-policy.json').read_text());doc=json.loads(decode(old['payload']))['document']
-            bundle=sign_document(doc,signers['policy'],c['signers']['policy']['keyID'],'vendorchain.policy.v1',now=now)
-            (root/'signed-policy.json').write_bytes(canonical(bundle));(root/'registry.json').write_bytes(canonical(registry));config_path.write_text(json.dumps(c))
-            # Remove the original file KEK/worker keys before exercising the path.
-            for name in ['master.hex','identity.private','decision.private','policy.private']:(root/name).unlink()
+            self.assertTrue(all(not (root/p).exists() for p in ['master.hex','identity.private','decision.private','policy.private']))
             pipeline=configured(config_path,local=True)
             result=pipeline.run(bytearray(identity_png('remote-vault-integration')),'remote-vendor')
             self.assertEqual(result['decision'],'PASS')

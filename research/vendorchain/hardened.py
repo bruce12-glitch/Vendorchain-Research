@@ -13,7 +13,7 @@ from .crypto import canonical, decode, encode, decrypt
 from .evidence import sha, tree_hash, sign_document, verify_document, verify_receipt, evidence_root
 from .gstin import valid_gstin
 from .pipeline import Pipeline, timed, durable_write
-from .sandbox import isolated
+from .sandbox import isolated, OCR_POLICY
 from .store import Store, Conflict
 
 
@@ -24,6 +24,9 @@ class CosignProvenance:
 
     def approved(self):
         return self.not_before <= int(time.time()) < self.not_after and sha(self.public_file.read_bytes()) == self.public_hash
+
+    def trust_configuration(self):
+        return {'mode':'pinned-public-key','publicSHA256':self.public_hash,'notBefore':self.not_before,'notAfter':self.not_after}
 
     def build(self, source, path, metrics):
         with timed(metrics, 'syft_ms'):
@@ -78,7 +81,16 @@ class HardenedPipeline(Pipeline):
         self.identity_signer, self.identity_key_id = identity_signer, identity_key_id
         self.signed_policy, self.provenance = signed_policy, provenance
         self.gstin, self.expected_pan = gstin, expected_pan
+        self.check_configuration(self.signed_policy.load()[0])
         (self.root/'evidence').mkdir(mode=0o700, exist_ok=True)
+
+    def check_configuration(self, policy):
+        if policy.get('provenanceTrust') != self.provenance.trust_configuration():
+            raise Conflict('provenance trust differs from signed policy')
+        if policy.get('identityTrust') != self.registry[self.identity_key_id]:
+            raise Conflict('identity trust differs from signed policy')
+        if policy.get('controls') != {'ocrPolicy':OCR_POLICY,'replayRetentionSeconds':self.store.retention_seconds}:
+            raise Conflict('worker controls differ from signed policy')
 
     def policy_hash(self):
         return self.signed_policy.load()[2]
@@ -123,6 +135,7 @@ class HardenedPipeline(Pipeline):
                      'policy':parameters,'replay':{'detected':False}}
             with timed(metrics,'opa_ms'):
                 decision, policy_hash, policy = self.signed_policy.evaluate(facts)
+                self.check_configuration(policy)
             snapshot = {'version':1,'input':facts,'policyHash':policy_hash,'policyVersion':policy['policyVersion'],
                         'opaVersion':policy['opaVersion'],'verdict':'PASS' if decision else 'FAIL','timestamp':now,
                         'submissionID':rid,'vendorID':row['vendor_id'],'identityHash':sha(canonical(attestation)),
@@ -154,6 +167,7 @@ class HardenedPipeline(Pipeline):
                 plaintext[:] = b'\0'*len(plaintext)
 
     def validate_pending(self, rid, receipt, metrics):
+        self.check_configuration(self.signed_policy.load()[0])
         evidence = json.loads((self.root/'evidence'/(rid+'.json')).read_text())
         with timed(metrics,'identity_revalidate_ms'):
             identity = verify_document(evidence['identity'],self.registry,'vendorchain.identity.v1','identity')
@@ -169,7 +183,8 @@ class HardenedPipeline(Pipeline):
             retained = {'envelope':evidence['envelope'],'context':evidence['context']}
             if binding != retained or sha(canonical(binding)) != snapshot['envelopeHash']:
                 raise Conflict('encrypted object envelope/context changed')
-            decision, bundle_hash, _ = self.signed_policy.evaluate(snapshot['input'])
+            decision, bundle_hash, policy = self.signed_policy.evaluate(snapshot['input'])
+            self.check_configuration(policy)
             if (bundle_hash != receipt['policyHash'] or snapshot['policyHash'] != bundle_hash
                     or ('PASS' if decision else 'FAIL') != receipt['decision']):
                 raise Conflict('commit-time policy decision mismatch')
