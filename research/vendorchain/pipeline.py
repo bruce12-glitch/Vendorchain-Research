@@ -11,7 +11,7 @@ import time
 import uuid
 from .crypto import canonical, encrypt, decrypt, decode
 from .ingress import POLICY
-from .sandbox import isolated
+from .sandbox import isolated, OCR_POLICY
 from .store import Store, Conflict
 from .trust import sign, verify
 from .policy import REFERENCE_POLICY, evaluate
@@ -45,9 +45,10 @@ def durable_write(path, data):
         raise
 
 class Pipeline:
-    def __init__(self, root, kek, private_key, key_id, registry, ledger, *, source=None, sbom=True, ocr=True, expected=(), opa=None):
+    def __init__(self, root, kek, private_key, key_id, registry, ledger, *, source=None, sbom=True, ocr=True, expected=(), opa=None, store=None):
         self.root = Path(root).resolve()
-        self.store = Store(self.root)
+        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
+        self.store = store if store is not None else Store(self.root)
         self.kek, self.private_key, self.key_id = kek, private_key, key_id
         self.registry, self.ledger = registry, ledger
         self.source, self.sbom, self.ocr, self.expected = source, sbom, ocr, tuple(expected)
@@ -63,8 +64,15 @@ class Pipeline:
 
     def policy_hash(self):
         config = {'ingress':POLICY,'ocr':self.ocr,'sbom':self.sbom,'expected':list(self.expected),
+                  'ocrPolicy':OCR_POLICY,
                   'opaPolicySHA256':digest(REFERENCE_POLICY.read_bytes()) if self.opa else None}
         return digest(canonical(config))
+
+    def verify_payload(self, payload):
+        return verify(payload, self.registry)
+
+    def validate_pending(self, rid, receipt, metrics):
+        """Additional hardened evidence checks run immediately before submission."""
 
     def ingest(self, data, vendor, rid=None, metrics=None):
         """Consume a caller-owned bytearray, wiping it on every exit path.
@@ -187,7 +195,7 @@ class Pipeline:
                 if ack['transactionID']!=pending['tx_id']:raise Conflict('cached transaction differs from ledger')
                 return ack
             try:
-                receipt = verify(payload,self.registry)
+                receipt = self.verify_payload(payload)
             except (ValueError,KeyError,InvalidSignature):
                 # Expiry/revocation blocks new writes, not recovery of a past commit.
                 row=self.store.get(rid)
@@ -206,6 +214,7 @@ class Pipeline:
                 raise Conflict('commit-time document binding changed')
             if self.sbom and digest((self.root/'sbom'/(rid+'.json')).read_bytes()) != receipt['sbomHash']:
                 raise Conflict('commit-time SBOM changed')
+            self.validate_pending(rid, receipt, metrics)
         with timed(metrics,'ledger_commit_ms'):
             ack = self.ledger.submit(payload)
             if ack.get('successful') is not True or ack.get('receiptHash')!=payload['receiptHash'] or ack.get('kind')!=self.ledger.kind:

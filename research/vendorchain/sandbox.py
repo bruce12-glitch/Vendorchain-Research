@@ -6,12 +6,31 @@ import json
 import os
 from pathlib import Path
 import resource
+import re
 import subprocess
 import sys
 import time
 from .ingress import MAX_BYTES, Rejected
 
 TIMEOUT = 45
+OCR_POLICY = {'version':'normalized-substring-levenshtein.v1','threshold':0.90,
+              'maxExpectedTerms':16,'maxExpectedCharacters':64,'maxOCRCharacters':20000}
+
+
+def ocr_score(expected, text):
+    term = ''.join(re.findall(r'[a-z0-9]', expected.casefold()))
+    normalized = ''.join(re.findall(r'[a-z0-9]', text.casefold()))
+    if not term or len(term)>OCR_POLICY['maxExpectedCharacters'] or len(normalized)>OCR_POLICY['maxOCRCharacters']:
+        raise Rejected('ocr_comparison_limit')
+    if term in normalized:return 1.0
+    # Approximate substring matching: free text prefix/suffix, unit edit cost.
+    previous=list(range(len(term)+1));best=len(term)
+    for char in normalized:
+        current=[0]
+        for index,wanted in enumerate(term,1):
+            current.append(min(previous[index]+1,current[index-1]+1,previous[index-1]+(char!=wanted)))
+        best=min(best,current[-1]);previous=current
+    return max(0.0,1.0-best/len(term))
 
 def isolated(data, *, ocr=False, expected=()):
     if not 0 < len(data) <= MAX_BYTES:
@@ -35,6 +54,8 @@ def isolated(data, *, ocr=False, expected=()):
     return result
 
 def run_ocr(data, info, expected):
+    if len(expected)>OCR_POLICY['maxExpectedTerms']:
+        raise Rejected('ocr_expected_term_limit')
     texts = []
     pages = info['pages']
     for page in range(1, pages+1):
@@ -47,10 +68,11 @@ def run_ocr(data, info, expected):
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=15, check=True)
         texts.append(proc.stdout.decode('utf-8', errors='replace'))
     text = '\n'.join(texts)
+    scores = [ocr_score(term,text) for term in expected]
     # OCR text and expected credentials never leave this short-lived process.
     return {'engine':'tesseract', 'textHash': hashlib.sha256(text.encode()).hexdigest(),
-            'expectedMatches': all(term.casefold() in text.casefold() for term in expected),
-            'expectedCount': len(expected)}
+            'expectedMatches': bool(scores) and all(score>=OCR_POLICY['threshold'] for score in scores),
+            'expectedCount': len(expected),'scores':scores,'policy':OCR_POLICY}
 
 def main():
     resource.setrlimit(resource.RLIMIT_CORE, (0, 0))

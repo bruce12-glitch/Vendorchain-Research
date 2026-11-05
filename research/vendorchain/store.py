@@ -11,7 +11,10 @@ class Conflict(ValueError):
     pass
 
 class Store:
-    def __init__(self, root):
+    def __init__(self, root, *, retention_seconds=None):
+        if retention_seconds is not None and retention_seconds <= 0:
+            raise ValueError('replay retention must be positive')
+        self.retention_seconds = retention_seconds
         self.root = Path(root)
         self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
         self.path = self.root / 'pipeline.sqlite3'
@@ -29,6 +32,9 @@ class Store:
             CREATE TABLE IF NOT EXISTS events(
               seq INTEGER PRIMARY KEY, record_id TEXT NOT NULL, event TEXT NOT NULL,
               prev_hash TEXT NOT NULL, event_hash TEXT NOT NULL);
+            CREATE TABLE IF NOT EXISTS digest_replays(
+              digest TEXT PRIMARY KEY, record_id TEXT NOT NULL, received REAL NOT NULL);
+            CREATE INDEX IF NOT EXISTS digest_replays_expiry ON digest_replays(received);
             CREATE TRIGGER IF NOT EXISTS immutable_events_update BEFORE UPDATE ON events
               BEGIN SELECT RAISE(ABORT,'append-only audit'); END;
             CREATE TRIGGER IF NOT EXISTS immutable_events_delete BEFORE DELETE ON events
@@ -76,6 +82,12 @@ class Store:
         with self.connection(True) as con:
             if con.execute('SELECT 1 FROM submissions WHERE id=?', (rid,)).fetchone():
                 raise Conflict('request already exists')
+            if self.retention_seconds is not None:
+                now = time.time()
+                con.execute('DELETE FROM digest_replays WHERE received <= ?', (now-self.retention_seconds,))
+                if con.execute('SELECT 1 FROM digest_replays WHERE digest=?', (document_hash,)).fetchone():
+                    raise Conflict('CONTENT_REPLAY')
+                con.execute('INSERT INTO digest_replays VALUES(?,?,?)', (document_hash,rid,now))
             con.execute('INSERT INTO submissions VALUES(?,?,?,?,?,?,?,?,?,?,?)',
                         (rid,vendor,document_hash,cipher_hash,json.dumps(envelope),json.dumps(context),
                          str(path),'INGESTED',1,0,time.time()))
@@ -141,3 +153,7 @@ class Store:
                     return False
                 prev = expected
         return True
+
+    def outbox_entries(self):
+        with self.connection() as con:
+            return [dict(r) for r in con.execute('SELECT * FROM outbox ORDER BY id')]
