@@ -12,9 +12,10 @@ parser.add_argument('--pid',type=int,required=True)
 parser.add_argument('--state',required=True)
 parser.add_argument('--output',required=True)
 parser.add_argument('--interval',type=float,default=1)
+parser.add_argument('--disk-every',type=int,default=10)
 parser.add_argument('--containers',default='orderer.example.com,orderer2.example.com,orderer3.example.com,orderer4.example.com,peer0.org1.example.com,peer0.org2.example.com')
 args=parser.parse_args()
-if args.interval<.2:raise SystemExit('interval must be at least 0.2 seconds')
+if args.interval<.2 or args.disk_every<1:raise SystemExit('invalid resource sampling interval')
 running=True
 
 def stop(*_):
@@ -50,6 +51,7 @@ def growth(path):
 
 out=Path(args.output);out.parent.mkdir(parents=True,exist_ok=True)
 with out.open('x') as stream:
+    sample=0
     while running:
         start=time.monotonic()
         row={'timeNs':time.time_ns(),'processes':process_tree(args.pid),'clockTicksPerSecond':os.sysconf('SC_CLK_TCK'),
@@ -60,6 +62,16 @@ with out.open('x') as stream:
             row['containers']=[json.loads(l) for l in proc.stdout.splitlines() if l]
         except (OSError,subprocess.SubprocessError,ValueError) as exc:
             row['containers']=None;row['containerMeasurementError']=type(exc).__name__
+        if sample % args.disk_every == 0:
+            row['nodeDiskKiB']={}
+            for container in args.containers.split(','):
+                try:
+                    proc=subprocess.run(['docker','exec',container,'du','-sk','/var/hyperledger/production'],
+                                        capture_output=True,text=True,timeout=10,check=True)
+                    row['nodeDiskKiB'][container]={'KiB':int(proc.stdout.split()[0])}
+                except (OSError,subprocess.SubprocessError,ValueError,IndexError) as exc:
+                    row['nodeDiskKiB'][container]={'KiB':None,'error':type(exc).__name__}
+        sample+=1
         stream.write(json.dumps(row)+'\n');stream.flush()
         # Small waits keep shutdown responsive; record the actual sampling time.
         end=start+args.interval

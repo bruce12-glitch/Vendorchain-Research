@@ -27,6 +27,8 @@ as five raw 32-byte SHA-256 values in its stated order, followed by an unsigned
 64-bit big-endian Unix timestamp. The directory artifact digest hashes sorted
 relative-path/content-digest pairs; it represents a scanned source tree. It is not
 silently presented as the digest of a deployed container image.
+The signed decision snapshot also binds the encryption envelope and associated
+context; changing SQL metadata cannot leave an apparently intact evidence root.
 
 The v2 ledger record maps to Equation 14, with `recordID`, `vendorID`, `evidenceRoot`,
 `snapshotHash`, `policyHash`, `decision`, `signatureHash`, `keyID`, `algorithm` and
@@ -34,8 +36,10 @@ The v2 ledger record maps to Equation 14, with `recordID`, `vendorID`, `evidence
 GSTIN, policy input, SBOM component list, raw receipt or document. It differs from
 the original Equation 9 prototype tuple and requires a new research channel or an
 explicit migration. Legacy v1 transactions remain available for the earlier CLI;
-deploy a channel whose admission policy permits only the v2 path when evaluating
-hardened guarantees.
+run `EnableEvidenceOnly` when evaluating hardened guarantees. The new gateway's
+`register-evidence` command enables that irreversible channel-local mode before
+registering keys. It disables v1 writes even for a caller with a valid legacy
+worker key; use a separate channel for legacy reproduction.
 
 OCR now implements normalized substring Levenshtein similarity at the paper's
 0.90 threshold, with explicit term/text limits. Scores and algorithm version are
@@ -76,6 +80,13 @@ separate ACL-scoped tokens and configure TLS outside loopback. The example ACLs
 and 30-day rotation schedule are in `research/config/`; the schedule file does not
 execute a scheduler.
 
+For a disposable Transit experiment with an already running, initialized Vault
+and Transit mount, set `VAULT_ADDR` and a lab administration `VAULT_TOKEN`, then
+run `python research/prepare_vault_research.py --output .runtime/vault-deployment`.
+This helper creates new non-exportable service keys, pins their public versions,
+re-signs the policy bundle and removes the unused local KEK/worker key files.
+Its single lab administration token is not a production ACL/custody arrangement.
+
 ## Table 12 and measured hardening costs
 
 ```bash
@@ -101,6 +112,10 @@ failures remain in JSONL and individual logs. Raw synthetic PNGs are retained;
 external documents supplied with `--file` are referenced by digest. Generated PNG
 metadata varies per submission while visible OCR text stays fixed. This workload
 does not characterize the distribution of corporate documents.
+The current runner randomizes variant order within sequential trial blocks using
+a recorded seed. The earlier reference campaign at commit `6f510c5` used fixed
+variant cohorts and is labeled accordingly; its differences are not causal
+overhead estimates.
 
 Outputs include mean, sample standard deviation, median, p50/p95/p99 (R7),
 two-sided Student-t 95% intervals, CSV, LaTeX tables, source/plan provenance and a
@@ -161,6 +176,14 @@ python -m vendorchain corpus --manifest research/private-corpus/manifest.json \
 
 Deduplicate specimens by digest and preserve review/licensing provenance. The
 harness verifies bytes and outcomes, not the truth of provenance declarations.
+For an executed seven-variant **document** security comparison, run
+`research/ablation_security.py --config ... --manifest ... --output ...` with the
+research configuration. It records operational errors separately from rejections;
+SBOM/key/policy attacks remain separate suite controls. Its local-only workers are
+intentionally permitted to disable early controls and must never be public APIs.
+For that runner, benign labels must mean an expected valid identity under the
+supplied configuration. Use the ordinary corpus evaluator for format-only false
+rejection rates on documents belonging to different vendors.
 Report Clopper-Pearson intervals alongside observed bypass/false-rejection rates;
 zero observed bypasses does not establish a universal zero-bypass guarantee.
 Accepted formats are PDF, PNG and JPEG. GIF, SVG and Office documents are outside

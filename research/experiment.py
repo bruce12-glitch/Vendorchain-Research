@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import platform
 import re
+import random
 import subprocess
 import sys
 import time
@@ -52,7 +53,7 @@ def export(out, report):
     (out/'tables.tex').write_text('\n'.join(lines+[r'\end{tabular}'])+'\n')
 
 
-def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_host_attested=False):
+def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_host_attested=False, seed=20261105):
     if type(trials) is not int or type(warmups) is not int or trials<1 or warmups<0 or (not smoke and (trials<50 or warmups<5)):
         raise ValueError('publication protocol requires >=50 trials and >=5 warmups; use --smoke for development')
     plan_path=Path(plan_path).resolve();plan=json.loads(plan_path.read_text())
@@ -65,32 +66,35 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
               'planSHA256':hashlib.sha256(plan_path.read_bytes()).hexdigest(),'startedNs':time.time_ns(),
               'freshProcessPerTrial':True,'execution':'sequential','isolatedHostAttestedByOperator':isolated_host_attested,
               'noCompetingLoadIndependentlyVerified':False,'smoke':smoke,'trials':trials,'warmups':warmups}
+    metadata.update(order='randomized variants within sequential trial blocks',randomizationSeed=seed)
     metadata['sourceDirty']=bool(subprocess.run(['git','status','--porcelain'],capture_output=True,text=True).stdout.strip())
     (out/'metadata.json').write_text(json.dumps(metadata,indent=2))
-    rows=[]
-    for task in tasks:
+    rows=[];rng=random.Random(seed);schedule=[]
+    for index in range(-warmups,trials):
+        order=tasks.copy();rng.shuffle(order)
+        schedule.extend((task,index) for task in order)
+    for task,index in schedule:
         command=task['command']
         if not isinstance(command,list) or not command or any(not isinstance(x,str) for x in command):raise ValueError('task command must be an argv array')
-        for index in range(-warmups,trials):
-            directory=out/task['name']/str(index);directory.mkdir(parents=True)
-            env={**os.environ,'VENDORCHAIN_TRIAL_DIR':str(directory),'VENDORCHAIN_TRIAL_INDEX':str(index)}
-            started=time.perf_counter_ns()
-            try:
-                with (directory/'stdout.log').open('wb') as stdout,(directory/'stderr.log').open('wb') as stderr:
-                    proc=subprocess.Popen(command,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
-                    try:code=proc.wait(timeout=task.get('timeoutSeconds',600))
-                    except subprocess.TimeoutExpired:
-                        import signal
-                        os.killpg(proc.pid,signal.SIGKILL);proc.wait();raise
-                if code:raise ValueError('trial process exited '+str(code))
-                data=json.loads((directory/'measurement.json').read_text());metrics=data['metrics']
-                if not metrics or any(type(v) not in (int,float) or not math.isfinite(v) for v in metrics.values()):raise ValueError('trial requires finite metrics')
-                row={**data,'successful':data.get('successful') is True}
-            except Exception as exc:
-                row={'successful':False,'metrics':{},'evidence':'failed-trial','error':type(exc).__name__}
-            row.update(variant=task['name'],trial=index,warmup=index<0,elapsedProcessMs=(time.perf_counter_ns()-started)/1e6)
-            rows.append(row);append(out/'trials.jsonl',row)
-            print(json.dumps({'variant':task['name'],'trial':index,'successful':row['successful']}),flush=True)
+        directory=out/task['name']/str(index);directory.mkdir(parents=True)
+        env={**os.environ,'VENDORCHAIN_TRIAL_DIR':str(directory),'VENDORCHAIN_TRIAL_INDEX':str(index)}
+        started=time.perf_counter_ns()
+        try:
+            with (directory/'stdout.log').open('wb') as stdout,(directory/'stderr.log').open('wb') as stderr:
+                proc=subprocess.Popen(command,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
+                try:code=proc.wait(timeout=task.get('timeoutSeconds',600))
+                except subprocess.TimeoutExpired:
+                    import signal
+                    os.killpg(proc.pid,signal.SIGKILL);proc.wait();raise
+            if code:raise ValueError('trial process exited '+str(code))
+            data=json.loads((directory/'measurement.json').read_text());metrics=data['metrics']
+            if not metrics or any(type(v) not in (int,float) or not math.isfinite(v) for v in metrics.values()):raise ValueError('trial requires finite metrics')
+            row={**data,'successful':data.get('successful') is True}
+        except Exception as exc:
+            row={'successful':False,'metrics':{},'evidence':'failed-trial','error':type(exc).__name__}
+        row.update(variant=task['name'],trial=index,warmup=index<0,elapsedProcessMs=(time.perf_counter_ns()-started)/1e6)
+        rows.append(row);append(out/'trials.jsonl',row)
+        print(json.dumps({'variant':task['name'],'trial':index,'successful':row['successful']}),flush=True)
     report={'kind':plan.get('kind','command-campaign'),'variants':summarize_rows(rows,trials,warmups),
             'protocol':metadata,'qualifiedForPaper':False,
             'qualificationNote':'Review workload, failures, isolation, independence and consensus evidence. Counts alone never confer publication qualification.'}
@@ -104,4 +108,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--plan',required=True);p.add_argument('--output',required=True)
     p.add_argument('--trials',type=int,default=50);p.add_argument('--warmups',type=int,default=5)
     p.add_argument('--smoke',action='store_true');p.add_argument('--isolated-host-attested',action='store_true')
-    a=p.parse_args();campaign(a.plan,a.output,trials=a.trials,warmups=a.warmups,smoke=a.smoke,isolated_host_attested=a.isolated_host_attested)
+    p.add_argument('--seed',type=int,default=20261105)
+    a=p.parse_args();campaign(a.plan,a.output,trials=a.trials,warmups=a.warmups,smoke=a.smoke,isolated_host_attested=a.isolated_host_attested,seed=a.seed)

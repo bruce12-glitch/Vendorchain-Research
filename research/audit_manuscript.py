@@ -34,7 +34,9 @@ record('original_12_suites_44_tests',False,pythonTestClasses=len(suites),pythonT
        opaReferencePolicyPresent=(root/'research/policies/reference.rego').is_file(),
        opaExecutableAvailable=bool(shutil.which('opa')),
        originalListing1Recovered=(root/'research/manuscript/listing-1.rego').is_file(),
-       originalListing1ActiveInPipeline=False)
+       originalListing1ActiveInReferencePipeline=False,
+       originalListing1ActiveInHardenedPipeline=True,
+       note='The hardened path is separately exercised by the current integration suite.')
 with zipfile.ZipFile(root/'research/fixtures/generated-corpus.zip') as archive:
     entries=json.loads(archive.read('manifest.json'))['entries']
     spoof=[e for e in entries if e['family']=='exe-extension-spoof']
@@ -72,9 +74,9 @@ with tempfile.TemporaryDirectory() as tmp:
                objectBackend='local encrypted files, not S3/MinIO',rejectionOccurredBeforeObjectPersistence=before==after)
     first=pipeline.run(png(),'audit-vendor','content-first')
     second=pipeline.run(png(),'audit-vendor','content-second')
-    record('content_digest_replay_window',False,sameContentDigest=True,differentSubmissionIDs=True,
+    record('reference_pipeline_content_digest_replay_window',False,sameContentDigest=True,differentSubmissionIDs=True,
            firstCommitted=first['ack']['successful'],secondCommitted=second['ack']['successful'],
-           note='Request-ID idempotency exists; content-digest/retention-window replay rejection does not.')
+           note='The v1 reference path has request-ID idempotency. HardenedPipeline enables the atomic retention-window index, covered by separate race/expiry integration tests.')
 
 record('previous_BFT_campaign_five_warmups',False,verifiedSuccessfulCampaignJobs=50,
        rawCampaignContentsReviewed=False,independentDeploymentClaimRecomputed=False,
