@@ -28,6 +28,9 @@ def encrypt(data, kek, context):
         enc = Cipher(algorithms.AES(bytes(dek)), modes.GCM(nonce)).encryptor()
         enc.authenticate_additional_data(aad)
         ciphertext = b''.join(enc.update(data[i:i+65536]) for i in range(0, len(data), 65536)) + enc.finalize()
+        if hasattr(kek, 'wrap'):
+            wrapped = kek.wrap(bytes(dek), aad)
+            return ciphertext, {'version':2, 'nonce':encode(nonce), 'tag':encode(enc.tag), 'wrapped':wrapped}
         wrap_nonce = os.urandom(12)
         wrapped = AESGCM(kek).encrypt(wrap_nonce, bytes(dek), aad)
         return ciphertext, {'version':1, 'nonce':encode(nonce), 'tag':encode(enc.tag),
@@ -36,10 +39,15 @@ def encrypt(data, kek, context):
         dek[:] = b'\x00'*len(dek)
 
 def decrypt(ciphertext, metadata, kek, context):
-    if metadata.get('version') != 1:
+    if metadata.get('version') not in (1, 2):
         raise ValueError('unsupported envelope version')
     aad = canonical({'domain':'vendorchain.envelope.v1', **context})
-    dek = bytearray(AESGCM(kek).decrypt(decode(metadata['wrapNonce']), decode(metadata['wrappedKey']), aad))
+    if metadata['version'] == 2:
+        if not hasattr(kek, 'unwrap'):
+            raise ValueError('remote key wrapper required')
+        dek = bytearray(kek.unwrap(metadata['wrapped'], aad))
+    else:
+        dek = bytearray(AESGCM(kek).decrypt(decode(metadata['wrapNonce']), decode(metadata['wrappedKey']), aad))
     plaintext = bytearray()
     try:
         dec = Cipher(algorithms.AES(bytes(dek)), modes.GCM(decode(metadata['nonce']), decode(metadata['tag']))).decryptor()

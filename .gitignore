@@ -8,6 +8,7 @@
 # cosign private key - NEVER commit this
 keys/cosign.key
 keys/*.key
+**/cosign.key
 
 # environment files
 .env

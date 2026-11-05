@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "rotationIntervalDays": 30,
+  "rotationEnforcement": "operator scheduler must invoke key_lifecycle.py; this file does not claim scheduling",
+  "retentionSeconds": 86400,
+  "workerKeyRollover": "register a new public key/version with the consortium, switch signers, then revoke the old ledger key",
+  "revocation": "raise Vault minimum versions and revoke registered ledger key IDs",
+  "auditorAccess": "separate read-evidence and unwrap roles; neither receives rotation privileges",
+  "hardwareCustodyVerified": false
+}
