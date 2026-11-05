@@ -30,6 +30,13 @@ func evidenceReceipt(t *testing.T, priv ed25519.PrivateKey, rid string) (Evidenc
 func TestEvidenceCommitHashOnlyAndWriteOnce(t *testing.T) {
 	s, ctx, stub, priv := setup(t)
 	tx(stub, "v2-setup")
+	if err := s.EnableEvidenceOnly(ctx); err != nil {
+		t.Fatal(err)
+	}
+	legacy, legacySig := receipt(t, priv, "legacy-bypass")
+	if s.RecordHardened(ctx, "legacy-bypass", legacy, legacySig) == nil {
+		t.Fatal("legacy endpoint bypassed evidence-only mode")
+	}
 	pub := base64.StdEncoding.EncodeToString(priv.Public().(ed25519.PublicKey))
 	if err := s.RegisterEvidenceKey(ctx, "decision", pub, 900, 5000, "decision"); err != nil {
 		t.Fatal(err)

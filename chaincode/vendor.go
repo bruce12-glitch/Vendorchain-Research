@@ -115,6 +115,9 @@ func (s *SmartContract) RevokeWorkerKey(ctx contractapi.TransactionContextInterf
 }
 func (s *SmartContract) RecordHardened(ctx contractapi.TransactionContextInterface, recordID, receipt, signature string) error {
  if err:=authorized(ctx,false); err!=nil { return err }
+ modeKey,err:=ctx.GetStub().CreateCompositeKey("config",[]string{"evidence-only"});if err!=nil{return err}
+ mode,err:=ctx.GetStub().GetState(modeKey);if err!=nil{return err}
+ if string(mode)=="true" {return fmt.Errorf("v1 receipts disabled on this evidence-only channel")}
  if len(receipt)>16384 || len(signature)>128 { return fmt.Errorf("oversized receipt") }
  raw,err:=base64.StdEncoding.DecodeString(receipt); if err!=nil { return err }
  var r Receipt; dec:=json.NewDecoder(bytes.NewReader(raw)); dec.DisallowUnknownFields()

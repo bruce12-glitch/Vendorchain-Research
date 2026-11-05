@@ -39,7 +39,7 @@ class VaultTransit:
         if not re.fullmatch(r'[A-Za-z0-9_-]+', name):
             raise ValueError('invalid Transit key name')
         value = self.call('keys/'+name)
-        if value.get('exportable') or value.get('allow_plaintext_backup'):
+        if value.get('exportable') is not False or value.get('allow_plaintext_backup') is not False:
             raise ValueError('Transit keys must be non-exportable with plaintext backup disabled')
         return value
 

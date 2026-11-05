@@ -20,6 +20,7 @@ if (process.argv[2] === 'register-key') {
   gateway.close(); client.close();
 } else if (process.argv[2] === 'register-evidence') {
   const registration = JSON.parse(readFileSync(process.argv[3]));
+  await contract.submitTransaction('EnableEvidenceOnly');
   for (const key of registration.keys) {
     await contract.submitTransaction('RegisterEvidenceKey', key.keyID, key.publicKey, String(key.notBefore), String(key.notAfter), key.role);
   }

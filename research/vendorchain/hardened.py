@@ -125,7 +125,8 @@ class HardenedPipeline(Pipeline):
                 decision, policy_hash, policy = self.signed_policy.evaluate(facts)
             snapshot = {'version':1,'input':facts,'policyHash':policy_hash,'policyVersion':policy['policyVersion'],
                         'opaVersion':policy['opaVersion'],'verdict':'PASS' if decision else 'FAIL','timestamp':now,
-                        'submissionID':rid,'vendorID':row['vendor_id'],'identityHash':sha(canonical(attestation))}
+                        'submissionID':rid,'vendorID':row['vendor_id'],'identityHash':sha(canonical(attestation)),
+                        'envelopeHash':sha(canonical({'envelope':json.loads(row['envelope']),'context':json.loads(row['context'])}))}
             receipt = {'version':'vendorchain.receipt.v2','recordID':rid,'vendorID':row['vendor_id'],
                        'documentHash':row['document_hash'],'ciphertextHash':row['cipher_hash'],
                        'sbomHash':sha(sbom_path.read_bytes()),'artifactHash':artifact_hash,
@@ -139,7 +140,8 @@ class HardenedPipeline(Pipeline):
                            'signature':encode(self.private_key.sign(raw)),
                            'snapshotSignature':encode(self.private_key.sign(bytes.fromhex(receipt['snapshotHash'])))}
                 self.verify_payload(payload)
-            evidence = {'identity':attestation,'snapshot':snapshot,'receipt':payload}
+            evidence = {'identity':attestation,'snapshot':snapshot,'receipt':payload,
+                        'envelope':json.loads(row['envelope']),'context':json.loads(row['context'])}
             durable_write(self.root/'evidence'/(rid+'.json'),canonical(evidence))
             with timed(metrics,'outbox_prepare_ms'):
                 self.store.prepare(row,payload)
@@ -162,6 +164,11 @@ class HardenedPipeline(Pipeline):
             snapshot = evidence['snapshot']
             if sha(canonical(snapshot)) != receipt['snapshotHash'] or snapshot['identityHash'] != receipt['identityHash']:
                 raise Conflict('decision snapshot changed')
+            row = self.store.get(rid)
+            binding = {'envelope':json.loads(row['envelope']),'context':json.loads(row['context'])}
+            retained = {'envelope':evidence['envelope'],'context':evidence['context']}
+            if binding != retained or sha(canonical(binding)) != snapshot['envelopeHash']:
+                raise Conflict('encrypted object envelope/context changed')
             decision, bundle_hash, _ = self.signed_policy.evaluate(snapshot['input'])
             if (bundle_hash != receipt['policyHash'] or snapshot['policyHash'] != bundle_hash
                     or ('PASS' if decision else 'FAIL') != receipt['decision']):

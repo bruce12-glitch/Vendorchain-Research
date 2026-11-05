@@ -63,6 +63,19 @@ type EvidenceRecord struct {
 	TransactionID string `json:"transactionID"`
 }
 
+// EnableEvidenceOnly is an irreversible channel-local migration. The config
+// read in RecordHardened also prevents an old write racing this change via MVCC.
+func (s *SmartContract) EnableEvidenceOnly(ctx contractapi.TransactionContextInterface) error {
+	if err := authorized(ctx, true); err != nil {
+		return err
+	}
+	k, err := ctx.GetStub().CreateCompositeKey("config", []string{"evidence-only"})
+	if err != nil {
+		return err
+	}
+	return ctx.GetStub().PutState(k, []byte("true"))
+}
+
 func (s *SmartContract) RegisterEvidenceKey(ctx contractapi.TransactionContextInterface, keyID, publicKey string, notBefore, notAfter int64, role string) error {
 	if err := authorized(ctx, true); err != nil {
 		return err

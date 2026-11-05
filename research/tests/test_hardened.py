@@ -183,6 +183,14 @@ class PipelineTests(unittest.TestCase):
         self.prepare();(Path(self.p.source)/'code').write_text('tampered')
         with self.assertRaises(Conflict):self.p.deliver('request')
 
+    def test_envelope_mutation_is_cryptographically_bound_even_if_sql_trigger_is_removed(self):
+        self.prepare()
+        with self.p.store.connection(True) as con:
+            con.execute('DROP TRIGGER immutable_submission')
+            envelope=json.loads(self.p.store.get('request')['envelope']);envelope['nonce']=encode(b'changednonce')
+            con.execute('UPDATE submissions SET envelope=? WHERE id=?',(json.dumps(envelope),'request'))
+        with self.assertRaisesRegex(Conflict,'envelope/context changed'):self.p.deliver('request')
+
 
 @unittest.skipUnless(os.environ.get('VENDORCHAIN_TEST_POSTGRES_DSN'),'requires real PostgreSQL')
 class PostgresTests(unittest.TestCase):

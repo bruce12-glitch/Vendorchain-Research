@@ -62,6 +62,7 @@ python research/hardened_cli.py reconcile --config "$STATE/deployment/config.jso
 # Public synthetic evidence only; never copy private keys, tokens, or database credentials.
 cp "$STATE/deployment/registry.json" "$STATE/deployment/signed-policy.json" "$STATE/deployment/cosign.pub" "$OUT/"
 cp -r "$STATE/deployment/pipeline/evidence" "$STATE/deployment/pipeline/sbom" "$OUT/"
+cp -r "$STATE/deployment/pipeline/blobs" "$OUT/encrypted-objects"
 python - <<'PY'
 import json,os
 from pathlib import Path
