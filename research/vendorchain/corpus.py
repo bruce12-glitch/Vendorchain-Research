@@ -172,4 +172,6 @@ def evaluate(manifest_path):
     return {'kind':manifest['kind'],'manifestHash':hashlib.sha256(path.read_bytes()).hexdigest(),
             'falseRejections':rate(sum(not r['accepted'] for r in benign),len(benign)),
             'bypasses':rate(sum(r['accepted'] for r in attacks),len(attacks)),
-            'results':results,'historicalCorporateCorpusValidated':manifest['kind']=='external-corporate-reviewed'}
+            'results':results,'corpusOriginDeclaration':manifest['kind'],
+            'historicalCorporateCorpusValidated':False,
+            'originNote':'The harness verifies bytes and outcomes. A manifest label alone cannot establish corporate provenance or representative sampling.'}

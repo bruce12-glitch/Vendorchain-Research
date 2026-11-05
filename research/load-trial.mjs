@@ -4,6 +4,15 @@ import { randomUUID } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 const config=JSON.parse(readFileSync(process.argv[2]));
 const data=readFileSync(config.file);
+function uniquePng(data, nonce) {
+ if (!data.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])) || data.subarray(-8,-4).toString()!=='IEND') throw Error('unique-png mode requires a complete PNG');
+ const text=Buffer.from('SubmissionNonce\0'+nonce);
+ const chunk=Buffer.alloc(12+text.length);chunk.writeUInt32BE(text.length,0);chunk.write('tEXt',4);text.copy(chunk,8);
+ let crc=0xffffffff;
+ for (const value of chunk.subarray(4,-4)) {crc^=value;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}
+ chunk.writeUInt32BE((crc^0xffffffff)>>>0,chunk.length-4);
+ return Buffer.concat([data.subarray(0,-12),chunk,data.subarray(-12)]);
+}
 const token=process.env.API_TOKEN;
 if (!token) throw new Error('API_TOKEN required');
 const start=performance.now();let inFlight=0,maxInFlight=0;
@@ -11,13 +20,15 @@ const requests=await Promise.all(Array.from({length:config.concurrency},async(_,
   const rid=randomUUID().replaceAll('-','');
   const submittedAt=performance.now();inFlight++;maxInFlight=Math.max(maxInFlight,inFlight);
   try {
-    const response=await fetch(config.url+'/v1/uploads', { method:'POST',body:data,
+    const body=config.uniquePng?uniquePng(data,rid):data;
+    const response=await fetch(config.url+'/v1/uploads', { method:'POST',body,
       headers:{'authorization':'Bearer '+token,'content-type':'application/octet-stream',
                'x-vendor-id':'load-'+rid,'x-request-id':rid}, signal:AbortSignal.timeout(config.timeoutMs||300000) });
     const result=await response.json();
     const committed=response.ok && result.ack?.successful===true && Boolean(result.ack?.transactionID);
     return {recordID:rid,success:committed,status:response.status,latencyMs:performance.now()-submittedAt,
             decision:result.decision||null,
+            submittedBytes:body.length,
             schedulerDelayMs:submittedAt-start,evidence:result.evidence||null,
             serverLatencyMs:result.server_ingestion_to_commit_ms||null,stages:result.stages||null,
             transactionID:committed?result.ack.transactionID:null};

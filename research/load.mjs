@@ -40,7 +40,7 @@ try {
    await drain();
    const result=join(output,`requests-c${concurrency}-t${i}.json`);
    const config=join(temp,'trial.json');
-   writeFileSync(config,JSON.stringify({url,file,concurrency,result,timeoutMs}));
+   writeFileSync(config,JSON.stringify({url,file,concurrency,result,timeoutMs,uniquePng:args.includes('--unique-png')}));
    const trialStarted=performance.now();
    const child=spawnSync(process.execPath,[fileURLToPath(new URL('./load-trial.mjs',import.meta.url)),config],{stdio:'inherit',timeout:timeoutMs+60000});
    if (child.status!==0) {

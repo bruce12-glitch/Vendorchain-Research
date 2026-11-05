@@ -1,0 +1,7 @@
+{
+  "kind": "sequential-independent-consensus-deployments",
+  "tasks": [
+    {"name":"raft","command":["bash","research/scripts/consensus-trial.sh","etcdraft","100,250,500,1000,2500,5000,10000"],"timeoutSeconds":21600},
+    {"name":"bft","command":["bash","research/scripts/consensus-trial.sh","BFT","100,250,500,1000,2500,5000,10000"],"timeoutSeconds":21600}
+  ]
+}

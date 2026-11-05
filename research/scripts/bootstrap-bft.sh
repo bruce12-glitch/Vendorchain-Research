@@ -5,6 +5,8 @@ ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 NET="${VENDORCHAIN_NETWORK_DIR:-$ROOT/.runtime/fabric-samples}"
 SAMPLES_COMMIT=5789681b4f4d24e58fa40f19a69f5496892374b6
 FABRIC_VERSION=3.1.5
+CONSENSUS="${CONSENSUS:-BFT}"
+[[ "$CONSENSUS" == BFT || "$CONSENSUS" == etcdraft ]] || { echo 'CONSENSUS must be BFT or etcdraft' >&2; exit 1; }
 command -v docker >/dev/null
 command -v go >/dev/null
 command -v curl >/dev/null
@@ -20,9 +22,11 @@ if [[ ! -d "$NET" ]]; then
 fi
 [[ $(git -C "$NET" rev-parse HEAD) == "$SAMPLES_COMMIT" ]] || { echo 'Unexpected fabric-samples revision.' >&2; exit 1; }
 ARCHIVE="$ROOT/.runtime/fabric-$FABRIC_VERSION.tar.gz"
-curl --fail --location --retry 3 "https://github.com/hyperledger/fabric/releases/download/v$FABRIC_VERSION/hyperledger-fabric-linux-amd64-$FABRIC_VERSION.tar.gz" --output "$ARCHIVE"
+if [[ ! -f "$ARCHIVE" ]]; then
+  curl --fail --location --retry 3 "https://github.com/hyperledger/fabric/releases/download/v$FABRIC_VERSION/hyperledger-fabric-linux-amd64-$FABRIC_VERSION.tar.gz" --output "$ARCHIVE"
+fi
 echo "b9c31fd490991e76f8acb1835dee09fc19fee5428cb13e190ee6e0bdd2c37858  $ARCHIVE" | sha256sum --check -
-tar -xzf "$ARCHIVE" -C "$NET"
+tar --no-same-owner -xzf "$ARCHIVE" -C "$NET"
 for component in peer orderer ccenv baseos; do
   docker pull "hyperledger/fabric-$component:$FABRIC_VERSION"
   # The upstream prerequisites checker references :latest. Services below use the exact tag.
@@ -43,6 +47,8 @@ for path in (root/'test-network/compose').rglob('*.yaml'):
     path.write_text(text)
 PY
 cd "$NET/test-network"
+git -C "$NET" show "$SAMPLES_COMMIT:test-network/bft-config/configtx.yaml" > bft-config/configtx.yaml
+python "$ROOT/research/scripts/configure-consensus.py" bft-config/configtx.yaml "$CONSENSUS"
 ./network.sh up createChannel -bft -c vendorchain
 ./network.sh deployCC -bft -c vendorchain -ccn vendorchain -ccp "$ROOT/chaincode" -ccl go -ccv 1.0 -ccs 1
 # Capture the ACTUAL committed configuration, rather than trusting a topology label.
@@ -53,6 +59,6 @@ export CORE_PEER_TLS_ROOTCERT_FILE="$NET/test-network/organizations/peerOrganiza
 export CORE_PEER_MSPCONFIGPATH="$NET/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp"
 peer channel fetch config "$ROOT/.runtime/channel.block" -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com -c vendorchain --tls --cafile "$NET/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
 configtxlator proto_decode --input "$ROOT/.runtime/channel.block" --type common.Block --output "$ROOT/.runtime/channel-config.json"
-python "$ROOT/research/scripts/verify-topology.py" "$ROOT/.runtime/channel-config.json" "$ROOT/.runtime/network-metadata.json"
+python "$ROOT/research/scripts/verify-topology.py" "$ROOT/.runtime/channel-config.json" "$ROOT/.runtime/network-metadata.json" "$CONSENSUS"
 docker inspect orderer.example.com orderer2.example.com orderer3.example.com orderer4.example.com peer0.org1.example.com peer0.org2.example.com --format '{{.Name}} {{.Image}}' > "$ROOT/.runtime/container-images.txt"
-echo 'BFT network and chaincode deployed; see docs/experiments.md for the upload pipeline.'
+echo "$CONSENSUS network and chaincode deployed; see docs/experiments.md for the upload pipeline."

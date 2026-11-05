@@ -4,6 +4,8 @@ from pathlib import Path
 import platform
 import subprocess
 import sys
+import base64
+import tempfile
 raw=Path(sys.argv[1]).read_bytes();block=json.loads(raw)
 config=block['data']['data'][0]['payload']['data']['config']['channel_group']
 orderer=config['groups']['Orderer']['values']
@@ -17,9 +19,17 @@ def walk(x):
     elif isinstance(x,list):
         for v in x:walk(v)
 walk(config)
+if consensus=='etcdraft' and not clusters:
+    metadata=orderer['ConsensusType']['value']['metadata']
+    if isinstance(metadata,str):
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'metadata.pb';source.write_bytes(base64.b64decode(metadata,validate=True))
+            decoded=subprocess.run(['configtxlator','proto_decode','--input',str(source),'--type','etcdraft.ConfigMetadata'],capture_output=True,check=True).stdout
+            walk(json.loads(decoded))
 membership=max(clusters,key=len) if clusters else []
-if consensus!='BFT' or len(membership)!=4:
-    raise SystemExit('Committed configuration is not a four-node BFT channel; do not label measurements as BFT')
+expected=sys.argv[3] if len(sys.argv)>3 else 'BFT'
+if consensus!=expected or len(membership)!=4:
+    raise SystemExit('Committed configuration does not match the declared four-node consensus')
 report={'consensus':consensus,'ordererCount':len(membership),'channelConfigSha256':hashlib.sha256(raw).hexdigest(),
         'samplesCommit':'5789681b4f4d24e58fa40f19a69f5496892374b6','fabricVersion':'3.1.5',
         'colocated':True,'productionDeployment':False,'platform':platform.platform(),
