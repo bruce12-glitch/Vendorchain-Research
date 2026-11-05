@@ -12,6 +12,12 @@ remains available to reproduce earlier bounded results. Hardened dependencies fa
 closed: real Tesseract, Syft, Cosign and OPA are required. The local ledger is
 explicitly `local-non-consensus` and can never establish consensus performance.
 
+Parser subprocesses receive an allowlisted environment rather than inherited
+API/gateway/Vault credentials. Their resource limits are not OS privilege,
+filesystem or network isolation: separate parser custody/containers remain a
+deployment requirement for claims about containment of arbitrary parser code
+execution. Inert parser fixtures do not establish that containment property.
+
 | Control | Implementation | Validation scope and residual |
 |---|---|---|
 | H1 | Separate identity/decision key roles; signed identity containing GSTIN, checksum, OCR result, document digest, context, time and version | Mutation, role and revocation tests. Identity remains syntactic; no government registry oracle. A compromised authorized identity signer can lie. |

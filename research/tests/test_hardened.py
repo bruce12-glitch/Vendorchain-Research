@@ -87,6 +87,14 @@ class EvidenceTests(unittest.TestCase):
         self.assertGreaterEqual(ocr_score('27AAPFU0939F1ZV','GSTIN 27AAPFUO939F1ZV'),0.90)
         self.assertLess(ocr_score('27AAPFU0939F1ZV','INVOICE DIFFERENT IDENTIFIER'),0.90)
 
+    def test_parser_does_not_inherit_deployment_credentials(self):
+        from vendorchain.sandbox import parser_environment
+        with patch.dict(os.environ,{'MASTER_KEK_HEX':'test-only','VAULT_TOKEN':'test-only',
+                  'API_TOKEN':'test-only','GATEWAY_TOKEN':'test-only','CUSTOM_IDENTITY_SIGNER_TOKEN':'test-only'}):
+            environment=parser_environment()
+            self.assertFalse(set(environment)&{'MASTER_KEK_HEX','VAULT_TOKEN','API_TOKEN','GATEWAY_TOKEN','CUSTOM_IDENTITY_SIGNER_TOKEN'})
+            self.assertIn('PATH',environment)
+
 
 class ReplayTests(unittest.TestCase):
     def test_atomic_digest_admission_under_race(self):
