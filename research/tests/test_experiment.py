@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from experiment import campaign, summarize_rows, paired_differences
 
 
@@ -35,14 +36,30 @@ class ExperimentTests(unittest.TestCase):
             root=Path(tmp);worker=root/'worker.py'
             worker.write_text("import json,os\nfrom pathlib import Path\nPath(os.environ['VENDORCHAIN_TRIAL_DIR'],'measurement.json').write_text(json.dumps({'successful':True,'metrics':{'elapsed_ms':1.25},'evidence':'test-only'}))\n")
             plan=root/'plan.json';plan.write_text(json.dumps({'tasks':[{'name':'a','command':[sys.executable,str(worker)]}]}))
-            result=campaign(plan,root/'out',trials=2,warmups=1,smoke=True)
+            with patch('experiment.append',return_value=None):
+                result=campaign(plan,root/'out',trials=2,warmups=1,smoke=True)
             self.assertEqual(result['variants']['a']['metrics']['elapsed_ms']['n'],2)
             self.assertFalse(result['qualifiedForPaper'])
             self.assertTrue((root/'out/tables.tex').exists())
             self.assertTrue((root/'out/sha256-manifest.json').exists())
+            self.assertEqual(len((root/'out/trials.jsonl').read_text().splitlines()),3)
+            self.assertEqual(len(list((root/'out').glob('a/*/record.json'))),3)
 
     def test_crashed_subprocess_retained(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);plan=root/'plan.json';plan.write_text(json.dumps({'tasks':[{'name':'bad','command':[sys.executable,'-c','raise RuntimeError()']}]}))
             result=campaign(plan,root/'out',trials=1,warmups=0,smoke=True)
             self.assertEqual(result['variants']['bad']['failedTrials'],1)
+
+    def test_missing_journal_line_recovers_from_actual_durable_record(self):
+        from recover_journal import recover
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);worker=root/'worker.py'
+            worker.write_text("import json,os\nfrom pathlib import Path\nPath(os.environ['VENDORCHAIN_TRIAL_DIR'],'measurement.json').write_text(json.dumps({'successful':True,'metrics':{'elapsed_ms':1.25},'evidence':'test-only'}))\n")
+            plan=root/'plan.json';plan.write_text(json.dumps({'tasks':[{'name':'a','command':[sys.executable,str(worker)]}]}))
+            campaign(plan,root/'out',trials=2,warmups=1,smoke=True)
+            path=root/'out/trials.jsonl';lines=path.read_text().splitlines();path.write_text('\n'.join(lines[1:])+'\n')
+            result=recover(root/'out')
+            self.assertEqual(result['recovered'],1)
+            self.assertTrue(result['statisticsReproduced']);self.assertFalse(result['measurementsImputed'])
+            self.assertEqual(len(path.read_text().splitlines()),3)

@@ -20,6 +20,16 @@ def append(path, value):
         stream.write(json.dumps(value,allow_nan=False)+'\n');stream.flush();os.fsync(stream.fileno())
 
 
+def durable_text(path, value):
+    path=Path(path);temporary=path.with_name(path.name+'.writing')
+    with temporary.open('x') as stream:
+        stream.write(value);stream.flush();os.fsync(stream.fileno())
+    os.replace(temporary,path)
+    directory=os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY)
+    try:os.fsync(directory)
+    finally:os.close(directory)
+
+
 def summarize_rows(rows, trials, warmups):
     variants = {}
     for name in sorted({r['variant'] for r in rows}):
@@ -121,8 +131,13 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
             row={'successful':False,'metrics':{},'evidence':'failed-trial','error':type(exc).__name__}
         row.update(variant=task['name'],trial=index,warmup=index<0,workerPID=None if proc is None else proc.pid,
                    startedNs=started_ns,elapsedProcessMs=(time.perf_counter_ns()-started)/1e6)
+        durable_text(directory/'record.json',json.dumps(row,allow_nan=False)+'\n')
         rows.append(row);append(out/'trials.jsonl',row)
         print(json.dumps({'variant':task['name'],'trial':index,'successful':row['successful']}),flush=True)
+    # Finalize from the complete in-memory cohort in one atomic replacement.
+    # Individual records remain authoritative if an interrupted append is lost.
+    durable_text(out/'trials.jsonl',''.join(json.dumps(r,allow_nan=False)+'\n' for r in rows))
+    if len((out/'trials.jsonl').read_text().splitlines()) != len(schedule):raise ValueError('incomplete finalized journal')
     report={'kind':plan.get('kind','command-campaign'),'variants':summarize_rows(rows,trials,warmups),
             'pairedComparisons':paired_differences(rows,plan.get('comparisons',[]),trials),
             'protocol':metadata,'qualifiedForPaper':False,
