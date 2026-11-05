@@ -1,0 +1,60 @@
+name: BFT independent trial campaign
+on:
+  push:
+    branches: ['bench/research-validation-independent-*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bft-100:
+    name: Independent BFT trial ${{ matrix.trial }}
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        trial: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils
+      - run: python -m pip install -r research/requirements.txt
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: research/gateway
+      - run: bash research/scripts/install-syft.sh
+      - run: bash research/scripts/install-validation-tools.sh
+      - run: bash research/scripts/bootstrap-bft.sh
+      - run: bash research/scripts/integration-smoke.sh
+        timeout-minutes: 25
+        env:
+          UPLOAD_WORKERS: '8'
+          LOAD_CONCURRENCY: '100'
+          LOAD_TRIALS: '1'
+          LOAD_WARMUPS: '5'
+      - run: PYTHONPATH=research python research/summarize.py .runtime/bft-healthy/trials.jsonl --output .runtime/bft-healthy/summary.json
+        if: always()
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bft-100-trial-${{ matrix.trial }}
+          include-hidden-files: true
+          path: |
+            research/gateway/package-lock.json
+            .runtime/network-metadata.json
+            .runtime/channel-config.json
+            .runtime/container-images.txt
+            .runtime/gateway.log
+            .runtime/api.log
+            .runtime/bft-healthy/
+            .runtime/bft-one-crash/
+            .runtime/ledger-proof/
+            .runtime/cosign-proof/

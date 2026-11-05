@@ -1,0 +1,38 @@
+{
+  "kind": "local-non-consensus",
+  "pairedHardenedMinusIsolatedMs": {
+    "n": 50,
+    "mean": 48.177691,
+    "stddev": 277.3546410200846,
+    "median": 71.78336049999996,
+    "p50": 71.78336049999996,
+    "p95": 291.6231131999998,
+    "p99": 831.87440979,
+    "quantileMethod": "linear interpolation over trial means (R7)",
+    "ci95": [
+      -30.645625835055007,
+      127.00100783505502
+    ],
+    "publicationNMet": true,
+    "unit": "independent trial mean",
+    "method": "two-sided Student t"
+  },
+  "instrumentedLocalHardeningStagesMs": {
+    "n": 50,
+    "mean": 20.63013884,
+    "stddev": 30.09054406158042,
+    "median": 13.017723,
+    "p50": 13.017723,
+    "p95": 49.34992734999998,
+    "p99": 139.3951177199997,
+    "quantileMethod": "linear interpolation over trial means (R7)",
+    "ci95": [
+      12.078500837543137,
+      29.181776842456863
+    ],
+    "publicationNMet": true,
+    "unit": "independent trial mean",
+    "method": "two-sided Student t"
+  },
+  "notes": "Includes local persistence and signature checks; external consensus and Syft overhead not measured."
+}

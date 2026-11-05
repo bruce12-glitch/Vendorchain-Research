@@ -1,0 +1,22 @@
+{
+  "source": "VendorChain_complete_position_fixed.tex, Equation 9, lines 1142-1153",
+  "expectedFields": [
+    "submissionId",
+    "vendorId",
+    "sbomHash",
+    "opaResult",
+    "timestamp"
+  ],
+  "actualWorldStateFields": [
+    "recordID",
+    "vendorID",
+    "receiptHash",
+    "receipt",
+    "signature",
+    "transactionID",
+    "timestamp"
+  ],
+  "exactFlatSchemaMatch": false,
+  "documentOrFullSbomPayloadInQueriedReceipt": false,
+  "scope": "A larger signed receipt preserves hash-based document/SBOM binding but is not the exact prototype schema."
+}

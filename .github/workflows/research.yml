@@ -1,0 +1,190 @@
+name: Research validation
+on:
+  pull_request:
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - 'research/requirements.lock'
+      - 'research/schemas/**'
+      - 'research/sql/**'
+      - 'research/policies/**'
+      - 'research/manuscript/**'
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - 'chaincode/**'
+      - 'research/**/*.py'
+      - 'research/gateway/**'
+      - 'research/scripts/**'
+      - 'research/*.mjs'
+      - 'research/requirements.txt'
+      - 'research/requirements.lock'
+      - 'research/schemas/**'
+      - 'research/sql/**'
+      - 'research/policies/**'
+      - 'research/manuscript/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: research-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16.2
+        env:
+          POSTGRES_USER: vendorchain
+          POSTGRES_PASSWORD: ci-test-only
+          POSTGRES_DB: vendorchain_test
+        ports: ['5432:5432']
+        options: --health-cmd "pg_isready -U vendorchain -d vendorchain_test" --health-interval 5s --health-retries 20
+      vault:
+        image: hashicorp/vault:1.18.3
+        env:
+          VAULT_DEV_ROOT_TOKEN_ID: ci-test-only-token
+          VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+        ports: ['8200:8200']
+        options: --cap-add=IPC_LOCK
+    env:
+      VENDORCHAIN_TEST_POSTGRES_DSN: postgresql://vendorchain:ci-test-only@127.0.0.1:5432/vendorchain_test
+      VENDORCHAIN_TEST_VAULT_ADDR: http://127.0.0.1:8200
+      VENDORCHAIN_TEST_VAULT_TOKEN: ci-test-only-token
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache-dependency-path: chaincode/go.sum
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils fonts-dejavu-core
+      - run: python -m pip install --require-hashes -r research/requirements.lock
+      - run: bash research/scripts/install-validation-tools.sh
+      - run: bash research/scripts/install-syft.sh
+      - run: echo "$GITHUB_WORKSPACE/.runtime/bin" >> "$GITHUB_PATH"
+      - name: Enable disposable Vault Transit mount
+        run: |
+          python - <<'PY'
+          import os,time,urllib.request
+          url=os.environ['VENDORCHAIN_TEST_VAULT_ADDR']
+          for _ in range(60):
+            try:
+              urllib.request.urlopen(url+'/v1/sys/health',timeout=2).close();break
+            except Exception:time.sleep(1)
+          request=urllib.request.Request(url+'/v1/sys/mounts/transit',data=b'{"type":"transit"}',headers={'X-Vault-Token':os.environ['VENDORCHAIN_TEST_VAULT_TOKEN'],'Content-Type':'application/json'})
+          urllib.request.urlopen(request,timeout=10).close()
+          PY
+      - run: PYTHONPATH=research python research/collect_local_evidence.py --output .runtime/local-evidence --trials 50 --warmups 5
+      - run: PYTHONPATH=research python research/audit_manuscript.py
+      - run: python research/validate_manuscript_policy.py --output .runtime/manuscript-policy
+      - run: |
+          set -o pipefail
+          mkdir -p ../.runtime/ci-logs
+          go test -race -v ./... 2>&1 | tee ../.runtime/ci-logs/go-tests.log
+        working-directory: chaincode
+      - run: |
+          set -o pipefail
+          go vet ./... 2>&1 | tee ../.runtime/ci-logs/go-vet.log
+        working-directory: chaincode
+      - run: for file in research/scripts/*.sh scripts/*.sh; do bash -n "$file"; done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: functional-and-security-evidence
+          include-hidden-files: true
+          path: |
+            .runtime/local-evidence/
+            .runtime/ci-logs/
+            .runtime/manuscript-policy/
+            research/results/manuscript-audit/
+  hardened-consensus:
+    needs: unit
+    strategy:
+      fail-fast: false
+      matrix:
+        consensus: [BFT, etcdraft]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache-dependency-path: chaincode/go.sum
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils fonts-dejavu-core
+      - run: python -m pip install --require-hashes -r research/requirements.lock
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: research/gateway
+      - run: bash research/scripts/install-syft.sh && bash research/scripts/install-validation-tools.sh
+      - name: Real hardened consensus smoke (not a publication campaign)
+        env:
+          VENDORCHAIN_TRIAL_DIR: ${{ github.workspace }}/.runtime/hardened-consensus
+          UPLOAD_WORKERS: '2'
+        run: bash research/scripts/consensus-trial.sh '${{ matrix.consensus }}' '3'
+      - name: Require passing workload and crash checks
+        run: python -c "import json; r=json.load(open('.runtime/hardened-consensus/measurement.json')); assert r['successful'],r"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hardened-${{ matrix.consensus }}-evidence
+          include-hidden-files: true
+          path: .runtime/hardened-consensus/
+  bft-integration:
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.12'
+          cache-dependency-path: chaincode/go.sum
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils
+      - run: python -m pip install -r research/requirements.txt
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: research/gateway
+      - run: bash research/scripts/install-syft.sh
+      - run: bash research/scripts/install-validation-tools.sh
+      - run: bash research/scripts/bootstrap-bft.sh
+      - run: bash research/scripts/integration-smoke.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bft-integration-evidence
+          include-hidden-files: true
+          path: |
+            research/gateway/package-lock.json
+            .runtime/network-metadata.json
+            .runtime/channel-config.json
+            .runtime/container-images.txt
+            .runtime/gateway.log
+            .runtime/api.log
+            .runtime/bft-healthy/
+            .runtime/bft-one-crash/
+            .runtime/ledger-proof/
+            .runtime/cosign-proof/

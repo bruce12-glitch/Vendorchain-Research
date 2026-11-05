@@ -1,0 +1,6529 @@
+{
+  "kind": "synthetic-paired-security-ablation",
+  "manifestHash": "24346a9386a95b45c09347c1428c969d55b962b6ea8aea31bcfd6eec2c3e9f79",
+  "adversarialN": 86,
+  "benignN": 1000,
+  "headerOnlyBypasses": 70,
+  "structuralBypasses": 0,
+  "headerOnlyFalseRejections": 0,
+  "structuralFalseRejections": 0,
+  "notes": "Header-only baseline accepts supported signatures within the byte limit. Structural outcomes are reused from the actual isolated gate run. This comparison supports a corpus-specific defensive benefit, not a universal necessity theorem.",
+  "outcomes": [
+    {
+      "path": "png-legacy-0.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-1.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-2.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-3.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-4.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-5.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-6.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-7.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-8.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-9.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-10.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-11.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-12.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-13.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-14.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-15.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-16.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-17.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-18.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-19.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-20.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-21.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-22.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-23.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-24.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-25.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-26.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-27.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-28.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-29.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-30.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-31.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-32.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-33.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-34.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-35.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-36.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-37.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-38.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-39.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-40.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-41.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-42.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-43.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-44.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-45.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-46.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-47.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-48.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-49.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-50.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-51.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-52.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-53.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-54.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-55.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-56.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-57.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-58.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-59.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-60.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-61.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-62.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-63.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-64.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-65.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-66.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-67.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-68.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-69.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-70.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-71.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-72.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-73.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-74.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-75.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-76.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-77.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-78.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-79.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-80.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-81.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-82.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-83.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-84.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-85.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-86.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-87.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-88.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-89.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-90.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-91.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-92.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-93.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-94.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-95.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-96.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-97.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-98.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-99.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-100.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-101.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-102.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-103.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-104.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-105.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-106.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-107.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-108.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-109.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-110.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-111.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-112.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-113.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-114.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-115.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-116.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-117.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-118.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-119.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-120.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-121.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-122.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-123.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-124.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-125.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-126.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-127.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-128.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-129.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-130.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-131.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-132.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-133.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-134.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-135.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-136.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-137.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-138.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-139.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-140.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-141.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-142.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-143.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-144.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-145.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-146.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-147.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-148.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-149.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-150.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-151.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-152.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-153.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-154.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-155.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-156.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-157.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-158.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-159.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-160.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-161.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-162.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-163.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-164.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-165.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-166.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-167.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-168.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-169.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-170.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-171.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-172.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-173.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-174.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-175.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-176.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-177.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-178.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-179.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-180.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-181.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-182.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-183.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-184.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-185.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-186.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-187.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-188.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-189.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-190.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-191.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-192.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-193.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-194.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-195.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-196.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-197.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-198.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-199.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-200.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-201.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-202.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-203.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-204.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-205.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-206.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-207.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-208.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-209.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-210.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-211.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-212.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-213.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-214.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-215.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-216.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-217.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-218.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-219.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-220.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-221.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-222.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-223.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-224.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-225.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-226.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-227.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-228.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-229.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-230.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-231.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-232.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-233.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-234.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-235.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-236.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-237.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-238.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-239.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-240.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-241.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-242.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-243.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-244.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-245.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-246.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-247.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-248.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-249.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-250.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-251.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-252.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-253.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-254.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-255.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-256.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-257.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-258.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-259.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-260.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-261.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-262.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-263.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-264.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-265.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-266.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-267.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-268.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-269.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-270.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-271.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-272.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-273.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-274.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-275.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-276.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-277.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-278.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-279.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-280.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-281.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-282.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-283.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-284.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-285.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-286.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-287.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-288.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-289.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-290.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-291.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-292.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-293.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-294.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-295.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-296.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-297.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-298.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-299.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-300.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-301.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-302.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-303.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-304.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-305.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-306.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-307.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-308.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-309.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-310.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-311.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-312.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-313.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-314.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-315.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-316.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-317.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-318.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-319.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-320.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-321.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-322.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-323.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-324.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-325.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-326.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-327.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-328.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-329.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-330.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-331.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-332.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-333.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-334.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-335.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-336.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-337.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-338.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-339.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-340.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-341.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-342.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-343.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-344.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-345.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-346.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-347.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-348.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-349.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-350.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-351.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-352.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-353.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-354.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-355.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-356.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-357.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-358.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-359.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-360.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-361.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-362.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-363.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-364.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-365.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-366.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-367.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-368.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-369.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-370.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-371.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-372.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-373.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-374.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-375.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-376.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-377.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-378.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-379.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-380.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-381.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-382.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-383.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-384.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-385.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-386.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-387.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-388.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-389.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-390.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-391.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-392.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-393.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-394.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-395.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-396.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-397.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-398.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-399.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-400.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-401.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-402.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-403.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-404.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-405.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-406.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-407.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-408.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-409.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-410.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-411.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-412.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-413.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-414.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-415.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-416.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-417.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-418.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-419.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-420.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-421.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-422.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-423.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-424.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-425.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-426.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-427.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-428.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-429.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-430.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-431.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-432.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-433.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-434.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-435.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-436.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-437.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-438.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-439.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-440.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-441.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-442.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-443.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-444.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-445.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-446.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-447.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-448.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-449.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-450.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-451.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-452.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-453.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-454.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-455.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-456.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-457.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-458.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-459.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-460.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-461.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-462.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-463.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-464.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-465.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-466.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-467.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-468.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-469.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-470.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-471.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-472.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-473.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-474.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-475.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-476.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-477.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-478.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-479.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-480.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-481.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-482.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-483.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-484.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-485.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-486.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-487.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-488.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-489.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-490.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-491.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-492.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-493.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-494.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-495.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-496.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-497.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-498.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-499.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-500.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-501.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-502.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-503.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-504.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-505.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-506.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-507.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-508.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-509.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-510.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-511.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-512.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-513.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-514.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-515.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-516.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-517.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-518.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-519.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-520.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-521.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-522.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-523.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-524.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-525.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-526.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-527.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-528.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-529.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-530.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-531.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-532.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-533.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-534.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-535.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-536.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-537.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-538.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-539.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-540.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-541.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-542.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-543.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-544.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-545.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-546.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-547.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-548.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-549.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-550.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-551.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-552.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-553.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-554.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-555.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-556.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-557.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-558.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-559.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-560.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-561.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-562.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-563.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-564.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-565.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-566.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-567.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-568.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-569.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-570.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-571.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-572.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-573.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-574.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-575.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-576.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-577.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-578.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-579.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-580.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-581.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-582.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-583.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-584.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-585.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-586.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-587.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-588.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-589.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-590.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-591.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-592.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-593.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-594.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-595.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-596.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-597.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-598.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-599.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-600.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-601.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-602.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-603.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-604.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-605.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-606.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-607.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-608.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-609.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-610.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-611.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-612.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-613.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-614.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-615.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-616.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-617.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-618.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-619.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-620.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-621.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-622.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-623.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-624.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-625.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-626.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-627.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-628.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-629.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-630.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-631.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-632.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-633.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-634.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-635.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-636.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-637.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-638.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-639.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-640.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-641.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-642.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-643.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-644.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-645.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-646.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-647.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-648.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-649.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-650.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-651.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-652.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-653.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-654.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-655.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-656.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-657.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-658.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-659.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-660.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-661.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-662.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-663.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-664.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-665.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-666.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-667.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-668.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-669.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-670.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-671.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-672.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-673.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-674.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-675.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-676.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-677.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-678.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-679.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-680.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-681.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-682.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-683.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-684.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-685.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-686.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-687.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-688.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-689.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-690.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-691.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-692.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-693.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-694.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-695.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-696.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-697.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-698.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-699.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-700.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-701.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-702.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-703.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-704.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-705.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-706.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-707.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-708.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-709.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-710.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-711.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-712.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-713.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-714.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-715.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-716.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-717.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-718.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-719.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-720.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-721.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-722.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-723.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-724.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-725.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-726.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-727.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-728.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-729.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-730.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-731.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-732.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-733.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-734.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-735.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-736.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-737.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-738.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-739.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-740.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-741.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-742.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-743.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-744.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-745.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-746.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-747.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-748.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-749.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-750.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-751.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-752.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-753.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-754.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-755.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-756.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-757.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-758.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-759.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-760.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-761.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-762.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-763.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-764.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-765.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-766.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-767.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-768.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-769.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-770.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-771.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-772.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-773.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-774.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-775.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-776.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-777.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-778.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-779.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-780.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-781.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-782.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-783.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-784.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-785.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-786.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-787.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-788.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-789.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-790.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-791.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-792.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-793.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-794.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-795.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-796.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-797.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-798.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-799.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-800.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-801.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-802.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-803.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-804.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-805.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-806.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-807.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-808.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-809.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-810.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-811.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-812.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-813.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-814.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-815.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-816.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-817.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-818.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-819.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-820.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-821.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-822.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-823.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-824.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-825.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-826.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-827.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-828.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-829.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-830.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-831.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-832.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-833.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-834.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-835.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-836.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-837.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-838.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-839.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-840.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-841.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-842.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-843.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-844.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-845.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-846.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-847.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-848.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-849.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-850.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-851.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-852.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-853.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-854.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-855.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-856.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-857.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-858.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-859.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-860.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-861.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-862.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-863.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-864.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-865.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-866.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-867.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-868.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-869.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-870.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-871.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-872.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-873.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-874.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-875.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-876.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-877.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-878.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-879.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-880.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-881.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-882.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-883.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-884.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-885.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-886.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-887.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-888.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-889.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-890.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-891.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-892.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-893.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-894.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-895.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-896.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-897.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-898.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-899.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-900.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-901.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-902.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-903.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-904.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-905.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-906.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-907.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-908.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-909.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-910.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-911.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-912.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-913.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-914.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-915.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-916.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-917.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-918.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-919.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-920.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-921.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-922.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-923.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-924.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-925.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-926.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-927.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-928.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-929.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-930.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-931.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-932.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-933.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-934.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-935.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-936.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-937.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-938.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-939.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-940.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-941.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-942.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-943.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-944.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-945.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-946.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-947.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-948.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-949.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-950.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-951.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-952.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-953.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-954.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-955.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-956.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-957.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-958.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-959.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-960.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-961.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-962.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-963.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-964.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-965.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-966.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-967.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-968.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-969.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-970.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-971.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-972.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-973.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-974.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-975.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-976.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-977.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-978.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-979.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-980.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-981.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-982.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-983.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-984.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-985.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-986.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-987.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-988.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-989.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-990.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-991.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-992.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-993.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-994.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-995.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-996.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "jpeg-progressive-997.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "pdf-metadata-998.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-legacy-999.bin",
+      "label": "benign",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": true
+    },
+    {
+      "path": "png-zip-polyglot-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-zip-polyglot-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-zip-polyglot-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-zip-polyglot-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-zip-polyglot-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-zip-polyglot-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-zip-polyglot-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-polyglot-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-metadata-zip-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "jpeg-metadata-zip-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-zip-final-eof-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-6.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-6.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-6.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-JavaScript-7.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-Launch-7.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-EmbeddedFile-7.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-xxe-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-expansion-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-xxe-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-expansion-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-xxe-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-expansion-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-xxe-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "pdf-expansion-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-0.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-1.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-2.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-3.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-4.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-5.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-6.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-7.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-8.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-9.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-10.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-11.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-12.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-13.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "exe-extension-spoof-14.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "png-pixel-bomb.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    },
+    {
+      "path": "xml-xxe-wrapper.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": false,
+      "structuralAccepted": false
+    },
+    {
+      "path": "truncated-pdf.bin",
+      "label": "adversarial",
+      "headerOnlyAccepted": true,
+      "structuralAccepted": false
+    }
+  ]
+}
