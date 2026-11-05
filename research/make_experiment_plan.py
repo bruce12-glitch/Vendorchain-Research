@@ -17,4 +17,8 @@ if __name__=='__main__':
         if a.allow_local_keys:command+=['--allow-local-keys']
         tasks.append({'name':variant,'command':command,'timeoutSeconds':300})
     out=Path(a.output);out.parent.mkdir(parents=True,exist_ok=True)
-    with out.open('x') as f:json.dump({'kind':'table12-hardened-cumulative-ablation','tasks':tasks},f,indent=2)
+    comparisons=[]
+    if a.comparators:
+        comparisons=[{'name':'client_revalidation_cost','control':'full_without_client_revalidation','treatment':'full','metric':'elapsed_ms'},
+                     {'name':'extra_crypto_cost','control':'full','treatment':'full_crypto_x10','metric':'elapsed_ms'}]
+    with out.open('x') as f:json.dump({'kind':'table12-hardened-cumulative-ablation','tasks':tasks,'comparisons':comparisons},f,indent=2)

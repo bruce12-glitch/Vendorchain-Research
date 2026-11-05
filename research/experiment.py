@@ -36,6 +36,27 @@ def summarize_rows(rows, trials, warmups):
     return variants
 
 
+def paired_differences(rows, comparisons, expected):
+    results={}
+    for spec in comparisons:
+        control={r['trial']:r for r in rows if r['variant']==spec['control'] and not r['warmup']}
+        treatment={r['trial']:r for r in rows if r['variant']==spec['treatment'] and not r['warmup']}
+        differences=[];missing=[]
+        for trial in range(expected):
+            a,b=control.get(trial),treatment.get(trial);metric=spec['metric']
+            if not a or not b or not a['successful'] or not b['successful'] or metric not in a['metrics'] or metric not in b['metrics']:
+                missing.append(trial);continue
+            differences.append(b['metrics'][metric]-a['metrics'][metric])
+        summary=summarize(differences) if differences else None
+        if summary:
+            summary['unit']='paired trial-block difference: treatment minus control'
+            summary['quantileMethod']='linear interpolation over paired differences (R7)'
+        results[spec['name']]={**spec,'difference':summary,'missingOrFailedPairs':missing,
+                             'complete':not missing and len(differences)==expected,
+                             'note':'Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.'}
+    return results
+
+
 def export(out, report):
     with (out/'summary.csv').open('w',newline='') as stream:
         writer=csv.writer(stream);writer.writerow(['variant','metric','n','mean','stddev','median','p50','p95','p99','ci95_low','ci95_high'])
@@ -59,6 +80,11 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
     plan_path=Path(plan_path).resolve();plan=json.loads(plan_path.read_text())
     tasks=plan['tasks'];names=[t['name'] for t in tasks]
     if not tasks or len(set(names))!=len(names) or any(not re.fullmatch(r'[A-Za-z0-9_-]+',n) for n in names):raise ValueError('unique safe task names required')
+    comparisons=plan.get('comparisons',[])
+    if len({c['name'] for c in comparisons}) != len(comparisons):raise ValueError('unique comparison names required')
+    for c in comparisons:
+        if c['control'] not in names or c['treatment'] not in names or c['control']==c['treatment'] or not isinstance(c['metric'],str):
+            raise ValueError('comparison must reference two declared tasks and a metric')
     out=Path(output).resolve();out.mkdir(parents=True,exist_ok=False)
     (out/'plan.json').write_bytes(plan_path.read_bytes())
     commit=subprocess.run(['git','rev-parse','HEAD'],capture_output=True,text=True).stdout.strip()
@@ -79,6 +105,7 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
         directory=out/task['name']/str(index);directory.mkdir(parents=True)
         env={**os.environ,'VENDORCHAIN_TRIAL_DIR':str(directory),'VENDORCHAIN_TRIAL_INDEX':str(index)}
         started=time.perf_counter_ns()
+        started_ns=time.time_ns();proc=None
         try:
             with (directory/'stdout.log').open('wb') as stdout,(directory/'stderr.log').open('wb') as stderr:
                 proc=subprocess.Popen(command,stdout=stdout,stderr=stderr,env=env,start_new_session=True)
@@ -92,10 +119,12 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
             row={**data,'successful':data.get('successful') is True}
         except Exception as exc:
             row={'successful':False,'metrics':{},'evidence':'failed-trial','error':type(exc).__name__}
-        row.update(variant=task['name'],trial=index,warmup=index<0,elapsedProcessMs=(time.perf_counter_ns()-started)/1e6)
+        row.update(variant=task['name'],trial=index,warmup=index<0,workerPID=None if proc is None else proc.pid,
+                   startedNs=started_ns,elapsedProcessMs=(time.perf_counter_ns()-started)/1e6)
         rows.append(row);append(out/'trials.jsonl',row)
         print(json.dumps({'variant':task['name'],'trial':index,'successful':row['successful']}),flush=True)
     report={'kind':plan.get('kind','command-campaign'),'variants':summarize_rows(rows,trials,warmups),
+            'pairedComparisons':paired_differences(rows,plan.get('comparisons',[]),trials),
             'protocol':metadata,'qualifiedForPaper':False,
             'qualificationNote':'Review workload, failures, isolation, independence and consensus evidence. Counts alone never confer publication qualification.'}
     (out/'summary.json').write_text(json.dumps(report,indent=2,allow_nan=False));export(out,report)

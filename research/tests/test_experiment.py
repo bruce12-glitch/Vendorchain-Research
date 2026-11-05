@@ -3,10 +3,20 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
-from experiment import campaign, summarize_rows
+from experiment import campaign, summarize_rows, paired_differences
 
 
 class ExperimentTests(unittest.TestCase):
+    def test_pairing_uses_blocks_and_preserves_missing_pairs(self):
+        rows=[]
+        for i in range(50):
+            rows.extend([{'variant':v,'trial':i,'warmup':False,'successful':True,'metrics':{'ms':i+offset}}
+                         for v,offset in [('a',0),('b',2)]])
+        spec=[{'name':'cost','control':'a','treatment':'b','metric':'ms'}]
+        result=paired_differences(rows,spec,50)['cost']
+        self.assertEqual(result['difference']['mean'],2);self.assertEqual(result['difference']['n'],50)
+        rows[-1]['successful']=False
+        self.assertEqual(paired_differences(rows,spec,50)['cost']['missingOrFailedPairs'],[49])
     def test_failed_trials_are_counted_and_warmups_discarded(self):
         rows=[{'variant':'a','warmup':True,'successful':True,'metrics':{'latency_ms':100000}}]
         rows += [{'variant':'a','warmup':False,'successful':True,'metrics':{'latency_ms':i}} for i in range(50)]
