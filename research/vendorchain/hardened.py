@@ -95,11 +95,18 @@ class HardenedPipeline(Pipeline):
     def policy_hash(self):
         return self.signed_policy.load()[2]
 
+    def _ingest(self, *args, **kwargs):
+        # Enforce approved controls before replay admission or object persistence.
+        # Pipeline.ingest still owns wiping the receive buffer on this failure.
+        self.check_configuration(self.signed_policy.load()[0])
+        return super()._ingest(*args, **kwargs)
+
     def verify_payload(self, payload):
         return verify_receipt(payload, self.registry)
 
     def process(self, rid, metrics=None):
         metrics = {} if metrics is None else metrics
+        self.check_configuration(self.signed_policy.load()[0])
         row = self.store.claim(rid)
         plaintext = None
         try:
@@ -127,6 +134,12 @@ class HardenedPipeline(Pipeline):
                 verified = verify_document(attestation,self.registry,'vendorchain.identity.v1','identity')
             sbom_path = self.root/'sbom'/(rid+'.json')
             sbom, artifact_hash = self.provenance.build(self.source,sbom_path,metrics)
+            # Bind the bytes used by the receipt to the inventory evaluated by
+            # OPA. A file replacement after signature verification must not let
+            # different inventory facts acquire the original verdict.
+            sbom_data = sbom_path.read_bytes()
+            if json.loads(sbom_data) != sbom:
+                raise Conflict('SBOM changed after provenance evaluation')
             parameters = self.signed_policy.load()[0]['parameters']
             facts = {'identity':{'state':verified['state']},'sbom':{'present':True,'component_count':len(sbom.get('components',[])),
                      'components':sbom.get('components',[]),'schema':'cyclonedx'},
@@ -142,7 +155,7 @@ class HardenedPipeline(Pipeline):
                         'envelopeHash':sha(canonical({'envelope':json.loads(row['envelope']),'context':json.loads(row['context'])}))}
             receipt = {'version':'vendorchain.receipt.v2','recordID':rid,'vendorID':row['vendor_id'],
                        'documentHash':row['document_hash'],'ciphertextHash':row['cipher_hash'],
-                       'sbomHash':sha(sbom_path.read_bytes()),'artifactHash':artifact_hash,
+                       'sbomHash':sha(sbom_data),'artifactHash':artifact_hash,
                        'identityHash':sha(canonical(attestation)),'snapshotHash':sha(canonical(snapshot)),
                        'policyHash':policy_hash,'decision':snapshot['verdict'],'keyID':self.key_id,
                        'issuedAt':now,'expiresAt':now+600,'nonce':rid,'algorithm':'sha256'}

@@ -10,17 +10,29 @@ from urllib.parse import urlparse
 from .crypto import canonical, encode, decode
 
 
+class _VaultRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # urllib forwards custom headers, including X-Vault-Token, on redirects.
+        # An HA redirect to another origin needs its own explicit configuration.
+        source, target = urlparse(req.full_url), urlparse(newurl)
+        def origin(url):
+            return url.scheme, url.hostname, url.port or (443 if url.scheme == 'https' else 80)
+        if target.username or target.password or origin(source) != origin(target):
+            raise ValueError('Vault redirect to an unconfigured origin')
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 class VaultTransit:
     def __init__(self, address, token, *, mount='transit', opener=None):
         u = urlparse(address)
         if u.username or u.password or u.query or u.fragment or u.path not in ('', '/'):
             raise ValueError('Vault address must be an origin')
-        if u.scheme != 'https' and not (u.scheme == 'http' and u.hostname in ('localhost','127.0.0.1','::1')):
+        if not u.hostname or (u.scheme != 'https' and not (u.scheme == 'http' and u.hostname in ('localhost','127.0.0.1','::1'))):
             raise ValueError('Vault requires TLS outside loopback')
         if not re.fullmatch(r'[A-Za-z0-9_-]+', mount) or not token:
             raise ValueError('Vault mount and token required')
         self.address, self.token, self.mount = address.rstrip('/'), token, mount
-        self.opener = opener or urllib.request.urlopen
+        self.opener = opener or urllib.request.build_opener(_VaultRedirectHandler()).open
 
     def call(self, path, body=None):
         req = urllib.request.Request(self.address+'/v1/'+self.mount+'/'+path,

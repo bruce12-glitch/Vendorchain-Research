@@ -1,0 +1,236 @@
+test_crashed_trial_verifies_without_worker_measurement (test_campaign_verification.CampaignVerificationTests.test_crashed_trial_verifies_without_worker_measurement) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+{"variant": "bad", "trial": 0, "successful": false}
+ok
+test_current_protocol_requires_parent_record (test_campaign_verification.CampaignVerificationTests.test_current_protocol_requires_parent_record) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_extra_trial_evidence_cannot_be_ignored (test_campaign_verification.CampaignVerificationTests.test_extra_trial_evidence_cannot_be_ignored) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_legacy_measurements_verify_without_parent_records (test_campaign_verification.CampaignVerificationTests.test_legacy_measurements_verify_without_parent_records) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_manifest_cannot_read_outside_campaign_or_follow_symlinks (test_campaign_verification.CampaignVerificationTests.test_manifest_cannot_read_outside_campaign_or_follow_symlinks) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_missing_trial_cannot_be_hidden_by_rehashing (test_campaign_verification.CampaignVerificationTests.test_missing_trial_cannot_be_hidden_by_rehashing) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_rehashed_csv_must_match_computed_statistics (test_campaign_verification.CampaignVerificationTests.test_rehashed_csv_must_match_computed_statistics) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_rehashed_summary_and_export_still_must_reproduce (test_campaign_verification.CampaignVerificationTests.test_rehashed_summary_and_export_still_must_reproduce) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_successful_trial_cannot_have_failed_exit_code (test_campaign_verification.CampaignVerificationTests.test_successful_trial_cannot_have_failed_exit_code) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_tampered_raw_file_rejected (test_campaign_verification.CampaignVerificationTests.test_tampered_raw_file_rejected) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_verifies_real_process_evidence_without_qualifying_smoke (test_campaign_verification.CampaignVerificationTests.test_verifies_real_process_evidence_without_qualifying_smoke) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_worker_provenance_must_match_journal (test_campaign_verification.CampaignVerificationTests.test_worker_provenance_must_match_journal) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_check_digit_rejects_non_base36 (test_components.GstinTests.test_check_digit_rejects_non_base36) ... ok
+test_known_checksum_and_cross_pan (test_components.GstinTests.test_known_checksum_and_cross_pan) ... ok
+test_mutated_checksum_and_bad_format (test_components.GstinTests.test_mutated_checksum_and_bad_format) ... ok
+test_real_allow_and_deny_decisions (test_components.OpaTests.test_real_allow_and_deny_decisions) ... ok
+test_real_rego_bundle (test_components.OpaTests.test_real_rego_bundle) ... ok
+test_complete_sweep_and_crash_pass (test_consensus.ConsensusValidationTests.test_complete_sweep_and_crash_pass) ... ok
+test_empty_reconciliation_cannot_pass (test_consensus.ConsensusValidationTests.test_empty_reconciliation_cannot_pass) ... ok
+test_missing_levels_and_unconfirmed_fault_results_cannot_pass (test_consensus.ConsensusValidationTests.test_missing_levels_and_unconfirmed_fault_results_cannot_pass) ... ok
+test_restarted_orderer_and_mislabeled_consensus_cannot_pass (test_consensus.ConsensusValidationTests.test_restarted_orderer_and_mislabeled_consensus_cannot_pass) ... ok
+test_retained_actual_bft_block_still_validates (test_consensus.ConsensusValidationTests.test_retained_actual_bft_block_still_validates) ... ok
+test_topology_uses_active_consensus_membership (test_consensus.ConsensusValidationTests.test_topology_uses_active_consensus_membership) ... ok
+test_binary_extra_and_unpinned_requirements (test_environment.EnvironmentTests.test_binary_extra_and_unpinned_requirements) ... ok
+test_missing_binary_and_version_mismatch_fail_readiness (test_environment.EnvironmentTests.test_missing_binary_and_version_mismatch_fail_readiness) ... ok
+test_missing_python_distribution_is_visible (test_environment.EnvironmentTests.test_missing_python_distribution_is_visible) ... ok
+test_readiness_with_complete_local_prerequisites (test_environment.EnvironmentTests.test_readiness_with_complete_local_prerequisites) ... ok
+test_timeout_is_a_failed_check (test_environment.EnvironmentTests.test_timeout_is_a_failed_check) ... ok
+test_tool_pin_mismatch_fails (test_environment.EnvironmentTests.test_tool_pin_mismatch_fails) ... ok
+test_unavailable_docker_daemon_cannot_report_ready (test_environment.EnvironmentTests.test_unavailable_docker_daemon_cannot_report_ready) ... ok
+test_atomic_write_tolerates_abandoned_temporary_file (test_experiment.ExperimentTests.test_atomic_write_tolerates_abandoned_temporary_file) ... ok
+test_crashed_subprocess_retained (test_experiment.ExperimentTests.test_crashed_subprocess_retained) ... {"variant": "bad", "trial": 0, "successful": false}
+ok
+test_empty_metrics_never_satisfy_count_protocol (test_experiment.ExperimentTests.test_empty_metrics_never_satisfy_count_protocol) ... ok
+test_empty_paired_exports_contain_no_data_rows (test_experiment.ExperimentTests.test_empty_paired_exports_contain_no_data_rows) ... ok
+test_failed_trial_without_measurement_recovers_from_record (test_experiment.ExperimentTests.test_failed_trial_without_measurement_recovers_from_record) ... {"variant": "bad", "trial": 0, "successful": false}
+ok
+test_failed_trials_are_counted_and_warmups_discarded (test_experiment.ExperimentTests.test_failed_trials_are_counted_and_warmups_discarded) ... ok
+test_invalid_plan_fails_before_creating_output (test_experiment.ExperimentTests.test_invalid_plan_fails_before_creating_output) ... ok
+test_missing_journal_line_recovers_from_actual_durable_record (test_experiment.ExperimentTests.test_missing_journal_line_recovers_from_actual_durable_record) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_paired_exports_preserve_failed_pairs_and_escape_tex (test_experiment.ExperimentTests.test_paired_exports_preserve_failed_pairs_and_escape_tex) ... ok
+test_pairing_uses_blocks_and_preserves_missing_pairs (test_experiment.ExperimentTests.test_pairing_uses_blocks_and_preserves_missing_pairs) ... ok
+test_real_subprocess_output_and_manifest (test_experiment.ExperimentTests.test_real_subprocess_output_and_manifest) ... {"variant": "a", "trial": -1, "successful": true}
+{"variant": "a", "trial": 0, "successful": true}
+{"variant": "a", "trial": 1, "successful": true}
+ok
+test_recovery_handles_truncated_last_append (test_experiment.ExperimentTests.test_recovery_handles_truncated_last_append) ... {"variant": "bad", "trial": 0, "successful": false}
+ok
+test_recovery_rejects_altered_counts (test_experiment.ExperimentTests.test_recovery_rejects_altered_counts) ... {"variant": "bad", "trial": 0, "successful": false}
+ok
+test_recovery_rejects_foreign_slots_and_preserves_original (test_experiment.ExperimentTests.test_recovery_rejects_foreign_slots_and_preserves_original) ... {"variant": "bad", "trial": 0, "successful": false}
+ok
+test_small_runs_require_explicit_smoke (test_experiment.ExperimentTests.test_small_runs_require_explicit_smoke) ... ok
+test_worker_failure_reason_with_empty_metrics_is_preserved (test_experiment.ExperimentTests.test_worker_failure_reason_with_empty_metrics_is_preserved) ... {"variant": "a", "trial": 0, "successful": false}
+ok
+test_expired_evidence_is_rejected (test_hardened.EvidenceTests.test_expired_evidence_is_rejected) ... ok
+test_full_offline_cyclonedx_schema (test_hardened.EvidenceTests.test_full_offline_cyclonedx_schema) ... ok
+test_identity_context_tamper_role_and_revocation (test_hardened.EvidenceTests.test_identity_context_tamper_role_and_revocation) ... ok
+test_missing_replay_predicate_cannot_vacuously_allow (test_hardened.EvidenceTests.test_missing_replay_predicate_cannot_vacuously_allow) ... ok
+test_ocr_similarity_matches_manuscript_threshold (test_hardened.EvidenceTests.test_ocr_similarity_matches_manuscript_threshold) ... ok
+test_parser_does_not_inherit_deployment_credentials (test_hardened.EvidenceTests.test_parser_does_not_inherit_deployment_credentials) ... ok
+test_root_covers_every_component_and_timestamp (test_hardened.EvidenceTests.test_root_covers_every_component_and_timestamp) ... ok
+test_signed_policy_rejects_replacement_and_wrong_role (test_hardened.EvidenceTests.test_signed_policy_rejects_replacement_and_wrong_role) ... ok
+test_source_digest_covers_paths_contents_and_rejects_symlinks (test_hardened.EvidenceTests.test_source_digest_covers_paths_contents_and_rejects_symlinks) ... ok
+test_artifact_mutation_is_blocked (test_hardened.PipelineTests.test_artifact_mutation_is_blocked) ... ok
+test_envelope_mutation_is_cryptographically_bound_even_if_sql_trigger_is_removed (test_hardened.PipelineTests.test_envelope_mutation_is_cryptographically_bound_even_if_sql_trigger_is_removed) ... ok
+test_expired_policy_blocks_admission_and_wipes_buffer (test_hardened.PipelineTests.test_expired_policy_blocks_admission_and_wipes_buffer) ... ok
+test_hardened_commit_and_hash_only_receipt (test_hardened.PipelineTests.test_hardened_commit_and_hash_only_receipt) ... ok
+test_identity_mutation_is_blocked_at_delivery (test_hardened.PipelineTests.test_identity_mutation_is_blocked_at_delivery) ... ok
+test_lost_acknowledgement_is_reconciled_without_duplicate_commit (test_hardened.PipelineTests.test_lost_acknowledgement_is_reconciled_without_duplicate_commit) ... ok
+test_new_id_replay_wipes_buffer_and_leaves_no_blob (test_hardened.PipelineTests.test_new_id_replay_wipes_buffer_and_leaves_no_blob) ... ok
+test_policy_replacement_between_evaluation_and_commit_is_blocked (test_hardened.PipelineTests.test_policy_replacement_between_evaluation_and_commit_is_blocked) ... ok
+test_revocation_blocks_uncommitted_receipt (test_hardened.PipelineTests.test_revocation_blocks_uncommitted_receipt) ... ok
+test_sbom_replacement_cannot_bind_a_different_inventory_to_the_verdict (test_hardened.PipelineTests.test_sbom_replacement_cannot_bind_a_different_inventory_to_the_verdict) ... ok
+test_unsigned_identity_registry_change_is_blocked (test_hardened.PipelineTests.test_unsigned_identity_registry_change_is_blocked) ... ok
+test_unsigned_provenance_trust_change_is_blocked (test_hardened.PipelineTests.test_unsigned_provenance_trust_change_is_blocked) ... ok
+test_unsigned_replay_window_change_is_blocked (test_hardened.PipelineTests.test_unsigned_replay_window_change_is_blocked) ... ok
+test_unsigned_replay_window_change_is_blocked_before_admission (test_hardened.PipelineTests.test_unsigned_replay_window_change_is_blocked_before_admission) ... ok
+test_outbox_replay_and_audit_on_postgres (test_hardened.PostgresTests.test_outbox_replay_and_audit_on_postgres) ... skipped 'requires real PostgreSQL'
+test_atomic_digest_admission_under_race (test_hardened.ReplayTests.test_atomic_digest_admission_under_race) ... ok
+test_retention_expiry_allows_a_new_id (test_hardened.ReplayTests.test_retention_expiry_allows_a_new_id) ... ok
+test_exportable_keys_rejected (test_kms.KmsConfigurationTests.test_exportable_keys_rejected) ... ok
+test_redirect_does_not_forward_vault_token_to_another_origin (test_kms.KmsConfigurationTests.test_redirect_does_not_forward_vault_token_to_another_origin) ... ok
+test_transport_validation (test_kms.KmsConfigurationTests.test_transport_validation) ... ok
+test_hardened_pipeline_with_remote_kek_and_worker_keys (test_kms.LiveVaultTests.test_hardened_pipeline_with_remote_kek_and_worker_keys) ... skipped 'requires a real disposable Vault Transit service'
+test_remote_ed25519_signer_version_pin (test_kms.LiveVaultTests.test_remote_ed25519_signer_version_pin) ... skipped 'requires a real disposable Vault Transit service'
+test_remote_wrap_rotation_revocation_and_context_binding (test_kms.LiveVaultTests.test_remote_wrap_rotation_revocation_and_context_binding) ... skipped 'requires a real disposable Vault Transit service'
+test_crashed_clients_are_unknown_and_not_measured_zero_throughput (test_load_campaign.LoadCampaignTests.test_crashed_clients_are_unknown_and_not_measured_zero_throughput) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_failed_zero_acknowledgement_and_missing_deployments_remain_distinct (test_load_campaign.LoadCampaignTests.test_failed_zero_acknowledgement_and_missing_deployments_remain_distinct) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_manifest_pinned_duplicate_levels_and_invalid_counts_rejected (test_load_campaign.LoadCampaignTests.test_manifest_pinned_duplicate_levels_and_invalid_counts_rejected) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+{"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_missing_or_inconsistent_raw_requests_rejected (test_load_campaign.LoadCampaignTests.test_missing_or_inconsistent_raw_requests_rejected) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+{"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_nested_tampering_fails_source_verification (test_load_campaign.LoadCampaignTests.test_nested_tampering_fails_source_verification) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_unpinned_load_journal_rejected (test_load_campaign.LoadCampaignTests.test_unpinned_load_journal_rejected) ... {"variant": "raft", "trial": -1, "successful": true}
+{"variant": "raft", "trial": 0, "successful": true}
+{"variant": "raft", "trial": 1, "successful": false}
+{"variant": "raft", "trial": 2, "successful": false}
+ok
+test_all_failed_campaign_plots_without_invented_measurements (test_plot_experiment.PlotExperimentTests.test_all_failed_campaign_plots_without_invented_measurements) ... {"variant": "full", "trial": 0, "successful": false}
+ok
+test_consensus_captions_do_not_claim_local_synthetic_or_sqlite (test_plot_experiment.PlotExperimentTests.test_consensus_captions_do_not_claim_local_synthetic_or_sqlite) ... ok
+test_consensus_figure_is_pinned_and_summary_unchanged (test_plot_experiment.PlotExperimentTests.test_consensus_figure_is_pinned_and_summary_unchanged) ... {"variant": "bft", "trial": 0, "successful": true}
+{"variant": "bft", "trial": 1, "successful": true}
+ok
+test_explicit_synthetic_and_storage_metadata_are_used (test_plot_experiment.PlotExperimentTests.test_explicit_synthetic_and_storage_metadata_are_used) ... ok
+test_external_input_review_is_never_inferred_from_hash (test_plot_experiment.PlotExperimentTests.test_external_input_review_is_never_inferred_from_hash) ... ok
+test_tampered_campaign_rejected_before_figures (test_plot_experiment.PlotExperimentTests.test_tampered_campaign_rejected_before_figures) ... {"variant": "a", "trial": 0, "successful": false}
+ok
+test_key_encoding (test_security.CryptoTests.test_key_encoding) ... ok
+test_roundtrip_and_random_nonces (test_security.CryptoTests.test_roundtrip_and_random_nonces) ... ok
+test_tamper_authentication (test_security.CryptoTests.test_tamper_authentication) ... ok
+test_vendor_or_document_swap (test_security.CryptoTests.test_vendor_or_document_swap) ... ok
+test_empty_and_oversized (test_security.GateTests.test_empty_and_oversized) ... ok
+test_encoded_xml_dtd_rejected_but_passive_metadata_accepted (test_security.GateTests.test_encoded_xml_dtd_rejected_but_passive_metadata_accepted) ... ok
+test_independently_valid_polyglots_are_rejected (test_security.GateTests.test_independently_valid_polyglots_are_rejected) ... ok
+test_literal_script_names_in_metadata_are_not_code (test_security.GateTests.test_literal_script_names_in_metadata_are_not_code) ... ok
+test_parser_subprocess (test_security.GateTests.test_parser_subprocess) ... ok
+test_pdf_active_content (test_security.GateTests.test_pdf_active_content) ... ok
+test_pdf_decompression_limit (test_security.GateTests.test_pdf_decompression_limit) ... ok
+test_polyglot_inside_valid_metadata_and_final_eof (test_security.GateTests.test_polyglot_inside_valid_metadata_and_final_eof) ... ok
+test_real_ocr_subprocess (test_security.GateTests.test_real_ocr_subprocess) ... ok
+test_signature_spoof (test_security.GateTests.test_signature_spoof) ... ok
+test_truncated_image (test_security.GateTests.test_truncated_image) ... ok
+test_unusual_valid_images (test_security.GateTests.test_unusual_valid_images) ... ok
+test_xxe_metadata (test_security.GateTests.test_xxe_metadata) ... ok
+test_zero_bypass_does_not_mean_zero_population_risk (test_security.GateTests.test_zero_bypass_does_not_mean_zero_population_risk) ... ok
+test_audit_update_delete_blocked (test_security.PipelineTests.test_audit_update_delete_blocked) ... ok
+test_ciphertext_swap_at_commit (test_security.PipelineTests.test_ciphertext_swap_at_commit) ... ok
+test_complete_pipeline (test_security.PipelineTests.test_complete_pipeline) ... ok
+test_database_binding_immutable (test_security.PipelineTests.test_database_binding_immutable) ... ok
+test_expired_receipt (test_security.PipelineTests.test_expired_receipt) ... ok
+test_false_ack_never_finalizes (test_security.PipelineTests.test_false_ack_never_finalizes) ... ok
+test_forged_SQL_confirmation_cannot_fake_ledger_commit (test_security.PipelineTests.test_forged_SQL_confirmation_cannot_fake_ledger_commit) ... ok
+test_historical_readback_survives_worker_revocation (test_security.PipelineTests.test_historical_readback_survives_worker_revocation) ... ok
+test_idempotency_context_mismatch (test_security.PipelineTests.test_idempotency_context_mismatch) ... ok
+test_idempotent_completed_request (test_security.PipelineTests.test_idempotent_completed_request) ... ok
+test_invalid_identifier_receive_buffer_wiped (test_security.PipelineTests.test_invalid_identifier_receive_buffer_wiped) ... ok
+test_ledger_outage_keeps_durable_pending_entry (test_security.PipelineTests.test_ledger_outage_keeps_durable_pending_entry) ... ok
+test_local_finalize_failure_is_recoverable (test_security.PipelineTests.test_local_finalize_failure_is_recoverable) ... ok
+test_lost_ack_reconciles_after_worker_revocation (test_security.PipelineTests.test_lost_ack_reconciles_after_worker_revocation) ... ok
+test_lost_commit_ack_reconciles_exactly_once (test_security.PipelineTests.test_lost_commit_ack_reconciles_exactly_once) ... ok
+test_one_atomic_worker_claim (test_security.PipelineTests.test_one_atomic_worker_claim) ... ok
+test_pipeline_uses_real_opa_and_denies_missing_sbom (test_security.PipelineTests.test_pipeline_uses_real_opa_and_denies_missing_sbom) ... ok
+test_policy_binding_changed_at_commit (test_security.PipelineTests.test_policy_binding_changed_at_commit) ... ok
+test_rejected_receive_buffer_wiped_before_any_persistence (test_security.PipelineTests.test_rejected_receive_buffer_wiped_before_any_persistence) ... ok
+test_revoked_worker_cannot_commit (test_security.PipelineTests.test_revoked_worker_cannot_commit) ... ok
+test_stale_failure_cannot_cancel_new_worker (test_security.PipelineTests.test_stale_failure_cannot_cancel_new_worker) ... ok
+test_stale_worker_cannot_prepare (test_security.PipelineTests.test_stale_worker_cannot_prepare) ... ok
+test_successful_receive_buffer_wiped_and_envelope_still_valid (test_security.PipelineTests.test_successful_receive_buffer_wiped_and_envelope_still_valid) ... ok
+test_unknown_key (test_security.PipelineTests.test_unknown_key) ... ok
+test_unsigned_or_tampered_receipt (test_security.PipelineTests.test_unsigned_or_tampered_receipt) ... ok
+test_ambiguous_content_length_rejected (test_server.ServerTests.test_ambiguous_content_length_rejected) ... ok
+test_authenticated_upload_returns_commit (test_server.ServerTests.test_authenticated_upload_returns_commit) ... ok
+test_chunked_upload_cannot_bypass_size_limit (test_server.ServerTests.test_chunked_upload_cannot_bypass_size_limit) ... ok
+test_health_exposes_owned_buffer_limit (test_server.ServerTests.test_health_exposes_owned_buffer_limit) ... ok
+test_oversized_length_rejected_before_body_or_pipeline (test_server.ServerTests.test_oversized_length_rejected_before_body_or_pipeline) ... ok
+test_unauthorized_request_cannot_execute_pipeline (test_server.ServerTests.test_unauthorized_request_cannot_execute_pipeline) ... ok
+test_all_failed_trials_remain_visible (test_stats.StatsTests.test_all_failed_trials_remain_visible) ... ok
+test_fifty_independent_trials_required (test_stats.StatsTests.test_fifty_independent_trials_required) ... ok
+test_missing_values_not_silently_dropped (test_stats.StatsTests.test_missing_values_not_silently_dropped) ... ok
+test_sample_sd_and_t_interval (test_stats.StatsTests.test_sample_sd_and_t_interval) ... ok
+test_warmups_excluded_and_no_request_pseudoreplication (test_stats.StatsTests.test_warmups_excluded_and_no_request_pseudoreplication) ... ok
+test_config_change_during_initialization_stops_trial (test_table12_worker.WorkerProvenanceTests.test_config_change_during_initialization_stops_trial) ... ok
+test_external_input_and_config_provenance_are_retained (test_table12_worker.WorkerProvenanceTests.test_external_input_and_config_provenance_are_retained) ... ok
+
+----------------------------------------------------------------------
+Ran 146 tests in 11.761s
+
+OK (skipped=4)

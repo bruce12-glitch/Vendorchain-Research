@@ -33,11 +33,14 @@ def identity_png(nonce):
 def run(variant, config, *, input_file=None, local=False, allow_local_keys=False):
     directory=Path(os.environ['VENDORCHAIN_TRIAL_DIR']);directory.mkdir(parents=True,exist_ok=True)
     metrics={};success=True;verdict=None;reason=None
+    config_hash=sha(Path(config).read_bytes())
     data=Path(input_file).read_bytes() if input_file else identity_png(os.urandom(8).hex())
     if not input_file:(directory/'input.png').write_bytes(data)
     plaintext=None
     with tempfile.TemporaryDirectory(prefix='vendorchain-trial-') as tmp:
         p=configured(config,local=local,allow_local_keys=allow_local_keys,root_override=Path(tmp)/'pipeline')
+        if sha(Path(config).read_bytes()) != config_hash:
+            raise ValueError('experiment configuration changed during initialization')
         root=p.root;cpu=resource.getrusage(resource.RUSAGE_SELF);children=resource.getrusage(resource.RUSAGE_CHILDREN)
         initial_disk=sum(x.stat().st_size for x in root.rglob('*') if x.is_file())
         started=time.perf_counter_ns()
@@ -99,6 +102,9 @@ def run(variant, config, *, input_file=None, local=False, allow_local_keys=False
         row={'successful':bool(success),'variant':variant,'metrics':{k:v for k,v in metrics.items() if type(v) in (int,float)},
              'evidence':p.ledger.kind if variant in ['full',*COMPARATORS] else 'offchain-stage-ablation',
              'decision':verdict,'error':reason,'inputSHA256':sha(data),'inputBytes':len(data),
+             'inputKind':'external-file' if input_file else 'generated-synthetic-png',
+             'configSHA256':config_hash,'signedPolicySHA256':p.policy_hash(),
+             'operationalStore':type(p.store).__name__,
              'custody':'research-local-keys' if allow_local_keys else 'configured-remote-service',
              'limitations':['synthetic PNG unless --file provided','RSS is separate process high-water marks, not aggregate concurrent process-tree RSS',
                             'full adds H2/H3/H4 and operational outbox as well as ledger; it is the hardened version of Table 12']}

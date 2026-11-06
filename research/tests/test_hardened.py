@@ -212,6 +212,38 @@ class PipelineTests(unittest.TestCase):
         self.prepare();self.p.store.retention_seconds=1
         with self.assertRaisesRegex(Conflict,'worker controls'):self.p.deliver('request')
 
+    def test_unsigned_replay_window_change_is_blocked_before_admission(self):
+        self.prepare();self.p.store.retention_seconds=1
+        data=bytearray(png())
+        with self.assertRaisesRegex(Conflict,'worker controls'):
+            self.p.ingest(data,'vendor','second')
+        self.assertEqual(data,bytearray(len(data)))
+        self.assertIsNone(self.p.store.get('second'))
+        self.assertFalse((self.p.root/'blobs/second.enc').exists())
+
+    def test_expired_policy_blocks_admission_and_wipes_buffer(self):
+        data=bytearray(png())
+        with patch.object(self.policy,'load',side_effect=ValueError('expired policy')):
+            with self.assertRaisesRegex(ValueError,'expired policy'):
+                self.p.ingest(data,'vendor','request')
+        self.assertEqual(data,bytearray(len(data)))
+        self.assertIsNone(self.p.store.get('request'))
+        self.assertFalse((self.p.root/'blobs/request.enc').exists())
+
+    def test_sbom_replacement_cannot_bind_a_different_inventory_to_the_verdict(self):
+        original=self.p.provenance.build
+        def replace(source,path,metrics):
+            bom,artifact=original(source,path,metrics)
+            replacement=copy.deepcopy(bom);replacement['components'][0]['name']='another-inventory'
+            path.write_bytes(canonical(replacement))
+            return bom,artifact
+        self.p.provenance.build=replace
+        self.p.ingest(bytearray(png()),'vendor','request')
+        with self.assertRaisesRegex(Conflict,'SBOM changed after provenance'):
+            self.p.process('request')
+        self.assertFalse((self.p.root/'evidence/request.json').exists())
+        self.assertIsNone(self.p.store.pending('request'))
+
     def test_envelope_mutation_is_cryptographically_bound_even_if_sql_trigger_is_removed(self):
         self.prepare()
         with self.p.store.connection(True) as con:

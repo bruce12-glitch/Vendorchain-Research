@@ -10,7 +10,7 @@ def percentile(values, probability):
     return ordered[lower]+(ordered[upper]-ordered[lower])*(position-lower)
 
 def summarize(values):
-    if not values or any(not isinstance(x,(float,int)) or not math.isfinite(x) for x in values):
+    if not values or any(type(x) not in (float,int) or not math.isfinite(x) for x in values):
         raise ValueError('finite measurements are required; missing values cannot be silently dropped')
     n=len(values);mean=statistics.mean(values)
     sd=statistics.stdev(values) if n>1 else None

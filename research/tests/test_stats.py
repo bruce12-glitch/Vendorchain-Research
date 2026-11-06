@@ -11,7 +11,7 @@ class StatsTests(unittest.TestCase):
         self.assertFalse(summarize([1]*49)['publicationNMet'])
         self.assertTrue(summarize([1]*50)['publicationNMet'])
     def test_missing_values_not_silently_dropped(self):
-        for values in [[1,None],[float('nan')],[]]:
+        for values in [[1,None],[float('nan')],[],[True],[False,1]]:
             with self.assertRaises(ValueError):summarize(values)
     def test_warmups_excluded_and_no_request_pseudoreplication(self):
         rows=[{'concurrency':100,'warmup':False,'trialMeanMs':5,'offered':100,'successful':100,'failed':0,'durationSeconds':1,'evidence':'fabric-commit-confirmed'} for _ in range(2)]

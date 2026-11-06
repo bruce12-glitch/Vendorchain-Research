@@ -1,0 +1,17 @@
+{
+  "integrityVerified": true,
+  "filesVerified": 2486,
+  "sourceCommit": "4ceaa19f995bdaee92f7a218dd2b3ca0b3d186c3",
+  "sourceDirty": false,
+  "kind": "table12-hardened-cumulative-ablation",
+  "measuredTrials": 450,
+  "discardedWarmups": 45,
+  "failedMeasuredTrials": 0,
+  "evidenceKinds": [
+    "local-non-consensus",
+    "offchain-stage-ablation"
+  ],
+  "countProtocolMet": true,
+  "qualifiedForPaper": false,
+  "limitations": "Hashes and recomputed statistics establish consistency, not authenticity, workload representativeness, host isolation or production validity."
+}

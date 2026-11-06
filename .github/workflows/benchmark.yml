@@ -1,7 +1,7 @@
-name: BFT independent trial campaign
+# Historical runner: parallel jobs and within-deployment warmups do not implement
+# the current Section 6.3 independent sequential deployment protocol.
+name: Legacy BFT cohort (nonpublication)
 on:
-  push:
-    branches: ['bench/research-validation-independent-*']
   workflow_dispatch:
 permissions:
   contents: read

@@ -14,8 +14,9 @@ const levels=option('concurrency','100,250,500,1000,2500,5000,10000').split(',')
 const reset=option('reset-script',null);
 const metadata=option('metadata',null);
 const timeoutMs=Number(option('timeout-ms','300000'));
+const drainTimeoutMs=Number(option('drain-timeout-ms','1200000'));
 async function drain() {
- const deadline=Date.now()+Number(option('drain-timeout-ms','1200000'));
+ const deadline=Date.now()+drainTimeoutMs;
  while (true) {
   const response=await fetch(url+'/health',{headers:{authorization:'Bearer '+process.env.API_TOKEN},signal:AbortSignal.timeout(5000)});
   if (!response.ok) throw Error('cannot verify server drain');
@@ -25,7 +26,9 @@ async function drain() {
   await new Promise(resolve=>setTimeout(resolve,1000));
  }
 }
-if (!Number.isInteger(trials)||trials<1||!Number.isInteger(warmups)||warmups<0||levels.some(n=>!Number.isInteger(n)||n<1||n>10000)) throw Error('invalid sweep settings');
+if (!Number.isInteger(trials)||trials<1||!Number.isInteger(warmups)||warmups<0
+ || new Set(levels).size!==levels.length || levels.some(n=>!Number.isInteger(n)||n<1||n>10000)
+ || !Number.isSafeInteger(timeoutMs)||timeoutMs<1||!Number.isSafeInteger(drainTimeoutMs)||drainTimeoutMs<1) throw Error('invalid sweep settings');
 mkdirSync(output,{recursive:true});
 if (existsSync(join(output,'trials.jsonl'))) throw Error('use a new output directory for each campaign');
 if (metadata) writeFileSync(join(output,'network-metadata.json'),readFileSync(metadata));

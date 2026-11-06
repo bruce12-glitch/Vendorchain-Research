@@ -1,0 +1,3 @@
+comparison,control,treatment,metric,n,mean_difference,stddev,ci95_low,ci95_high,missing_or_failed_pairs,complete,note
+client_revalidation_cost,full_without_client_revalidation,full,elapsed_ms,50,39.540557140000004,88.3034381701179,14.444997682590891,64.63611659740911,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
+extra_crypto_cost,full,full_crypto_x10,elapsed_ms,50,-5.110948459999995,95.79317361983438,-32.33506718071342,22.113170260713435,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
