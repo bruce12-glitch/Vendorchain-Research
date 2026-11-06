@@ -1,0 +1,81 @@
+{
+  "kind": "local-oversized-declared-length-smoke",
+  "conditions": [
+    {
+      "offeredConcurrency": 100,
+      "trials": 1,
+      "peakClientOpenConnections": 100,
+      "statuses": {
+        "400": 100
+      },
+      "serverLifetimePeakRssBeforeKiB": 30648,
+      "serverLifetimePeakRssAfterKiB": 31416,
+      "rssMeasurement": "API process getrusage(RUSAGE_SELF).ru_maxrss; Linux KiB; excludes children",
+      "healthAfter": {
+        "active": 0,
+        "bufferLimitBytes": 67108864,
+        "bufferedBytes": 0,
+        "evidence": "local-non-consensus",
+        "peakBufferedBytes": 0,
+        "pending": 0,
+        "processPeakRssKiB": 31416,
+        "workers": 8
+      },
+      "encryptedObjectCount": 0
+    },
+    {
+      "offeredConcurrency": 1000,
+      "trials": 1,
+      "peakClientOpenConnections": 1000,
+      "statuses": {
+        "400": 1000
+      },
+      "serverLifetimePeakRssBeforeKiB": 31416,
+      "serverLifetimePeakRssAfterKiB": 38328,
+      "rssMeasurement": "API process getrusage(RUSAGE_SELF).ru_maxrss; Linux KiB; excludes children",
+      "healthAfter": {
+        "active": 0,
+        "bufferLimitBytes": 67108864,
+        "bufferedBytes": 0,
+        "evidence": "local-non-consensus",
+        "peakBufferedBytes": 0,
+        "pending": 0,
+        "processPeakRssKiB": 38328,
+        "workers": 8
+      },
+      "encryptedObjectCount": 0
+    },
+    {
+      "offeredConcurrency": 10000,
+      "trials": 1,
+      "peakClientOpenConnections": 10000,
+      "statuses": {
+        "400": 10000
+      },
+      "serverLifetimePeakRssBeforeKiB": 38328,
+      "serverLifetimePeakRssAfterKiB": 107960,
+      "rssMeasurement": "API process getrusage(RUSAGE_SELF).ru_maxrss; Linux KiB; excludes children",
+      "healthAfter": {
+        "active": 0,
+        "bufferLimitBytes": 67108864,
+        "bufferedBytes": 0,
+        "evidence": "local-non-consensus",
+        "peakBufferedBytes": 0,
+        "pending": 0,
+        "processPeakRssKiB": 107960,
+        "workers": 8
+      },
+      "encryptedObjectCount": 0
+    }
+  ],
+  "bodyBytesSentPerRequest": 0,
+  "declaredLengthBytes": 1073741824,
+  "consensusTested": false,
+  "statisticalProtocolMet": false,
+  "limitations": [
+    "N=1 per level",
+    "offered concurrency is not guaranteed simultaneous arrival",
+    "no body/slow-client/accepted-upload memory claim",
+    "RSS is lifetime peak for one reused API process; not an aggregate system bound"
+  ]
+}

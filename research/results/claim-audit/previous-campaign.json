@@ -1,0 +1,766 @@
+{
+  "checkedAtUTC": "2026-10-30T14:32:30.062Z",
+  "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808",
+  "sourceCommit": "6332c83e6ee716ba9b343a77c2c36a7726c4f00f",
+  "jobCount": 50,
+  "successfulJobs": 50,
+  "artifactCount": 50,
+  "rawArtifactBytesDownloadedAndReviewed": false,
+  "fiveWarmupProtocolMet": false,
+  "observedWarmupsPerDeployment": 1,
+  "scope": "Verified job conclusions and artifact inventory; not a recomputation of per-request measurements",
+  "jobs": [
+    {
+      "id": 123989792196,
+      "name": "Independent BFT trial 7",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792196"
+    },
+    {
+      "id": 123989792197,
+      "name": "Independent BFT trial 11",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792197"
+    },
+    {
+      "id": 123989792203,
+      "name": "Independent BFT trial 4",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792203"
+    },
+    {
+      "id": 123989792205,
+      "name": "Independent BFT trial 6",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792205"
+    },
+    {
+      "id": 123989792214,
+      "name": "Independent BFT trial 10",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792214"
+    },
+    {
+      "id": 123989792228,
+      "name": "Independent BFT trial 13",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792228"
+    },
+    {
+      "id": 123989792229,
+      "name": "Independent BFT trial 12",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792229"
+    },
+    {
+      "id": 123989792283,
+      "name": "Independent BFT trial 5",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792283"
+    },
+    {
+      "id": 123989792293,
+      "name": "Independent BFT trial 3",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792293"
+    },
+    {
+      "id": 123989792297,
+      "name": "Independent BFT trial 21",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792297"
+    },
+    {
+      "id": 123989792313,
+      "name": "Independent BFT trial 14",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792313"
+    },
+    {
+      "id": 123989792321,
+      "name": "Independent BFT trial 0",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792321"
+    },
+    {
+      "id": 123989792325,
+      "name": "Independent BFT trial 17",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792325"
+    },
+    {
+      "id": 123989792329,
+      "name": "Independent BFT trial 15",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792329"
+    },
+    {
+      "id": 123989792332,
+      "name": "Independent BFT trial 19",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792332"
+    },
+    {
+      "id": 123989792334,
+      "name": "Independent BFT trial 29",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792334"
+    },
+    {
+      "id": 123989792338,
+      "name": "Independent BFT trial 2",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792338"
+    },
+    {
+      "id": 123989792341,
+      "name": "Independent BFT trial 16",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792341"
+    },
+    {
+      "id": 123989792392,
+      "name": "Independent BFT trial 25",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792392"
+    },
+    {
+      "id": 123989792398,
+      "name": "Independent BFT trial 18",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792398"
+    },
+    {
+      "id": 123989792400,
+      "name": "Independent BFT trial 23",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792400"
+    },
+    {
+      "id": 123989792410,
+      "name": "Independent BFT trial 22",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792410"
+    },
+    {
+      "id": 123989792483,
+      "name": "Independent BFT trial 9",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792483"
+    },
+    {
+      "id": 123989792512,
+      "name": "Independent BFT trial 8",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792512"
+    },
+    {
+      "id": 123989792516,
+      "name": "Independent BFT trial 20",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792516"
+    },
+    {
+      "id": 123989792579,
+      "name": "Independent BFT trial 24",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792579"
+    },
+    {
+      "id": 123989792595,
+      "name": "Independent BFT trial 26",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792595"
+    },
+    {
+      "id": 123989792601,
+      "name": "Independent BFT trial 28",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792601"
+    },
+    {
+      "id": 123989792750,
+      "name": "Independent BFT trial 27",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989792750"
+    },
+    {
+      "id": 123989793008,
+      "name": "Independent BFT trial 1",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989793008"
+    },
+    {
+      "id": 123989794301,
+      "name": "Independent BFT trial 30",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794301"
+    },
+    {
+      "id": 123989794381,
+      "name": "Independent BFT trial 31",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794381"
+    },
+    {
+      "id": 123989794435,
+      "name": "Independent BFT trial 34",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794435"
+    },
+    {
+      "id": 123989794567,
+      "name": "Independent BFT trial 33",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794567"
+    },
+    {
+      "id": 123989794669,
+      "name": "Independent BFT trial 36",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794669"
+    },
+    {
+      "id": 123989794702,
+      "name": "Independent BFT trial 35",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794702"
+    },
+    {
+      "id": 123989794713,
+      "name": "Independent BFT trial 38",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794713"
+    },
+    {
+      "id": 123989794772,
+      "name": "Independent BFT trial 32",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794772"
+    },
+    {
+      "id": 123989794773,
+      "name": "Independent BFT trial 37",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989794773"
+    },
+    {
+      "id": 123989795198,
+      "name": "Independent BFT trial 39",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989795198"
+    },
+    {
+      "id": 123989796359,
+      "name": "Independent BFT trial 41",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796359"
+    },
+    {
+      "id": 123989796372,
+      "name": "Independent BFT trial 40",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796372"
+    },
+    {
+      "id": 123989796463,
+      "name": "Independent BFT trial 44",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796463"
+    },
+    {
+      "id": 123989796551,
+      "name": "Independent BFT trial 45",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796551"
+    },
+    {
+      "id": 123989796624,
+      "name": "Independent BFT trial 43",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796624"
+    },
+    {
+      "id": 123989796667,
+      "name": "Independent BFT trial 42",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796667"
+    },
+    {
+      "id": 123989796751,
+      "name": "Independent BFT trial 46",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989796751"
+    },
+    {
+      "id": 123989797013,
+      "name": "Independent BFT trial 47",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989797013"
+    },
+    {
+      "id": 123989797217,
+      "name": "Independent BFT trial 48",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989797217"
+    },
+    {
+      "id": 123989797392,
+      "name": "Independent BFT trial 49",
+      "conclusion": "success",
+      "runURL": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/job/123989797392"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12968690271,
+      "name": "bft-100-trial-42",
+      "sizeBytes": 72709,
+      "digest": "sha256:e9aca326b29a1e399e9e553b23b87cce23c68b7430e4e9bd9ae4c35206b1b96a",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968690271"
+    },
+    {
+      "id": 12968570101,
+      "name": "bft-100-trial-31",
+      "sizeBytes": 70747,
+      "digest": "sha256:5ae28731dac277207b0a2b9fde14c9495581722dcdf22ca68caeb79b6076d2fd",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968570101"
+    },
+    {
+      "id": 12968405624,
+      "name": "bft-100-trial-38",
+      "sizeBytes": 72192,
+      "digest": "sha256:5bdd6b5f4076e43d36f6eba25e6d127b708ce011089c7525ccec2b2130347ca4",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968405624"
+    },
+    {
+      "id": 12968235019,
+      "name": "bft-100-trial-9",
+      "sizeBytes": 72680,
+      "digest": "sha256:ef954e1f1ca1a60ab284f553e297ebfb203dc94699d4fedb0f5d896007abd2f3",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968235019"
+    },
+    {
+      "id": 12968221956,
+      "name": "bft-100-trial-47",
+      "sizeBytes": 73099,
+      "digest": "sha256:eaaedfe46324c17df96ac6be0ef7deab01ad10bfdb0bed5a40896b3dfc9cca33",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968221956"
+    },
+    {
+      "id": 12968215875,
+      "name": "bft-100-trial-35",
+      "sizeBytes": 72724,
+      "digest": "sha256:9aeae0e1c6a70ad4279dcd9566da1211ee6587809e738f7354e513baa39d1e16",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968215875"
+    },
+    {
+      "id": 12968081354,
+      "name": "bft-100-trial-34",
+      "sizeBytes": 71068,
+      "digest": "sha256:ba255f57eaebe01e29953186c21e75a73d6f5083f67b05ec813a4857ce4c1304",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968081354"
+    },
+    {
+      "id": 12968080470,
+      "name": "bft-100-trial-12",
+      "sizeBytes": 70892,
+      "digest": "sha256:c0fbcf529b8cac203eba3f102b3fea134c5905bb617c9476d9968d43fe254b68",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968080470"
+    },
+    {
+      "id": 12968052161,
+      "name": "bft-100-trial-44",
+      "sizeBytes": 71283,
+      "digest": "sha256:8a77d8e927fa42332e2cbd3082acaa3513c2949e2fb4b35c35594844da3155ad",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968052161"
+    },
+    {
+      "id": 12968047405,
+      "name": "bft-100-trial-46",
+      "sizeBytes": 71985,
+      "digest": "sha256:ff1c384350b5a6f88220c3860927b824bc0c24699ea0a15142d66b8e97bc486f",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968047405"
+    },
+    {
+      "id": 12968007025,
+      "name": "bft-100-trial-49",
+      "sizeBytes": 73172,
+      "digest": "sha256:c9c4669ac4e97bb953fb9c7cc1a47cf5eca1319ee3f917ba7fa0604c3c01b049",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12968007025"
+    },
+    {
+      "id": 12967995453,
+      "name": "bft-100-trial-4",
+      "sizeBytes": 73007,
+      "digest": "sha256:b93d3f263f73be0d5f434fbc0e1004601aafa4a41a18442ce1ca1b50f2f342b2",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967995453"
+    },
+    {
+      "id": 12967927115,
+      "name": "bft-100-trial-43",
+      "sizeBytes": 73125,
+      "digest": "sha256:32a1e1b0014a68a95e2ba038ad6b6e104e191a252164b3bbe59bdd2a8efd6d94",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967927115"
+    },
+    {
+      "id": 12967886996,
+      "name": "bft-100-trial-28",
+      "sizeBytes": 70884,
+      "digest": "sha256:7863efeab39321a5e93c75e559283921e009ccd0a5b5bf9e1b114da4797283b1",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967886996"
+    },
+    {
+      "id": 12967831821,
+      "name": "bft-100-trial-20",
+      "sizeBytes": 71632,
+      "digest": "sha256:7d089311e1843ab0aa8f7a5eb2ee99be43123ddfe663c026110c6566b489ef64",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967831821"
+    },
+    {
+      "id": 12967820985,
+      "name": "bft-100-trial-8",
+      "sizeBytes": 71902,
+      "digest": "sha256:d50e3b820a6c5dbf1e0c168f4a14a64752933c30bd93ded434f88cd8e4cbc0b4",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967820985"
+    },
+    {
+      "id": 12967812949,
+      "name": "bft-100-trial-45",
+      "sizeBytes": 71172,
+      "digest": "sha256:d0630b6324212c51537e75ba3bad40360220cd4f8fc5512fb6a5f2d5034aad91",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967812949"
+    },
+    {
+      "id": 12967782020,
+      "name": "bft-100-trial-30",
+      "sizeBytes": 72717,
+      "digest": "sha256:2407ace9e7de0cfb7d56b01794e69aefc32936617a160270188f0461c4f006ee",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967782020"
+    },
+    {
+      "id": 12967770618,
+      "name": "bft-100-trial-1",
+      "sizeBytes": 71093,
+      "digest": "sha256:ba879966aa51aed2212464e2098212f9b3cd73bb98fd42db11b54fc464cee4ed",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967770618"
+    },
+    {
+      "id": 12967767780,
+      "name": "bft-100-trial-40",
+      "sizeBytes": 72610,
+      "digest": "sha256:efe8eb97a8441c5d97c18ec2d89f364427c3d6e041b9ec6e142a37b2483a4f41",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967767780"
+    },
+    {
+      "id": 12967761201,
+      "name": "bft-100-trial-16",
+      "sizeBytes": 72818,
+      "digest": "sha256:620611df2b10e7f1f6e388001b3924390981528d0092ecdb7a7e7b9eadcf8ce2",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967761201"
+    },
+    {
+      "id": 12967717156,
+      "name": "bft-100-trial-32",
+      "sizeBytes": 72760,
+      "digest": "sha256:45fa0f804fa760cc94de7ffe5ada0d9043354015d3dd9faa031800d7f17c705f",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967717156"
+    },
+    {
+      "id": 12967671065,
+      "name": "bft-100-trial-3",
+      "sizeBytes": 73098,
+      "digest": "sha256:d8b0cf158fe835509c07020accc345150287ce5b28b2c1c4c36b88c02a6a770b",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967671065"
+    },
+    {
+      "id": 12967628281,
+      "name": "bft-100-trial-48",
+      "sizeBytes": 73328,
+      "digest": "sha256:4126d169a02f69d6225b2eea54fe58612add136ce025d83d354fcd698942598a",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967628281"
+    },
+    {
+      "id": 12967606842,
+      "name": "bft-100-trial-24",
+      "sizeBytes": 72594,
+      "digest": "sha256:a0ad736bb7b36fdef776360efa19140c3cee458421edded3b87356a551e15833",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967606842"
+    },
+    {
+      "id": 12967577152,
+      "name": "bft-100-trial-26",
+      "sizeBytes": 72274,
+      "digest": "sha256:cab65dc6aee1874e72f6d7299403a766089af43c35aef92353d5dee2ce5fcc5a",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967577152"
+    },
+    {
+      "id": 12967573050,
+      "name": "bft-100-trial-41",
+      "sizeBytes": 73037,
+      "digest": "sha256:00a647482019fa028871bb3523ce05a1f4afd8a7413a15d9a6e1191d9493bce6",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967573050"
+    },
+    {
+      "id": 12967506392,
+      "name": "bft-100-trial-5",
+      "sizeBytes": 71442,
+      "digest": "sha256:07a315dab963f41393ff1b3c06f12a4a825b7b6fe8416015c7b502e73d85a3eb",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967506392"
+    },
+    {
+      "id": 12967496991,
+      "name": "bft-100-trial-39",
+      "sizeBytes": 73122,
+      "digest": "sha256:3d4ac628f3f881ba99c4a048ef553629386aec1bed98c7b6e770eb94e518db56",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967496991"
+    },
+    {
+      "id": 12967447892,
+      "name": "bft-100-trial-25",
+      "sizeBytes": 71486,
+      "digest": "sha256:1390e0547e9df0221e3d7f5c77c667e960e23da32e2e6689f094a7da7c551736",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967447892"
+    },
+    {
+      "id": 12967372368,
+      "name": "bft-100-trial-37",
+      "sizeBytes": 71922,
+      "digest": "sha256:3367f3bcd3a7d7066f81c997f44c033ba8f5b9e533db0b612162825b98d8b2ff",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967372368"
+    },
+    {
+      "id": 12967351598,
+      "name": "bft-100-trial-17",
+      "sizeBytes": 72578,
+      "digest": "sha256:3c1e2ab8a3ce0e0866157c64b8b23ed541486834eb2988d27fff34553a725bdf",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967351598"
+    },
+    {
+      "id": 12967307339,
+      "name": "bft-100-trial-6",
+      "sizeBytes": 72269,
+      "digest": "sha256:8bc83174ebda0f4960d5530523b757e4cc2fc9d5546215e2fb17d0db84ed24df",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967307339"
+    },
+    {
+      "id": 12967297335,
+      "name": "bft-100-trial-22",
+      "sizeBytes": 72374,
+      "digest": "sha256:8923474a85e0a02ef8420d928205c74687055beda93c741dabc9ea1ac069a1f3",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967297335"
+    },
+    {
+      "id": 12967287663,
+      "name": "bft-100-trial-29",
+      "sizeBytes": 72332,
+      "digest": "sha256:6f89b633a521ac860d44ecf790772cb50140e067f9d0bb8ea0a7438353e8fb82",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967287663"
+    },
+    {
+      "id": 12967181892,
+      "name": "bft-100-trial-18",
+      "sizeBytes": 72640,
+      "digest": "sha256:1b668326f9cfda7187fc73e01af207e338efd9e8df62f9640f108484fef57a88",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967181892"
+    },
+    {
+      "id": 12967154034,
+      "name": "bft-100-trial-36",
+      "sizeBytes": 72741,
+      "digest": "sha256:d1d7a598bea0c25f2758e2f918fcafece5f9c83fd5164f459045ea8a7ec66409",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967154034"
+    },
+    {
+      "id": 12967153943,
+      "name": "bft-100-trial-27",
+      "sizeBytes": 73142,
+      "digest": "sha256:eead2caf5825b8b9fd31f3a98eda5bccdb5de96e968dff2a53ad1c55072cd75b",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967153943"
+    },
+    {
+      "id": 12967152774,
+      "name": "bft-100-trial-7",
+      "sizeBytes": 70452,
+      "digest": "sha256:3f4a141e404411828104c1ce0a21566868798740b7f5c0828741fb4c181cba9c",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967152774"
+    },
+    {
+      "id": 12967118068,
+      "name": "bft-100-trial-33",
+      "sizeBytes": 72322,
+      "digest": "sha256:155514c9c0c7083731d6db0b39c5823aaf36e0082f9401e73295921e7060be04",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967118068"
+    },
+    {
+      "id": 12967107325,
+      "name": "bft-100-trial-0",
+      "sizeBytes": 72591,
+      "digest": "sha256:6b709366d0532881bea17e29de868eeb2c39c8c7692a69f3f715e99e1886bbec",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967107325"
+    },
+    {
+      "id": 12967098087,
+      "name": "bft-100-trial-23",
+      "sizeBytes": 71348,
+      "digest": "sha256:3bff0b6970fdcce8d58c33fa778b24e1b555ffdb867203134209119286bc93f8",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12967098087"
+    },
+    {
+      "id": 12966959374,
+      "name": "bft-100-trial-21",
+      "sizeBytes": 72564,
+      "digest": "sha256:78abad7eee170a9f1d56df42792303bc71c11773d346fdc2f1d547c919d913d5",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966959374"
+    },
+    {
+      "id": 12966819345,
+      "name": "bft-100-trial-14",
+      "sizeBytes": 71359,
+      "digest": "sha256:f39c712b515ce8e95725c1e9a12c724bb13816e08c47d9362f33b714d97807cf",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966819345"
+    },
+    {
+      "id": 12966789114,
+      "name": "bft-100-trial-15",
+      "sizeBytes": 72050,
+      "digest": "sha256:dcc01e3f9ef5893ec4ed8d1dcfac8af1dbe3fbbb368adc5e11efa5db3e22fcde",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966789114"
+    },
+    {
+      "id": 12966714567,
+      "name": "bft-100-trial-19",
+      "sizeBytes": 71572,
+      "digest": "sha256:ae22ae8e5c7d91cc23b20b35c85b99a8310e94a6f6e08e5a42c83420fbf16ae9",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966714567"
+    },
+    {
+      "id": 12966704727,
+      "name": "bft-100-trial-2",
+      "sizeBytes": 71873,
+      "digest": "sha256:94338f36c5804c13afb7902f9cb8bce76bee16c9eda5e0afc562befe00fc10c9",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966704727"
+    },
+    {
+      "id": 12966649908,
+      "name": "bft-100-trial-11",
+      "sizeBytes": 72970,
+      "digest": "sha256:126483c3fcf25ee63246e2402f6dfd518e1de81b43516d3c127156a7edc58370",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966649908"
+    },
+    {
+      "id": 12966454865,
+      "name": "bft-100-trial-10",
+      "sizeBytes": 71647,
+      "digest": "sha256:664ec025757357c6f07a15d1cc6affeec7c15ee8e62ac1d7d4cf377816ed19f9",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12966454865"
+    },
+    {
+      "id": 12965984442,
+      "name": "bft-100-trial-13",
+      "sizeBytes": 72368,
+      "digest": "sha256:b152af32db81eee5d40451168cf47a5ed8c50af8ba8e5517e1b0992fa95369f8",
+      "expired": false,
+      "expiresAt": "2027-01-28T09:29:54Z",
+      "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/41033853808/artifacts/12965984442"
+    }
+  ]
+}

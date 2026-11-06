@@ -1,0 +1,14 @@
+{
+  "ciphertextHash": "76a4907f9d9be9ee39db0afc5e8cff368bee23793532c87e67f7c8c240dfe728",
+  "decision": "PASS",
+  "documentHash": "86a73339390128b7d503a51078995b0ffe8df1ad6e259416832a2bf2f83f30a8",
+  "expiresAt": 1793372532,
+  "issuedAt": 1793371932,
+  "keyID": "worker-922fbb63b7b4",
+  "nonce": "ba54269d808742fe8e2bd3d65c201709",
+  "policyHash": "aaaef0f11e2bd434b5fee9e4c2cc56735df9c3d9e4825a01e9e03df94ee1a000",
+  "recordID": "ba54269d808742fe8e2bd3d65c201709",
+  "sbomHash": "a19cf9bbfd9b35a7da797194efe6bd85f2fcc27f49316277c3aa6f5d71cf3652",
+  "vendorID": "load-ba54269d808742fe8e2bd3d65c201709",
+  "version": "vendorchain.receipt.v1"
+}

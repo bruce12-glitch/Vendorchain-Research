@@ -1,0 +1,32 @@
+{
+  "repository": "bruce12-glitch/Vendorchain-Research",
+  "sourceCommit": "4ceaa19f995bdaee92f7a218dd2b3ca0b3d186c3",
+  "runID": 42155159401,
+  "url": "https://github.com/bruce12-glitch/Vendorchain-Research/actions/runs/42155159401",
+  "jobs": [
+    {
+      "id": 127687451442,
+      "name": "unit",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127688239526,
+      "name": "hardened-consensus (BFT)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127688239539,
+      "name": "hardened-consensus (etcdraft)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 127688239598,
+      "name": "bft-integration",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}
