@@ -13,6 +13,7 @@ on:
       - 'research/sql/**'
       - 'research/policies/**'
       - 'research/manuscript/**'
+      - 'research/plans/**'
       - '.github/workflows/**'
   push:
     branches: [main]
@@ -28,6 +29,7 @@ on:
       - 'research/sql/**'
       - 'research/policies/**'
       - 'research/manuscript/**'
+      - 'research/plans/**'
       - '.github/workflows/**'
   workflow_dispatch:
 permissions:
@@ -75,6 +77,8 @@ jobs:
       - run: bash research/scripts/install-validation-tools.sh
       - run: bash research/scripts/install-syft.sh
       - run: echo "$GITHUB_WORKSPACE/.runtime/bin" >> "$GITHUB_PATH"
+      - run: PYTHONPATH=research python research/check_environment.py --output .runtime/preflight.json
+      - run: node --test research/gateway/test.mjs research/load-test.mjs
       - name: Enable disposable Vault Transit mount
         run: |
           python - <<'PY'
@@ -109,6 +113,7 @@ jobs:
             .runtime/local-evidence/
             .runtime/ci-logs/
             .runtime/manuscript-policy/
+            .runtime/preflight.json
             research/results/manuscript-audit/
   hardened-consensus:
     needs: unit

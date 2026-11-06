@@ -40,7 +40,7 @@ for path in (root/'test-network/compose').rglob('*.yaml'):
     text=path.read_text()
     for component in ['peer','orderer','ccenv','baseos']:
         text=text.replace('hyperledger/fabric-'+component+':latest','hyperledger/fabric-'+component+':'+version)
-    if 'CORE_CHAINCODE_EXECUTETIMEOUT=300s' in text:
+    if 'CORE_CHAINCODE_EXECUTETIMEOUT=300s' in text and 'CORE_CHAINCODE_BUILDER=' not in text:
         text=text.replace('- CORE_CHAINCODE_EXECUTETIMEOUT=300s',
             '- CORE_CHAINCODE_EXECUTETIMEOUT=300s\n      - CORE_CHAINCODE_BUILDER=hyperledger/fabric-ccenv:'+version+
             '\n      - CORE_CHAINCODE_RUNTIME=hyperledger/fabric-baseos:'+version)

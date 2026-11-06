@@ -5,6 +5,11 @@ the hardened path, Vault/PostgreSQL adapters, seven cumulative ablation variants
 statistical exports and four-node Raft/BFT experiment provisioning. New code and
 new measurements have separate provenance from the historical prototype results.
 
+Start with the [current empirical runbook](docs/empirical-readiness.md) for
+dependency preflight, campaign integrity verification, current fixes and the
+remaining measurements. A manual **Measured local Table 12 campaign** Actions
+workflow retains all nine variants' trials, statistical exports and figures.
+
 This repository now contains an executable document-ingestion research pipeline,
 Fabric chaincode, and reproducible experiment runners. It does **not** contain
 the Next.js/PostgreSQL/BullMQ application described by the previous README.
@@ -35,9 +40,10 @@ Ed25519 worker keys, immutable namespaced records, and commit-confirmed receipts
   a 100–10,000 offered-concurrency sweep, independent-trial statistics, adversarial
   corpus evaluation, stage/resource logs, and comparison plots.
 
-SQLite is the reference implementation here. PostgreSQL, production identity
-management, a distributed deployment, and production workload evidence remain
-separate integration work. An outbox coordinates two durable systems; it does
+SQLite is the local reference implementation. The hardened path also implements
+and integration-tests PostgreSQL and Vault Transit adapters. Production identity
+management, a distributed deployment and production workload evidence remain
+separate work. An outbox coordinates two durable systems; it does
 not turn them into a distributed atomic transaction.
 
 ## Local tests

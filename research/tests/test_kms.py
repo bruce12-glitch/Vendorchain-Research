@@ -4,7 +4,10 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 import urllib.error
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from threading import Thread
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 from vendorchain.crypto import canonical, decode, encrypt, decrypt
 from vendorchain.kms import VaultTransit, VaultSigner, VaultWrapper
@@ -12,8 +15,29 @@ from vendorchain.kms import VaultTransit, VaultSigner, VaultWrapper
 
 class KmsConfigurationTests(unittest.TestCase):
     def test_transport_validation(self):
-        for address in ['http://public.example.com','ftp://localhost','https://token@example.com','https://example.com/path']:
+        for address in ['http://public.example.com','ftp://localhost','https://token@example.com','https://example.com/path','https://']:
             with self.assertRaises(ValueError):VaultTransit(address,'token')
+
+    def test_redirect_does_not_forward_vault_token_to_another_origin(self):
+        redirected=[]
+        class Handler(BaseHTTPRequestHandler):
+            def do_GET(self):
+                if self.path.startswith('/v1/'):
+                    self.send_response(302)
+                    self.send_header('Location',f'http://localhost:{self.server.server_port}/redirected')
+                    self.end_headers()
+                else:
+                    redirected.append(self.headers.get('X-Vault-Token'))
+                    self.send_response(200);self.end_headers();self.wfile.write(b'{"data":{}}')
+            def log_message(self,*_):pass
+        server=ThreadingHTTPServer(('127.0.0.1',0),Handler)
+        thread=Thread(target=server.serve_forever,daemon=True);thread.start()
+        try:
+            transit=VaultTransit(f'http://127.0.0.1:{server.server_port}','test-only-token')
+            with self.assertRaisesRegex(ValueError,'unconfigured origin'):transit.key('test')
+            self.assertEqual(redirected,[])
+        finally:
+            server.shutdown();server.server_close();thread.join()
 
     def test_exportable_keys_rejected(self):
         class Transit:
@@ -54,6 +78,7 @@ class LiveVaultTests(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError):signer.sign(data)
 
     @unittest.skipUnless(all(shutil.which(x) for x in ('syft','cosign','opa','tesseract')),'requires real provenance, policy and OCR tools')
+    @patch.dict(os.environ, {'COSIGN_PASSWORD':''})
     def test_hardened_pipeline_with_remote_kek_and_worker_keys(self):
         from prepare_vault_research import prepare_vault
         from hardened_cli import configured

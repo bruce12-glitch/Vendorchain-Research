@@ -1,0 +1,46 @@
+name: Measured local Table 12 campaign
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: local-campaign-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: sudo apt-get update && sudo apt-get install -y tesseract-ocr poppler-utils fonts-dejavu-core
+      - run: python -m pip install --require-hashes -r research/requirements.lock
+      - run: bash research/scripts/install-validation-tools.sh && bash research/scripts/install-syft.sh
+      - run: echo "$GITHUB_WORKSPACE/.runtime/bin" >> "$GITHUB_PATH"
+      - run: PYTHONPATH=research python research/check_environment.py --output .runtime/preflight.json
+      - name: Prepare disposable synthetic local deployment
+        env:
+          COSIGN_PASSWORD: ''
+        run: python research/prepare_research.py --output .runtime/local-deployment
+      - name: Run randomized sequential trials
+        env:
+          COSIGN_PASSWORD: ''
+        run: |
+          python research/make_experiment_plan.py --config .runtime/local-deployment/config.json --local --allow-local-keys --comparators --output .runtime/local-plan.json
+          python research/experiment.py --plan .runtime/local-plan.json --output .runtime/local-campaign --trials 50 --warmups 5
+          python research/verify_campaign.py .runtime/local-campaign
+          python research/plot_experiment.py .runtime/local-campaign
+          python research/verify_campaign.py .runtime/local-campaign > .runtime/local-verification.json
+      - name: Require successful valid-document workload
+        run: python -c "import json; r=json.load(open('.runtime/local-campaign/summary.json')); assert all(g['countProtocolMet'] for g in r['variants'].values()),r"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: local-table12-evidence
+          include-hidden-files: true
+          path: |
+            .runtime/local-campaign/
+            .runtime/preflight.json
+            .runtime/local-verification.json

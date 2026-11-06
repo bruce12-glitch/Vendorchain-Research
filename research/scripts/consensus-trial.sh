@@ -7,8 +7,20 @@ cd "$ROOT"
 export PYTHONPATH="$ROOT/research" PATH="$ROOT/.runtime/bin:$PATH"
 export CONSENSUS="${1:-BFT}"
 LEVELS="${2:-100,250,500,1000,2500,5000,10000}"
+[[ "$CONSENSUS" == BFT || "$CONSENSUS" == etcdraft ]] || { echo 'Invalid consensus' >&2; exit 1; }
+python - "$LEVELS" <<'PY'
+import sys
+levels=[int(n) for n in sys.argv[1].split(',')]
+if len(levels)!=len(set(levels)) or any(not 1<=n<=10000 for n in levels):
+    raise SystemExit('Unique load levels in [1, 10000] required')
+PY
 OUT="$VENDORCHAIN_TRIAL_DIR"
-mkdir -p "$OUT"
+mkdir -p "$OUT" "$ROOT/.runtime"
+# All trials share container names, ports and sample artifacts on this host.
+# Acquire before claiming ownership; a competing runner must never tear us down.
+command -v flock >/dev/null || { echo 'Install util-linux flock before running consensus trials' >&2; exit 1; }
+exec 9>"/tmp/vendorchain-consensus-${UID}.lock"
+flock -n 9 || { echo 'Another consensus trial owns this host' >&2; exit 1; }
 STATE=$(mktemp -d "$ROOT/.runtime/consensus-state-XXXXXXXX")
 API_PID= GATEWAY_PID= WATCH_PID= NETWORK_OWNED=0
 cleanup() {
@@ -57,28 +69,13 @@ FIRST_LEVEL="${LEVELS%%,*}"
 python research/verify_evidence_ledger.py --requests "$OUT/load/requests-c$FIRST_LEVEL-t0.json" --output "$OUT/ledger-proof"
 # Colocated crash exercise, distinct from malicious Byzantine behavior.
 docker stop orderer4.example.com > "$OUT/orderer-crash.log"
+docker inspect --format '{{.State.Running}}' orderer4.example.com > "$OUT/orderer-running-before-crash-load.txt"
+[[ $(cat "$OUT/orderer-running-before-crash-load.txt") == false ]] || { echo 'Fourth orderer did not stop' >&2; exit 1; }
 node research/load.mjs --file "$OUT/input.png" --concurrency 3 --trials 1 --warmups 0 --unique-png --metadata "$OUT/network-metadata.json" --output "$OUT/one-crash"
+docker inspect --format '{{.State.Running}}' orderer4.example.com > "$OUT/orderer-running-after-crash-load.txt"
 python research/hardened_cli.py reconcile --config "$STATE/deployment/config.json" --allow-local-keys > "$OUT/reconciliation.json"
 # Public synthetic evidence only; never copy private keys, tokens, or database credentials.
 cp "$STATE/deployment/registry.json" "$STATE/deployment/signed-policy.json" "$STATE/deployment/cosign.pub" "$OUT/"
 cp -r "$STATE/deployment/pipeline/evidence" "$STATE/deployment/pipeline/sbom" "$OUT/"
 cp -r "$STATE/deployment/pipeline/blobs" "$OUT/encrypted-objects"
-python - <<'PY'
-import json,os
-from pathlib import Path
-out=Path(os.environ['VENDORCHAIN_TRIAL_DIR']);rows=[json.loads(x) for x in (out/'load/trials.jsonl').read_text().splitlines()]
-metrics={};success=True
-for r in rows:
-    prefix='c'+str(r['concurrency'])
-    success &= r['successful']==r['offered'] and r['policyAllowed']==r['successful'] and r['evidence']=='fabric-commit-confirmed'
-    metrics[prefix+'_committed_tps']=r['successful']/r['durationSeconds']
-    metrics[prefix+'_failed']=r['failed']
-    if r['trialMeanMs'] is not None:metrics[prefix+'_latency_ms']=r['trialMeanMs']
-crash=json.loads((out/'one-crash/trials.jsonl').read_text().strip())
-success &= crash['successful']==3 and crash['policyAllowed']==3
-reconciliation=json.loads((out/'reconciliation.json').read_text());success &= reconciliation['divergences']==0
-network=json.loads((out/'network-metadata.json').read_text())
-(out/'measurement.json').write_text(json.dumps({'successful':bool(success),'metrics':metrics,'evidence':'fabric-commit-confirmed',
- 'consensus':network['consensus'],'channelConfigSHA256':network['channelConfigSha256'],'oneOrdererCrashPassed':crash['successful']==3,
- 'custody':'research-local-keys','limitations':['colocated development certificates','crash test is not Byzantine attack simulation','private transient state erased after public evidence capture']},indent=2))
-PY
+python research/summarize_consensus.py --directory "$OUT" --levels "$LEVELS" --consensus "$CONSENSUS"
