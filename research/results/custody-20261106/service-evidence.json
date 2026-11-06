@@ -1,0 +1,83 @@
+{
+  "kind": "observed-vault-service-metadata",
+  "serverVersion": "1.18.3",
+  "initialized": true,
+  "sealed": false,
+  "transport": "HTTP on IPv4 loopback; no TLS",
+  "deployment": "single development Vault service on the client host; administrative lab token",
+  "keys": {
+    "kek": {
+      "type": "aes256-gcm96",
+      "derived": true,
+      "exportable": false,
+      "allow_plaintext_backup": false,
+      "min_decryption_version": 1,
+      "min_encryption_version": 0,
+      "latest_version": 1,
+      "supports_encryption": true,
+      "supports_decryption": true,
+      "supports_signing": false,
+      "keyName": "vc-research-0968f439feaf-kek",
+      "pinnedSigningVersion": null
+    },
+    "decision": {
+      "type": "ed25519",
+      "derived": false,
+      "exportable": false,
+      "allow_plaintext_backup": false,
+      "min_decryption_version": 1,
+      "min_encryption_version": 0,
+      "latest_version": 1,
+      "supports_encryption": false,
+      "supports_decryption": false,
+      "supports_signing": true,
+      "keyName": "vc-research-0968f439feaf-decision",
+      "pinnedSigningVersion": 1,
+      "registeredPublicKeyMatched": true
+    },
+    "identity": {
+      "type": "ed25519",
+      "derived": false,
+      "exportable": false,
+      "allow_plaintext_backup": false,
+      "min_decryption_version": 1,
+      "min_encryption_version": 0,
+      "latest_version": 1,
+      "supports_encryption": false,
+      "supports_decryption": false,
+      "supports_signing": true,
+      "keyName": "vc-research-0968f439feaf-identity",
+      "pinnedSigningVersion": 1,
+      "registeredPublicKeyMatched": true
+    },
+    "policy": {
+      "type": "ed25519",
+      "derived": false,
+      "exportable": false,
+      "allow_plaintext_backup": false,
+      "min_decryption_version": 1,
+      "min_encryption_version": 0,
+      "latest_version": 1,
+      "supports_encryption": false,
+      "supports_decryption": false,
+      "supports_signing": true,
+      "keyName": "vc-research-0968f439feaf-policy",
+      "pinnedSigningVersion": 1,
+      "registeredPublicKeyMatched": true
+    }
+  },
+  "host": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpuCount": 3,
+    "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+    "cpuAffinityCount": 3,
+    "memoryTotalKiB": 10207480
+  },
+  "limitations": [
+    "software custody, not hardware HSM",
+    "exportability fields observed from trusted lab service, not independent hardware attestation",
+    "administrative token does not establish production ACL separation",
+    "client resource counters exclude Vault server CPU and memory",
+    "CPU and RAM fields describe observed host visibility, not a guaranteed exclusive allocation"
+  ]
+}

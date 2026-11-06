@@ -22,6 +22,8 @@ python research/make_custody_plan.py \
   --output .runtime/custody-plan.json
 python research/experiment.py --plan .runtime/custody-plan.json \
   --output .runtime/custody-results --seed 20261106
+python research/verify_campaign.py .runtime/custody-results
+python research/plot_custody.py .runtime/custody-results --output .runtime/custody-analysis
 ```
 
 Choose fresh output paths when rerunning. Preparation requires a fresh setup
@@ -40,6 +42,11 @@ registry, policy and artifact hashes without reading private keys or contacting
 Vault. Successful plan generation alone does not test live credentials; trial
 failures remain visible in the runner's evidence.
 
+Each successful observation must match the plan's configuration, registry,
+signed-policy and artifact digests. Source and trust-file drift during a worker
+execution makes that observation unsuccessful. The verifier also checks the
+declared custody mode, SQLite store and local ledger before accepting the cohort.
+
 The existing runner supplies 50 measured trials and five discarded warm-ups per
 arm: 110 invocations in total. It randomizes arm order within sequential trial
 blocks with the recorded seed. Each invocation uses a fresh process and isolated
@@ -48,6 +55,8 @@ the rendered identity stays the same. `elapsed_ms` begins after configuration,
 key loading and database initialization; it covers the full pipeline, including
 the remote operations performed during that pipeline. It excludes startup,
 provisioning, policy signing at preparation, and networked Fabric consensus.
+Parent/child CPU and RSS counters exclude the Vault service; they cannot support
+a claim about total client-plus-service resource savings.
 
 Use `paired-comparisons.csv` or `.tex` for the paired difference
 `vaultkeys elapsed_ms - localkeys elapsed_ms` and its 95% confidence interval.
@@ -61,6 +70,9 @@ the paired export reports incomplete pairs. Report the software Vault topology,
 tool versions, host sharing and SQLite/local-ledger scope alongside the results.
 The runner deliberately leaves `qualifiedForPaper` false: interpret the measured
 evidence and deployment limitations before making a paper claim.
+`plot_custody.py` exports PDF/SVG/PNG figures, exact per-pair observations and
+descriptive lag-one correlations. Low correlation is not proof of independence;
+serial dependence in either arm should be reported rather than concealed.
 
 Validation without a live service:
 

@@ -1,0 +1,18 @@
+{
+  "README.md": "2a86d8560cff4df796a2d797a85479f0f21fecc7fa9944c2449f5d1c34103497",
+  "analysis.json": "c7661c2c26d27129d1afc83cebd8eea060417be6e9268647007656f1d7ec965f",
+  "container-image.txt": "dbd83402cf9ec91b9a8ff96482e3f9895ae9c36998b4c1875891bde0dffbdee3",
+  "custody-contrasts.pdf": "85f880ac1583f5188b389a05b7a754f6dedbd0ebfa6d9b4cffb54d528a870b26",
+  "custody-contrasts.png": "d050b3d3e409a3701646780314711cc99fc9f9c9a02781d3bf5fe06e0f26d59c",
+  "custody-contrasts.svg": "dd3fbb1e14347d668b7aa7923ab5c0f09d8583a67932a16351b0c3965e535f53",
+  "metadata.json": "e1aad583d120fc248cde1601b01e037583a2c9c30d93254d1965dc4605d448e9",
+  "paired-comparisons.csv": "f41c8645818242288dddf712c0eacd8f097f0e50ef2b2659b9e5baaee9656cb0",
+  "paired-comparisons.tex": "fabd957a48bcc26b4c83747956cadb24b26717e68647f296218c212bdd2db893",
+  "paired-observations.csv": "ff15ec14b5baa20b0a4776fb06c7746ca7d7735efb894859eadc8950b202dea2",
+  "raw-evidence.tar.xz": "9851415fbaa35de2788f9c298cfe9639d83caa3d1ab816346ebcf56f701f3451",
+  "service-evidence.json": "577ed28e62e73f8d171f7833a39ed4698da88e968293bb821d22aa05629d9606",
+  "summary.csv": "b4cb3799ec61d034b369ee35acb10be22bf82d49a5e4d43999ee0a51e8c7b3a3",
+  "summary.json": "3c646c56a293e6bd659e49bf9c758e5f221f6deac9dede1f88725ba5aaa6c356",
+  "tables.tex": "c46cc8c7f3529416277afdf22c7150dc56f1c40bda143c3c0b1ffc6b98afdf75",
+  "verification.json": "8399f6de6b86b85927abeffbc1200745693fa8d95b908751e5fd136cbbf228fe"
+}

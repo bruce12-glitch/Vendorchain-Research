@@ -1,0 +1,6 @@
+comparison,control,treatment,metric,n,mean_difference,stddev,ci95_low,ci95_high,missing_or_failed_pairs,complete,note
+vault_custody_cost,localkeys,vaultkeys,elapsed_ms,50,16.94165149999998,85.58568289019394,-7.381530452847823,41.26483345284778,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
+vault_encryption_stage_cost,localkeys,vaultkeys,encrypt_ms,50,3.07747178,0.7433036949423504,2.866227207219027,3.2887163527809733,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
+vault_decryption_stage_cost,localkeys,vaultkeys,decrypt_ms,50,2.13628512,0.4643609169674408,2.00431520758274,2.2682550324172603,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
+vault_identity_stage_cost,localkeys,vaultkeys,identity_attestation_ms,50,2.97044854,0.8102605422631033,2.740175041756561,3.200722038243439,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.
+vault_decision_stage_cost,localkeys,vaultkeys,attest_ms,50,4.69175176,0.8861816823440811,4.439901712479896,4.943601807520103,0,True,Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation.

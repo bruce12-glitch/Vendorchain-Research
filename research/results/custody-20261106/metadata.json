@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "a69088e00f0f27dfea4d66c3fa7c9f53d2f980f8",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "cpuCount": 3,
+  "planSHA256": "3fb2c75d7d62d55c1961a73afd2e1bf3417038f3535f7c668f63d6000a8628c3",
+  "startedNs": 1793938038285982552,
+  "freshProcessPerTrial": true,
+  "execution": "sequential",
+  "isolatedHostAttestedByOperator": false,
+  "noCompetingLoadIndependentlyVerified": false,
+  "smoke": false,
+  "trials": 50,
+  "warmups": 5,
+  "trialRecordVersion": 1,
+  "order": "randomized variants within sequential trial blocks",
+  "randomizationSeed": 20261106,
+  "sourceDirty": false,
+  "sourceFilesSHA256": "a8d00a3d683c4914729eea0ab7bb4571eb6921bd057da35ee60a6b3457d1a882",
+  "sourceSnapshotScope": "Git-tracked and unignored untracked repository files before the run; excludes campaign output. Hashes pin bytes but do not archive dirty source or external commands/configuration."
+}

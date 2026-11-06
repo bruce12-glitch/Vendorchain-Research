@@ -1,0 +1,16 @@
+{
+  "integrityVerified": true,
+  "filesVerified": 560,
+  "sourceCommit": "a69088e00f0f27dfea4d66c3fa7c9f53d2f980f8",
+  "sourceDirty": false,
+  "kind": "matched-local-vault-custody",
+  "measuredTrials": 100,
+  "discardedWarmups": 10,
+  "failedMeasuredTrials": 0,
+  "evidenceKinds": [
+    "local-non-consensus"
+  ],
+  "countProtocolMet": true,
+  "qualifiedForPaper": false,
+  "limitations": "Hashes and recomputed statistics establish consistency, not authenticity, workload representativeness, host isolation or production validity."
+}
