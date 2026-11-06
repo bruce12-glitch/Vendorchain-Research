@@ -140,3 +140,35 @@ class CampaignVerificationTests(unittest.TestCase):
         self.update_row(exitCode=1)
         with self.assertRaisesRegex(ValueError, 'nonzero process exit code'):
             verify(self.out)
+
+    def test_custody_provenance_must_match_predeclared_plan(self):
+        worker = self.out.parent/'custody-worker.py'
+        fields = dict(configSHA256='a'*64, registrySHA256='b'*64,
+                      signedPolicySHA256='c'*64, sourceArtifactSHA256='d'*64)
+        worker.write_text("import json,os,sys\nfrom pathlib import Path\n"
+            "row="+repr({**fields,'successful':True,'metrics':{'elapsed_ms':1.0},
+                          'evidence':'local-non-consensus','operationalStore':'Store'})+"\n"
+            "row['custody']='research-local-keys' if sys.argv[1]=='localkeys' else 'configured-remote-service'\n"
+            "Path(os.environ['VENDORCHAIN_TRIAL_DIR'],'measurement.json').write_text(json.dumps(row))\n")
+        plan = self.out.parent/'custody-plan.json'
+        names = ['localkeys','vaultkeys']
+        plan.write_text(json.dumps({'kind':'matched-local-vault-custody',
+            'tasks':[{'name':name,'command':[sys.executable,str(worker),name]} for name in names],
+            'provenance':{'configurations':{name:fields for name in names}}}))
+        target = self.out.parent/'custody'
+        campaign(plan,target,trials=1,warmups=0,smoke=True)
+        self.assertTrue(verify(target)['integrityVerified'])
+        for name in ('measurement.json','record.json'):
+            path=target/'vaultkeys/0'/name
+            row=json.loads(path.read_text());row['registrySHA256']='e'*64
+            path.write_text(json.dumps(row))
+        journal=target/'trials.jsonl'
+        rows=[json.loads(line) for line in journal.read_text().splitlines()]
+        next(r for r in rows if r['variant']=='vaultkeys')['registrySHA256']='e'*64
+        journal.write_text(''.join(json.dumps(r)+'\n' for r in rows))
+        manifest_path=target/'sha256-manifest.json';manifest=json.loads(manifest_path.read_text())
+        for name in ('vaultkeys/0/measurement.json','vaultkeys/0/record.json','trials.jsonl'):
+            manifest[name]=hashlib.sha256((target/name).read_bytes()).hexdigest()
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError,'custody measurement differs'):
+            verify(target)
