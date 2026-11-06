@@ -10,6 +10,12 @@ dependency preflight, campaign integrity verification, current fixes and the
 remaining measurements. A manual **Measured local Table 12 campaign** Actions
 workflow retains all nine variants' trials, statistical exports and figures.
 
+The [matched custody experiment](docs/custody-experiment.md) compares real Vault
+Transit and local worker-key custody under matched conditions. Its
+[measured results and raw evidence](research/results/custody-20261106/README.md)
+retain all 50 paired observations, including the inconclusive total-latency
+contrast, alongside predeclared stage contrasts and dependence diagnostics.
+
 This repository now contains an executable document-ingestion research pipeline,
 Fabric chaincode, and reproducible experiment runners. It does **not** contain
 the Next.js/PostgreSQL/BullMQ application described by the previous README.

@@ -1,0 +1,183 @@
+{
+  "kind": "derived-matched-custody-analysis",
+  "sourceCommit": "a69088e00f0f27dfea4d66c3fa7c9f53d2f980f8",
+  "sourceManifestSHA256": "b4cfac8e3768642169cd3752d3d7a674d181d7c1a9a96451a74e4b44ed17e50b",
+  "analysisScriptSHA256": "8f8be3daf1594dfbe03d67a3d4bd10047f6f5e4a2a462dd08248bc06730d36b9",
+  "primaryComparison": {
+    "name": "vault_custody_cost",
+    "control": "localkeys",
+    "treatment": "vaultkeys",
+    "metric": "elapsed_ms",
+    "difference": {
+      "n": 50,
+      "mean": 16.94165149999998,
+      "stddev": 85.58568289019394,
+      "median": -3.445999499999971,
+      "p50": -3.445999499999971,
+      "p95": 134.2092891500001,
+      "p99": 252.9491457499998,
+      "quantileMethod": "linear interpolation over paired differences (R7)",
+      "ci95": [
+        -7.381530452847823,
+        41.26483345284778
+      ],
+      "publicationNMet": true,
+      "unit": "paired trial-block difference: treatment minus control",
+      "method": "two-sided Student t"
+    },
+    "missingOrFailedPairs": [],
+    "complete": true,
+    "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+  },
+  "allPredeclaredComparisons": {
+    "vault_custody_cost": {
+      "name": "vault_custody_cost",
+      "control": "localkeys",
+      "treatment": "vaultkeys",
+      "metric": "elapsed_ms",
+      "difference": {
+        "n": 50,
+        "mean": 16.94165149999998,
+        "stddev": 85.58568289019394,
+        "median": -3.445999499999971,
+        "p50": -3.445999499999971,
+        "p95": 134.2092891500001,
+        "p99": 252.9491457499998,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          -7.381530452847823,
+          41.26483345284778
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    },
+    "vault_encryption_stage_cost": {
+      "name": "vault_encryption_stage_cost",
+      "control": "localkeys",
+      "treatment": "vaultkeys",
+      "metric": "encrypt_ms",
+      "difference": {
+        "n": 50,
+        "mean": 3.07747178,
+        "stddev": 0.7433036949423504,
+        "median": 3.0562945,
+        "p50": 3.0562945,
+        "p95": 4.3326543499999985,
+        "p99": 5.09788443,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          2.866227207219027,
+          3.2887163527809733
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    },
+    "vault_decryption_stage_cost": {
+      "name": "vault_decryption_stage_cost",
+      "control": "localkeys",
+      "treatment": "vaultkeys",
+      "metric": "decrypt_ms",
+      "difference": {
+        "n": 50,
+        "mean": 2.13628512,
+        "stddev": 0.4643609169674408,
+        "median": 2.0373824999999997,
+        "p50": 2.0373824999999997,
+        "p95": 2.938375549999999,
+        "p99": 3.6362214799999983,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          2.00431520758274,
+          2.2682550324172603
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    },
+    "vault_identity_stage_cost": {
+      "name": "vault_identity_stage_cost",
+      "control": "localkeys",
+      "treatment": "vaultkeys",
+      "metric": "identity_attestation_ms",
+      "difference": {
+        "n": 50,
+        "mean": 2.97044854,
+        "stddev": 0.8102605422631033,
+        "median": 2.7797134999999997,
+        "p50": 2.7797134999999997,
+        "p95": 4.663051699999999,
+        "p99": 5.679185399999997,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          2.740175041756561,
+          3.200722038243439
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    },
+    "vault_decision_stage_cost": {
+      "name": "vault_decision_stage_cost",
+      "control": "localkeys",
+      "treatment": "vaultkeys",
+      "metric": "attest_ms",
+      "difference": {
+        "n": 50,
+        "mean": 4.69175176,
+        "stddev": 0.8861816823440811,
+        "median": 4.5782215,
+        "p50": 4.5782215,
+        "p95": 6.1440743499999995,
+        "p99": 7.000726929999996,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          4.439901712479896,
+          4.943601807520103
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    }
+  },
+  "lagOneDiagnostics": {
+    "localkeys": {
+      "adjacentObservedPairs": 49,
+      "correlation": 0.7618773432213058,
+      "scope": "Descriptive lag-one correlation; neither an independence test nor evidence of host isolation."
+    },
+    "vaultkeys": {
+      "adjacentObservedPairs": 49,
+      "correlation": 0.7382225673395311,
+      "scope": "Descriptive lag-one correlation; neither an independence test nor evidence of host isolation."
+    },
+    "pairedElapsedDifferences": {
+      "adjacentObservedPairs": 49,
+      "correlation": 0.0251930166219484,
+      "scope": "Descriptive lag-one correlation; neither an independence test nor evidence of host isolation."
+    }
+  },
+  "qualifiedForPaper": false,
+  "interpretation": "Intervals are unadjusted, conditional on complete observed pairs and Student-t assumptions. An interval spanning zero does not establish equivalence. Stage contrasts measure full stage durations, not isolated RPC latency. Parent/child resource counters exclude the Vault server."
+}

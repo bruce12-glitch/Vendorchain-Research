@@ -54,6 +54,8 @@ def verify(directory):
     names = [task['name'] for task in plan['tasks']]
     if not names or len(names) != len(set(names)) or any(not re.fullmatch('[A-Za-z0-9_-]+', n) for n in names):
         raise ValueError('invalid declared variants')
+    if plan.get('kind') == 'matched-local-vault-custody' and set(names) != {'localkeys', 'vaultkeys'}:
+        raise ValueError('matched custody plan requires both declared arms')
     trials, warmups = meta['trials'], meta['warmups']
     if type(trials) is not int or trials < 1 or type(warmups) is not int or warmups < 0:
         raise ValueError('invalid trial counts')
@@ -99,6 +101,15 @@ def verify(directory):
                     {k: v for k, v in actual.items() if k not in parent_fields},
                     {k: v for k, v in row.items() if k not in parent_fields}):
                 raise ValueError('worker measurement disagrees with journal')
+            if plan.get('kind') == 'matched-local-vault-custody':
+                approved = plan['provenance']['configurations'][key[0]]
+                for field in ('configSHA256', 'registrySHA256', 'signedPolicySHA256', 'sourceArtifactSHA256'):
+                    if row.get(field) != approved[field]:
+                        raise ValueError('custody measurement differs from matched plan: ' + field)
+                custody = 'research-local-keys' if key[0] == 'localkeys' else 'configured-remote-service'
+                if (row.get('custody') != custody or row.get('operationalStore') != 'Store'
+                        or row.get('evidence') != 'local-non-consensus'):
+                    raise ValueError('custody measurement changed declared experimental conditions')
         elif relative not in manifest:
             actual = json.loads((root / measurement).read_text())
             if actual.get('successful') is not False or not _same(actual.get('metrics'), row['metrics']):

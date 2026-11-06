@@ -14,7 +14,7 @@ import time
 from PIL import Image, ImageDraw, ImageFont, PngImagePlugin
 from hardened_cli import configured
 from vendorchain.crypto import canonical, encrypt, decrypt
-from vendorchain.evidence import sha, sign_document, verify_document
+from vendorchain.evidence import sha, sign_document, verify_document, tree_hash
 from vendorchain.gstin import valid_gstin
 from vendorchain.pipeline import timed, durable_write
 from vendorchain.sandbox import isolated
@@ -33,7 +33,7 @@ def identity_png(nonce):
 def run(variant, config, *, input_file=None, local=False, allow_local_keys=False):
     directory=Path(os.environ['VENDORCHAIN_TRIAL_DIR']);directory.mkdir(parents=True,exist_ok=True)
     metrics={};success=True;verdict=None;reason=None
-    config_hash=sha(Path(config).read_bytes())
+    config_path=Path(config).resolve();config_bytes=config_path.read_bytes();config_hash=sha(config_bytes)
     data=Path(input_file).read_bytes() if input_file else identity_png(os.urandom(8).hex())
     if not input_file:(directory/'input.png').write_bytes(data)
     plaintext=None
@@ -41,6 +41,9 @@ def run(variant, config, *, input_file=None, local=False, allow_local_keys=False
         p=configured(config,local=local,allow_local_keys=allow_local_keys,root_override=Path(tmp)/'pipeline')
         if sha(Path(config).read_bytes()) != config_hash:
             raise ValueError('experiment configuration changed during initialization')
+        artifact_hash=tree_hash(p.source)
+        registry_path=config_path.parent/json.loads(config_bytes)['registry']
+        registry_hash=sha(registry_path.read_bytes())
         root=p.root;cpu=resource.getrusage(resource.RUSAGE_SELF);children=resource.getrusage(resource.RUSAGE_CHILDREN)
         initial_disk=sum(x.stat().st_size for x in root.rglob('*') if x.is_file())
         started=time.perf_counter_ns()
@@ -99,11 +102,16 @@ def run(variant, config, *, input_file=None, local=False, allow_local_keys=False
                        child_cpu_seconds=child.ru_utime+child.ru_stime-children.ru_utime-children.ru_stime,
                        parent_peak_rss_kib=own.ru_maxrss,largest_child_peak_rss_kib=child.ru_maxrss,
                        disk_growth_bytes=sum(x.stat().st_size for x in root.rglob('*') if x.is_file())-initial_disk)
+        # Provenance checks stay outside the pipeline timing and CPU boundary.
+        if (sha(config_path.read_bytes())!=config_hash or tree_hash(p.source)!=artifact_hash
+                or sha(registry_path.read_bytes())!=registry_hash):
+            success=False;reason='ExperimentConfigurationDrift'
         row={'successful':bool(success),'variant':variant,'metrics':{k:v for k,v in metrics.items() if type(v) in (int,float)},
              'evidence':p.ledger.kind if variant in ['full',*COMPARATORS] else 'offchain-stage-ablation',
              'decision':verdict,'error':reason,'inputSHA256':sha(data),'inputBytes':len(data),
              'inputKind':'external-file' if input_file else 'generated-synthetic-png',
              'configSHA256':config_hash,'signedPolicySHA256':p.policy_hash(),
+             'sourceArtifactSHA256':artifact_hash,'registrySHA256':registry_hash,
              'operationalStore':type(p.store).__name__,
              'custody':'research-local-keys' if allow_local_keys else 'configured-remote-service',
              'limitations':['synthetic PNG unless --file provided','RSS is separate process high-water marks, not aggregate concurrent process-tree RSS',
