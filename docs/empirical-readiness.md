@@ -115,6 +115,9 @@ python research/experiment.py --plan research/plans/consensus.json \
   --output .runtime/consensus-results --trials 50 --warmups 5 --seed 20261106
 python research/verify_campaign.py .runtime/consensus-results
 python research/plot_experiment.py .runtime/consensus-results
+python research/summarize_load_campaign.py .runtime/consensus-results \
+  --levels 100,250,500,1000,2500,5000,10000 \
+  --output .runtime/consensus-observed-load
 ```
 
 This creates 55 fresh deployments per consensus, with seven sequential offered-
@@ -124,6 +127,15 @@ load levels within it are not independent replicates. All failures remain in
 the evidence. A crash is not an actively Byzantine attack. Full live PostgreSQL/
 Vault deployment measurements need a separately configured campaign; the
 consensus launcher uses SQLite and explicit research keys.
+
+The generic campaign's per-variant metrics and figures condition on successful
+outer trials. Use `summarize_load_campaign.py` for overload analysis: it retains
+completed bursts from failed deployments, including zero client-acknowledgement
+throughput. It verifies pinned request logs, keeps crashed/missing bursts unknown,
+and reports actual denominators and per-deployment intervals. Client-confirmed
+acknowledgements are distinguished from all ledger commits; a lost acknowledgement
+can hide a transaction that actually committed. Never impute an unexecuted burst
+as zero throughput or drop a completed zero-acknowledgement burst.
 
 `benchmark.yml` remains a manually invoked legacy parallel BFT cohort and is
 explicitly marked nonpublication. Use `research/plans/consensus.json` for the

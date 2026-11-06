@@ -58,6 +58,16 @@ def verify(directory):
     if type(trials) is not int or trials < 1 or type(warmups) is not int or warmups < 0:
         raise ValueError('invalid trial counts')
     expected = {(name, i) for name in names for i in range(-warmups, trials)}
+    record_version = meta.get('trialRecordVersion', 0)
+    if type(record_version) is not int or record_version not in (0, 1):
+        raise ValueError('unsupported trial record version')
+    for filename in ('record.json', 'measurement.json'):
+        for path in root.glob('*/*/' + filename):
+            relative = path.relative_to(root)
+            name, index, _ = relative.parts
+            if (not re.fullmatch(r'-?(0|[1-9][0-9]*)', index)
+                    or (name, int(index)) not in expected or relative.as_posix() not in manifest):
+                raise ValueError('unexpected or unpinned trial evidence: ' + relative.as_posix())
     rows = [json.loads(line) for line in (root / 'trials.jsonl').read_text().splitlines() if line.strip()]
     seen = set()
     for row in rows:
@@ -66,21 +76,33 @@ def verify(directory):
             raise ValueError('unexpected or duplicated trial slot')
         seen.add(key)
         _validate_record(row, key)
+        if row['successful'] and row.get('exitCode') not in (None, 0):
+            raise ValueError('successful trial has nonzero process exit code')
         relative = f'{key[0]}/{key[1]}/record.json'
+        measurement = f'{key[0]}/{key[1]}/measurement.json'
         if relative in manifest:
             actual = json.loads((root / relative).read_text())
             retained = {k: v for k, v in row.items() if k not in ('journalRecovered', 'recoverySourceSHA256')}
             if not _same(actual, retained):
                 raise ValueError('durable trial record disagrees with journal')
-        elif not row.get('journalRecovered'):
+        elif record_version == 1:
             raise ValueError('trial lacks a manifest-pinned durable record')
-        measurement = f'{key[0]}/{key[1]}/measurement.json'
+        elif measurement not in manifest:
+            raise ValueError('legacy trial lacks a pinned worker measurement')
         if row['successful']:
             if measurement not in manifest:
                 raise ValueError('successful trial lacks pinned measurement')
             actual = json.loads((root / measurement).read_text())
-            if actual.get('successful') is not True or not _same(actual['metrics'], row['metrics']):
+            parent_fields = {'variant', 'trial', 'warmup', 'workerPID', 'startedNs', 'elapsedProcessMs',
+                             'exitCode', 'journalRecovered', 'recoverySourceSHA256'}
+            if actual.get('successful') is not True or not _same(
+                    {k: v for k, v in actual.items() if k not in parent_fields},
+                    {k: v for k, v in row.items() if k not in parent_fields}):
                 raise ValueError('worker measurement disagrees with journal')
+        elif relative not in manifest:
+            actual = json.loads((root / measurement).read_text())
+            if actual.get('successful') is not False or not _same(actual.get('metrics'), row['metrics']):
+                raise ValueError('legacy failed measurement disagrees with journal')
         if row.get('journalRecovered'):
             source = relative if relative in manifest else measurement
             if source not in manifest or manifest[source] != row.get('recoverySourceSHA256'):

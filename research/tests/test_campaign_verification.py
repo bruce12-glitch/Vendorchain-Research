@@ -90,3 +90,53 @@ class CampaignVerificationTests(unittest.TestCase):
         result = verify(target)
         self.assertEqual(result['failedMeasuredTrials'], 1)
         self.assertFalse(result['countProtocolMet'])
+
+    def test_legacy_measurements_verify_without_parent_records(self):
+        metadata = self.out/'metadata.json'
+        meta = json.loads(metadata.read_text()); meta.pop('trialRecordVersion')
+        metadata.write_text(json.dumps(meta))
+        summary = self.out/'summary.json'
+        report = json.loads(summary.read_text()); report['protocol'] = meta
+        summary.write_text(json.dumps(report))
+        manifest_path = self.out/'sha256-manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        for path in self.out.glob('a/*/record.json'):
+            manifest.pop(path.relative_to(self.out).as_posix()); path.unlink()
+        manifest_path.write_text(json.dumps(manifest))
+        self.repin('metadata.json'); self.repin('summary.json')
+        self.assertTrue(verify(self.out)['integrityVerified'])
+
+    def test_current_protocol_requires_parent_record(self):
+        path = self.out/'a/0/record.json'; path.unlink()
+        manifest_path = self.out/'sha256-manifest.json'
+        manifest = json.loads(manifest_path.read_text()); manifest.pop('a/0/record.json')
+        manifest_path.write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(ValueError, 'durable record'):
+            verify(self.out)
+
+    def test_extra_trial_evidence_cannot_be_ignored(self):
+        extra = self.out/'a/99'; extra.mkdir()
+        (extra/'measurement.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'unexpected or unpinned'):
+            verify(self.out)
+        self.repin('a/99/measurement.json')
+        with self.assertRaisesRegex(ValueError, 'unexpected or unpinned'):
+            verify(self.out)
+
+    def update_row(self, **fields):
+        journal = self.out/'trials.jsonl'
+        rows = [json.loads(line) for line in journal.read_text().splitlines()]
+        row = next(r for r in rows if r['trial'] == 0); row.update(fields)
+        journal.write_text(''.join(json.dumps(r)+'\n' for r in rows))
+        (self.out/'a/0/record.json').write_text(json.dumps(row))
+        self.repin('trials.jsonl'); self.repin('a/0/record.json')
+
+    def test_worker_provenance_must_match_journal(self):
+        self.update_row(evidence='fabric-commit-confirmed')
+        with self.assertRaisesRegex(ValueError, 'worker measurement disagrees'):
+            verify(self.out)
+
+    def test_successful_trial_cannot_have_failed_exit_code(self):
+        self.update_row(exitCode=1)
+        with self.assertRaisesRegex(ValueError, 'nonzero process exit code'):
+            verify(self.out)

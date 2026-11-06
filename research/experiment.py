@@ -143,6 +143,7 @@ def campaign(plan_path, output, *, trials=50, warmups=5, smoke=False, isolated_h
               'planSHA256':hashlib.sha256(plan_path.read_bytes()).hexdigest(),'startedNs':time.time_ns(),
               'freshProcessPerTrial':True,'execution':'sequential','isolatedHostAttestedByOperator':isolated_host_attested,
               'noCompetingLoadIndependentlyVerified':False,'smoke':smoke,'trials':trials,'warmups':warmups}
+    metadata['trialRecordVersion']=1
     metadata.update(order='randomized variants within sequential trial blocks',randomizationSeed=seed)
     git_status=subprocess.run(['git','status','--porcelain'],cwd=source_root,capture_output=True,text=True)
     metadata['sourceDirty']=bool(git_status.stdout.strip()) if git_status.returncode==0 else None

@@ -1,0 +1,2773 @@
+{
+  "kind": "table12-hardened-cumulative-ablation",
+  "variants": {
+    "baseline": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 0.0,
+          "stddev": 0.0,
+          "median": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 13111,
+          "stddev": 0.0,
+          "median": 13111.0,
+          "p50": 13111.0,
+          "p95": 13111.0,
+          "p99": 13111.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            13111.0,
+            13111.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 0.77592326,
+          "stddev": 0.16071352718967793,
+          "median": 0.759011,
+          "p50": 0.759011,
+          "p95": 0.9905656999999999,
+          "p99": 1.2067929899999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.730248980937066,
+            0.821597539062934
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 0,
+          "stddev": 0.0,
+          "median": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.000491540000000001,
+          "stddev": 0.00010718688809547665,
+          "median": 0.0004655000000000015,
+          "p50": 0.0004655000000000015,
+          "p95": 0.0006430000000000025,
+          "p99": 0.0008769600000000077,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.0004610778234528939,
+            0.0005220021765471081
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102090.72,
+          "stddev": 581.3304599567009,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 102953.28,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101925.50771127643,
+            102255.93228872358
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "plaintext_persist_ms": {
+          "n": 50,
+          "mean": 0.7615888199999999,
+          "stddev": 0.15954027764463155,
+          "median": 0.74512,
+          "p50": 0.74512,
+          "p95": 0.9751309999999999,
+          "p99": 1.1870644299999993,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.71624797476848,
+            0.8069296652315199
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    },
+    "encryption": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 0.1075411,
+          "stddev": 0.008968663655489938,
+          "median": 0.10615149999999998,
+          "p50": 0.10615149999999998,
+          "p95": 0.12591934999999999,
+          "p99": 0.13225057999999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.10499223399111092,
+            0.11008996600888908
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 13111,
+          "stddev": 0.0,
+          "median": 13111.0,
+          "p50": 13111.0,
+          "p95": 13111.0,
+          "p99": 13111.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            13111.0,
+            13111.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 110.2321175,
+          "stddev": 8.938431044249862,
+          "median": 108.668499,
+          "p50": 108.668499,
+          "p95": 128.42216345,
+          "p99": 134.57880017999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            107.69184350415878,
+            112.77239149584122
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.75887216,
+          "stddev": 0.09393926399440551,
+          "median": 0.7357914999999999,
+          "p50": 0.7357914999999999,
+          "p95": 0.9567548999999996,
+          "p99": 1.09373064,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.7321749165652067,
+            0.7855694034347933
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 108.17609446,
+          "stddev": 8.986076039730314,
+          "median": 106.782533,
+          "p50": 106.782533,
+          "p95": 126.5943936,
+          "p99": 132.87589542999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            105.62227990626313,
+            110.72990901373687
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 41125.2,
+          "stddev": 463.4875777125829,
+          "median": 41374.0,
+          "p50": 41374.0,
+          "p95": 41720.4,
+          "p99": 41863.4,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            40993.47828785275,
+            41256.92171214725
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.002239619999999999,
+          "stddev": 0.0002528314668158294,
+          "median": 0.002206999999999992,
+          "p50": 0.002206999999999992,
+          "p95": 0.002742749999999994,
+          "p99": 0.0030710899999999916,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.002167766092160567,
+            0.002311473907839431
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102096.96,
+          "stddev": 579.7984505544199,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101932.18310353115,
+            102261.73689646886
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 1.2599592,
+          "stddev": 0.3327786207159839,
+          "median": 1.195237,
+          "p50": 1.195237,
+          "p95": 1.6774860499999997,
+          "p99": 2.4472474299999973,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.1653845624163113,
+            1.3545338375836886
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    },
+    "full": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "attest_ms": {
+          "n": 50,
+          "mean": 0.58839974,
+          "stddev": 0.1326129360445639,
+          "median": 0.550568,
+          "p50": 0.550568,
+          "p95": 0.78316795,
+          "p99": 1.0943546899999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.5507115605780786,
+            0.6260879194219213
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 1.72918166,
+          "stddev": 0.09736145632465422,
+          "median": 1.7055230000000001,
+          "p50": 1.7055230000000001,
+          "p95": 1.87448555,
+          "p99": 2.0273529099999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.7015118402660485,
+            1.7568514797339516
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "commit_revalidate_ms": {
+          "n": 50,
+          "mean": 46.057623039999996,
+          "stddev": 6.033841658591877,
+          "median": 44.325608,
+          "p50": 44.325608,
+          "p95": 55.43307489999999,
+          "p99": 68.18739478999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            44.34282421406905,
+            47.772421865930944
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_sign_ms": {
+          "n": 50,
+          "mean": 202.45965718,
+          "stddev": 10.792754591126803,
+          "median": 200.1858305,
+          "p50": 200.1858305,
+          "p95": 217.09877210000002,
+          "p99": 233.06636017999995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            199.39239026306464,
+            205.52692409693535
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_verify_ms": {
+          "n": 50,
+          "mean": 25.2431347,
+          "stddev": 2.910595924263931,
+          "median": 24.618305499999998,
+          "p50": 24.618305499999998,
+          "p95": 30.42320135,
+          "p99": 33.78213247,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            24.415952490705504,
+            26.070316909294494
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "db_finalize_ms": {
+          "n": 50,
+          "mean": 1.83035458,
+          "stddev": 0.4531600003812273,
+          "median": 1.662484,
+          "p50": 1.662484,
+          "p95": 2.61635465,
+          "p99": 3.4761857299999988,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.7015679328552116,
+            1.9591412271447886
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.17835474,
+          "stddev": 0.05402836899743372,
+          "median": 0.1631555,
+          "p50": 0.1631555,
+          "p95": 0.27405605,
+          "p99": 0.38543758999999966,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.16300004742336638,
+            0.19370943257663364
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 55417,
+          "stddev": 0.0,
+          "median": 55417.0,
+          "p50": 55417.0,
+          "p95": 55417.0,
+          "p99": 55417.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            55417.0,
+            55417.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 1603.26006024,
+          "stddev": 87.42046145401572,
+          "median": 1587.886857,
+          "p50": 1587.886857,
+          "p95": 1704.764905,
+          "p99": 1885.2215800399995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1578.4154399887832,
+            1628.1046804912169
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.77470136,
+          "stddev": 0.08920576352908219,
+          "median": 0.753052,
+          "p50": 0.753052,
+          "p95": 0.9521723999999999,
+          "p99": 1.0649697799999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.7493493625129392,
+            0.8000533574870609
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 107.31150530000001,
+          "stddev": 10.201481585369926,
+          "median": 103.8839325,
+          "p50": 103.8839325,
+          "p95": 126.66357909999998,
+          "p99": 141.45999557999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            104.41227631204028,
+            110.21073428795974
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 0.35591004,
+          "stddev": 0.032012203233065695,
+          "median": 0.3520545,
+          "p50": 0.3520545,
+          "p95": 0.42222804999999997,
+          "p99": 0.44431394999999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.34681227250367247,
+            0.3650078074963275
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_revalidate_ms": {
+          "n": 50,
+          "mean": 0.16804626,
+          "stddev": 0.042975224270436166,
+          "median": 0.15309499999999998,
+          "p50": 0.15309499999999998,
+          "p95": 0.25125079999999994,
+          "p99": 0.34129792999999986,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.15583283639811826,
+            0.18025968360188174
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ingestion_to_commit_ms": {
+          "n": 50,
+          "mean": 1602.91856842,
+          "stddev": 87.40792390668655,
+          "median": 1587.5896855,
+          "p50": 1587.5896855,
+          "p95": 1704.3903006,
+          "p99": 1884.8438584399994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1578.0775113003097,
+            1627.7596255396902
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 186749.68,
+          "stddev": 5953.807389068145,
+          "median": 183858.0,
+          "p50": 183858.0,
+          "p95": 196453.8,
+          "p99": 197172.84,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            185057.6266617996,
+            188441.7333382004
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ledger_commit_ms": {
+          "n": 50,
+          "mean": 2.1781957,
+          "stddev": 0.26127603718151327,
+          "median": 2.177754,
+          "p50": 2.177754,
+          "p95": 2.624324299999999,
+          "p99": 2.9860705799999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            2.1039418718166285,
+            2.252449528183371
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 110.68114400000013,
+          "stddev": 7.547688732640353,
+          "median": 109.82008349992611,
+          "p50": 109.82008349992611,
+          "p95": 124.20905860012681,
+          "p99": 135.36975679007352,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            108.5361145959232,
+            112.82617340407707
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "opa_ms": {
+          "n": 50,
+          "mean": 18.90701946,
+          "stddev": 2.311516715543681,
+          "median": 18.910891,
+          "p50": 18.910891,
+          "p95": 23.408846949999997,
+          "p99": 24.36875861,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            18.25009367801667,
+            19.563945241983333
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "outbox_prepare_ms": {
+          "n": 50,
+          "mean": 1.99678434,
+          "stddev": 0.6306861289367064,
+          "median": 1.850256,
+          "p50": 1.850256,
+          "p95": 2.7999834999999993,
+          "p99": 4.568323329999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.8175453253514138,
+            2.1760233546485863
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.06376936,
+          "stddev": 0.00896628413184978,
+          "median": 0.06055600000000001,
+          "p50": 0.06055600000000001,
+          "p95": 0.08653519999999999,
+          "p99": 0.09362811999999995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.06122117024424703,
+            0.06631754975575296
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102094.4,
+          "stddev": 578.8230140834529,
+          "median": 102056.0,
+          "p50": 102056.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101929.90031950892,
+            102258.89968049107
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 3.32252058,
+          "stddev": 0.5382968853881804,
+          "median": 3.238912,
+          "p50": 3.238912,
+          "p95": 4.1939357500000005,
+          "p99": 4.796178569999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            3.1695382978495337,
+            3.475502862150466
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "provenance_revalidate_ms": {
+          "n": 50,
+          "mean": 26.29750338,
+          "stddev": 4.598512128229436,
+          "median": 25.496762500000003,
+          "p50": 25.496762500000003,
+          "p95": 31.31469424999999,
+          "p99": 45.47675715999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            24.990620693198217,
+            27.60438606680178
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "snapshot_revalidate_ms": {
+          "n": 50,
+          "mean": 18.11396286,
+          "stddev": 2.5266406138062423,
+          "median": 17.658638500000002,
+          "p50": 17.658638500000002,
+          "p95": 22.3543681,
+          "p99": 25.449839899999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            17.395899542588467,
+            18.832026177411535
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "syft_ms": {
+          "n": 50,
+          "mean": 967.26722444,
+          "stddev": 68.2225240727001,
+          "median": 954.346673,
+          "p50": 954.346673,
+          "p95": 1040.6568527499999,
+          "p99": 1188.3130384599995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            947.8785976245568,
+            986.655851255443
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_cpu_seconds": {
+          "n": 50,
+          "mean": 0.19933496,
+          "stddev": 0.010896205780294837,
+          "median": 0.197264,
+          "p50": 0.197264,
+          "p95": 0.22102085,
+          "p99": 0.22927712999999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.19623829258040582,
+            0.2024316274195942
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 218.56781854,
+          "stddev": 11.831066634002969,
+          "median": 215.1890325,
+          "p50": 215.1890325,
+          "p95": 242.2705092,
+          "p99": 250.86894585999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            215.2054666054559,
+            221.93017047454407
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_peak_rss_kib": {
+          "n": 50,
+          "mean": 41928.56,
+          "stddev": 281.52936266190125,
+          "median": 41982.0,
+          "p50": 41982.0,
+          "p95": 42316.8,
+          "p99": 42427.24,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            41848.55024040177,
+            42008.56975959823
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "local-non-consensus"
+      ]
+    },
+    "full_crypto_x10": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "attest_ms": {
+          "n": 50,
+          "mean": 0.63247036,
+          "stddev": 0.33193690581978785,
+          "median": 0.549817,
+          "p50": 0.549817,
+          "p95": 0.79357135,
+          "p99": 1.9690543599999968,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.538134935143034,
+            0.726805784856966
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 1.72470258,
+          "stddev": 0.08721507306444412,
+          "median": 1.707145,
+          "p50": 1.707145,
+          "p95": 1.8747387,
+          "p99": 1.9458459599999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.6999163304832547,
+            1.7494888295167452
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "commit_revalidate_ms": {
+          "n": 50,
+          "mean": 44.76458502,
+          "stddev": 3.5968034482527163,
+          "median": 43.912973,
+          "p50": 43.912973,
+          "p95": 51.4932311,
+          "p99": 53.42996350999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            43.74238479017038,
+            45.78678524982962
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_sign_ms": {
+          "n": 50,
+          "mean": 201.63619224,
+          "stddev": 10.127492427167121,
+          "median": 199.94309900000002,
+          "p50": 199.94309900000002,
+          "p95": 220.8034249,
+          "p99": 223.60856440999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            198.7579907381423,
+            204.51439374185773
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_verify_ms": {
+          "n": 50,
+          "mean": 24.33744972,
+          "stddev": 2.478216561582683,
+          "median": 24.2540585,
+          "p50": 24.2540585,
+          "p95": 28.516768249999995,
+          "p99": 31.760660229999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            23.63314836596076,
+            25.041751074039237
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "db_finalize_ms": {
+          "n": 50,
+          "mean": 1.94327128,
+          "stddev": 1.02923761872888,
+          "median": 1.688999,
+          "p50": 1.688999,
+          "p95": 3.0080063499999996,
+          "p99": 6.425881389999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.6507651851993395,
+            2.235777374800661
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.16072612,
+          "stddev": 0.025350005164142292,
+          "median": 0.1569215,
+          "p50": 0.1569215,
+          "p95": 0.20856884999999997,
+          "p99": 0.23723067999999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.15352172824555024,
+            0.16793051175444976
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 55417,
+          "stddev": 0.0,
+          "median": 55417.0,
+          "p50": 55417.0,
+          "p95": 55417.0,
+          "p99": 55417.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            55417.0,
+            55417.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 1598.14911178,
+          "stddev": 70.52014526751762,
+          "median": 1583.2929115000002,
+          "p50": 1583.2929115000002,
+          "p95": 1708.5392112,
+          "p99": 1778.7947199199998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1578.1075082458694,
+            1618.1907153141308
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.180618,
+          "stddev": 0.05883788796414801,
+          "median": 0.160095,
+          "p50": 0.160095,
+          "p95": 0.24607489999999999,
+          "p99": 0.4368605099999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.1638964572565791,
+            0.19733954274342091
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "extra_crypto_ms": {
+          "n": 50,
+          "mean": 0.88236808,
+          "stddev": 0.11182155657716633,
+          "median": 0.838426,
+          "p50": 0.838426,
+          "p95": 1.1310949,
+          "p99": 1.2383046599999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.8505887452441315,
+            0.9141474147558685
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 108.14763472,
+          "stddev": 8.813814825728741,
+          "median": 106.64751749999999,
+          "p50": 106.64751749999999,
+          "p95": 121.74865934999998,
+          "p99": 128.32395379,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            105.64277626160624,
+            110.65249317839375
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 0.3824092,
+          "stddev": 0.08700487088264726,
+          "median": 0.354483,
+          "p50": 0.354483,
+          "p95": 0.5517297499999998,
+          "p99": 0.7132035999999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.35768268928233965,
+            0.40713571071766036
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_revalidate_ms": {
+          "n": 50,
+          "mean": 0.17152536,
+          "stddev": 0.03647937279254048,
+          "median": 0.15328550000000002,
+          "p50": 0.15328550000000002,
+          "p95": 0.2495509,
+          "p99": 0.26837790999999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.1611580369619035,
+            0.18189268303809647
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ingestion_to_commit_ms": {
+          "n": 50,
+          "mean": 1596.89332074,
+          "stddev": 70.47524820461032,
+          "median": 1581.9740745,
+          "p50": 1581.9740745,
+          "p95": 1707.41207425,
+          "p99": 1777.2987514299998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1576.8644768099687,
+            1616.9221646700314
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 187640.8,
+          "stddev": 6323.059037509988,
+          "median": 184360.0,
+          "p50": 184360.0,
+          "p95": 196444.0,
+          "p99": 197231.8,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            185843.8065044258,
+            189437.79349557418
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ledger_commit_ms": {
+          "n": 50,
+          "mean": 2.2181053,
+          "stddev": 0.4893269061311963,
+          "median": 2.1257465,
+          "p50": 2.1257465,
+          "p95": 3.1787240499999987,
+          "p99": 4.000355929999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            2.0790401319680596,
+            2.3571704680319403
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 113.29358807999142,
+          "stddev": 9.294980451228904,
+          "median": 110.80171799994787,
+          "p50": 110.80171799994787,
+          "p95": 125.7165785000211,
+          "p99": 144.98420626993493,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            110.6519838638579,
+            115.93519229612495
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "opa_ms": {
+          "n": 50,
+          "mean": 18.27853468,
+          "stddev": 2.008902383492065,
+          "median": 17.9622195,
+          "p50": 17.9622195,
+          "p95": 22.224709899999993,
+          "p99": 23.39397927,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            17.707610939613676,
+            18.849458420386323
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "outbox_prepare_ms": {
+          "n": 50,
+          "mean": 1.92606854,
+          "stddev": 0.576337934796096,
+          "median": 1.7648329999999999,
+          "p50": 1.7648329999999999,
+          "p95": 3.1729212499999973,
+          "p99": 4.02374863,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.7622751112280466,
+            2.0898619687719533
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.06111712,
+          "stddev": 0.004243156014677983,
+          "median": 0.05965799999999999,
+          "p50": 0.05965799999999999,
+          "p95": 0.06824844999999999,
+          "p99": 0.07325915999999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.05991122840325072,
+            0.06232301159674927
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102090.72,
+          "stddev": 585.3428452886499,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101924.36740398205,
+            102257.07259601796
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 3.27887944,
+          "stddev": 0.7008105076700706,
+          "median": 3.0973569999999997,
+          "p50": 3.0973569999999997,
+          "p95": 4.511601699999999,
+          "p99": 5.83144189,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            3.0797112974217997,
+            3.4780475825782
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "provenance_revalidate_ms": {
+          "n": 50,
+          "mean": 25.34910252,
+          "stddev": 2.0898669964070824,
+          "median": 25.105981999999997,
+          "p50": 25.105981999999997,
+          "p95": 29.07405665,
+          "p99": 29.48532114,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            24.7551688912168,
+            25.943036148783197
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "snapshot_revalidate_ms": {
+          "n": 50,
+          "mean": 17.69372298,
+          "stddev": 2.196102875697483,
+          "median": 17.323414,
+          "p50": 17.323414,
+          "p95": 22.163173999999994,
+          "p99": 24.219697729999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            17.069597448381646,
+            18.317848511618354
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "syft_ms": {
+          "n": 50,
+          "mean": 959.616082,
+          "stddev": 52.473005322662125,
+          "median": 952.788062,
+          "p50": 952.788062,
+          "p95": 1045.70911175,
+          "p99": 1103.83489709,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            944.7034188888888,
+            974.5287451111112
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_cpu_seconds": {
+          "n": 50,
+          "mean": 0.20429238,
+          "stddev": 0.012315399719067517,
+          "median": 0.20279399999999997,
+          "p50": 0.20279399999999997,
+          "p95": 0.22771259999999996,
+          "p99": 0.23737115,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.20079238212566802,
+            0.20779237787433197
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 223.58307812,
+          "stddev": 13.826223310833337,
+          "median": 220.909239,
+          "p50": 220.909239,
+          "p95": 246.83889925,
+          "p99": 262.44985897,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            219.6537089316794,
+            227.51244730832062
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_peak_rss_kib": {
+          "n": 50,
+          "mean": 41845.68,
+          "stddev": 281.73815024969986,
+          "median": 41808.0,
+          "p50": 41808.0,
+          "p95": 42278.2,
+          "p99": 42282.04,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            41765.61090362585,
+            41925.74909637415
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "local-non-consensus"
+      ]
+    },
+    "full_without_client_revalidation": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "attest_ms": {
+          "n": 50,
+          "mean": 0.5636779,
+          "stddev": 0.06883819286166062,
+          "median": 0.5540975,
+          "p50": 0.5540975,
+          "p95": 0.6541871,
+          "p99": 0.7942678999999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.5441143020507074,
+            0.5832414979492925
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 1.68977214,
+          "stddev": 0.08762465254919848,
+          "median": 1.6894449999999999,
+          "p50": 1.6894449999999999,
+          "p95": 1.8252367499999997,
+          "p99": 1.94361921,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.664869489281612,
+            1.7146747907183881
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "commit_revalidate_ms": {
+          "n": 50,
+          "mean": 1.08918972,
+          "stddev": 0.2477722890476657,
+          "median": 1.010825,
+          "p50": 1.010825,
+          "p95": 1.6335951499999999,
+          "p99": 1.9363032299999992,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.0187736145736743,
+            1.1596058254263257
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_sign_ms": {
+          "n": 50,
+          "mean": 205.26097832,
+          "stddev": 17.210325896223015,
+          "median": 199.7018825,
+          "p50": 199.7018825,
+          "p95": 243.01732409999997,
+          "p99": 263.24023027,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            200.36985781823668,
+            210.1520988217633
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_verify_ms": {
+          "n": 50,
+          "mean": 24.93834984,
+          "stddev": 3.0654505292905925,
+          "median": 24.325471,
+          "p50": 24.325471,
+          "p95": 29.737566649999998,
+          "p99": 33.99814543999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            24.067158438897895,
+            25.809541241102107
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "db_finalize_ms": {
+          "n": 50,
+          "mean": 1.68863084,
+          "stddev": 0.48969812462191314,
+          "median": 1.5733000000000001,
+          "p50": 1.5733000000000001,
+          "p95": 2.405174249999999,
+          "p99": 3.685992199999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.5494601728402964,
+            1.8278015071597038
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.18612966,
+          "stddev": 0.05659213720557199,
+          "median": 0.16951,
+          "p50": 0.16951,
+          "p95": 0.27552734999999995,
+          "p99": 0.3928339199999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.17004635256039355,
+            0.20221296743960646
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 55417,
+          "stddev": 0.0,
+          "median": 55417.0,
+          "p50": 55417.0,
+          "p95": 55417.0,
+          "p99": 55417.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            55417.0,
+            55417.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 1563.7195031,
+          "stddev": 79.98176565029361,
+          "median": 1550.5276104999998,
+          "p50": 1550.5276104999998,
+          "p95": 1691.82754985,
+          "p99": 1802.82489672,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1540.9889368051902,
+            1586.45006939481
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.82931336,
+          "stddev": 0.22950999051793197,
+          "median": 0.7549195,
+          "p50": 0.7549195,
+          "p95": 1.1536048999999997,
+          "p99": 1.694683679999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.7640873423899489,
+            0.8945393776100511
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 107.11901182,
+          "stddev": 7.621352527254087,
+          "median": 105.453216,
+          "p50": 105.453216,
+          "p95": 120.93352695,
+          "p99": 129.37507050999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            104.95304739712995,
+            109.28497624287004
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 0.35347904,
+          "stddev": 0.02986546767193967,
+          "median": 0.34565999999999997,
+          "p50": 0.34565999999999997,
+          "p95": 0.40486409999999995,
+          "p99": 0.43102498,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.3449913679997254,
+            0.36196671200027464
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ingestion_to_commit_ms": {
+          "n": 50,
+          "mean": 1563.36724564,
+          "stddev": 79.88373625288517,
+          "median": 1550.2262925,
+          "p50": 1550.2262925,
+          "p95": 1691.5093822000001,
+          "p99": 1801.77807209,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1540.6645389916798,
+            1586.06995228832
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 186303.52,
+          "stddev": 5650.491364727243,
+          "median": 183928.0,
+          "p50": 183928.0,
+          "p95": 196237.2,
+          "p99": 196520.16,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            184697.66812213874,
+            187909.37187786124
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ledger_commit_ms": {
+          "n": 50,
+          "mean": 1.55273882,
+          "stddev": 0.2156543391255108,
+          "median": 1.5061645000000001,
+          "p50": 1.5061645000000001,
+          "p95": 1.89781195,
+          "p99": 2.1961028499999995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.4914505349465201,
+            1.61402710505348
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 112.15950705998694,
+          "stddev": 8.626445099739236,
+          "median": 110.53676299991366,
+          "p50": 110.53676299991366,
+          "p95": 132.5651429499544,
+          "p99": 136.47170479989882,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            109.7078984885345,
+            114.61111563143938
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "opa_ms": {
+          "n": 50,
+          "mean": 18.74010972,
+          "stddev": 2.3145726154190798,
+          "median": 18.414089,
+          "p50": 18.414089,
+          "p95": 22.96207745,
+          "p99": 23.50138015,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            18.082315460881368,
+            19.39790397911863
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "outbox_prepare_ms": {
+          "n": 50,
+          "mean": 1.98131174,
+          "stddev": 0.6249514806201019,
+          "median": 1.8444530000000001,
+          "p50": 1.8444530000000001,
+          "p95": 2.693129699999999,
+          "p99": 4.637352479999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.8037024943703666,
+            2.1589209856296336
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.0567929,
+          "stddev": 0.00432519099613661,
+          "median": 0.056144999999999994,
+          "p50": 0.056144999999999994,
+          "p95": 0.06593999999999997,
+          "p99": 0.06880781999999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.05556369431947953,
+            0.05802210568052047
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102083.04,
+          "stddev": 577.709232703633,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101918.85685267477,
+            102247.22314732522
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 3.48602682,
+          "stddev": 1.2607314424652694,
+          "median": 3.160987,
+          "p50": 3.160987,
+          "p95": 6.104010849999989,
+          "p99": 8.40568767,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            3.127730908426775,
+            3.8443227315732256
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "syft_ms": {
+          "n": 50,
+          "mean": 967.7689471799999,
+          "stddev": 55.379353179239274,
+          "median": 954.1434775,
+          "p50": 954.1434775,
+          "p95": 1063.48596885,
+          "p99": 1122.32547989,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            952.0303091470727,
+            983.5075852129272
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_cpu_seconds": {
+          "n": 50,
+          "mean": 0.20261726,
+          "stddev": 0.013443161248738773,
+          "median": 0.20135,
+          "p50": 0.20135,
+          "p95": 0.22908689999999998,
+          "p99": 0.24242777999999995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.19879675584518638,
+            0.2064377641548136
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 222.10256758,
+          "stddev": 15.07023505584501,
+          "median": 219.35110650000001,
+          "p50": 219.35110650000001,
+          "p95": 253.72572254999997,
+          "p99": 265.76805756,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            217.81965416554732,
+            226.38548099445268
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_peak_rss_kib": {
+          "n": 50,
+          "mean": 41843.28,
+          "stddev": 293.756183782068,
+          "median": 41924.0,
+          "p50": 41924.0,
+          "p95": 42215.4,
+          "p99": 42260.08,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            41759.79541628671,
+            41926.76458371329
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "local-non-consensus"
+      ]
+    },
+    "gate": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 0.10816319999999999,
+          "stddev": 0.013487110747915233,
+          "median": 0.1045925,
+          "p50": 0.1045925,
+          "p95": 0.12471579999999997,
+          "p99": 0.16168178999999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.10433020553571981,
+            0.11199619446428016
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 13111,
+          "stddev": 0.0,
+          "median": 13111.0,
+          "p50": 13111.0,
+          "p95": 13111.0,
+          "p99": 13111.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            13111.0,
+            13111.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 110.14724558,
+          "stddev": 14.059066895035041,
+          "median": 106.46388400000001,
+          "p50": 106.46388400000001,
+          "p95": 127.1882349,
+          "p99": 166.19754788999992,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            106.15170297722693,
+            114.14278818277307
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 108.75715866,
+          "stddev": 13.524605779855309,
+          "median": 105.23497449999999,
+          "p50": 105.23497449999999,
+          "p95": 125.38174154999999,
+          "p99": 162.41390334999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            104.91350822554575,
+            112.60080909445425
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 41156.48,
+          "stddev": 482.7774338266495,
+          "median": 41386.0,
+          "p50": 41386.0,
+          "p95": 41750.2,
+          "p99": 41788.48,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            41019.27617140217,
+            41293.68382859784
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.001524399999999998,
+          "stddev": 0.00021661835149423898,
+          "median": 0.0014509999999999888,
+          "p50": 0.0014509999999999888,
+          "p95": 0.0019005499999999818,
+          "p99": 0.0022982400000000043,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.0014628377456626666,
+            0.0015859622543373294
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102093.28,
+          "stddev": 580.0168554904773,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101928.44103353508,
+            102258.11896646491
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "plaintext_persist_ms": {
+          "n": 50,
+          "mean": 1.35177522,
+          "stddev": 0.7302482781751191,
+          "median": 1.2324025,
+          "p50": 1.2324025,
+          "p95": 1.9123534999999985,
+          "p99": 4.281176969999993,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.14424095561146,
+            1.5593094843885398
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    },
+    "identity": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 0.3302437,
+          "stddev": 0.018042334668659666,
+          "median": 0.332059,
+          "p50": 0.332059,
+          "p95": 0.35567329999999997,
+          "p99": 0.37256522999999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.3251161252213653,
+            0.33537127477863465
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.09778302,
+          "stddev": 0.03668777584633078,
+          "median": 0.085889,
+          "p50": 0.085889,
+          "p95": 0.13507409999999997,
+          "p99": 0.25702310999999983,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.0873564694693406,
+            0.1082095705306594
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 13568,
+          "stddev": 0.0,
+          "median": 13568.0,
+          "p50": 13568.0,
+          "p95": 13568.0,
+          "p99": 13568.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            13568.0,
+            13568.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 335.12804326,
+          "stddev": 18.104391684856893,
+          "median": 337.2121305,
+          "p50": 337.2121305,
+          "p95": 360.98128829999996,
+          "p99": 377.61206724,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            329.9828320725007,
+            340.27325444749937
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.7497820199999999,
+          "stddev": 0.08356645652230008,
+          "median": 0.722421,
+          "p50": 0.722421,
+          "p95": 0.8693915999999999,
+          "p99": 1.07543237,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.7260326958314416,
+            0.7735313441685583
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 107.56578828,
+          "stddev": 9.237905020918953,
+          "median": 105.564794,
+          "p50": 105.564794,
+          "p95": 121.13504555,
+          "p99": 135.53398756999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            104.94040472168662,
+            110.1911718383134
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 1.64656484,
+          "stddev": 0.4379565465767151,
+          "median": 1.5651454999999999,
+          "p50": 1.5651454999999999,
+          "p95": 2.2381838000000003,
+          "p99": 3.2100695899999963,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.5220989666191282,
+            1.7710307133808716
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 41488.32,
+          "stddev": 252.49751989083063,
+          "median": 41538.0,
+          "p50": 41538.0,
+          "p95": 41838.2,
+          "p99": 41902.28,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            41416.56099882656,
+            41560.07900117344
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 113.68097013999432,
+          "stddev": 7.804356020934722,
+          "median": 112.90552900004514,
+          "p50": 112.90552900004514,
+          "p95": 125.75482209994107,
+          "p99": 130.63354716995718,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            111.4629966996755,
+            115.89894358031313
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.00397588,
+          "stddev": 0.0005058186994711565,
+          "median": 0.0038434999999999945,
+          "p50": 0.0038434999999999945,
+          "p95": 0.0049419499999999806,
+          "p99": 0.005873110000000001,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.003832127916159358,
+            0.004119632083840643
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102080.48,
+          "stddev": 581.8622545459588,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101915.11657692638,
+            102245.84342307362
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 1.21289588,
+          "stddev": 0.22700996742224014,
+          "median": 1.196058,
+          "p50": 1.196058,
+          "p95": 1.4869095499999996,
+          "p99": 2.025071059999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.1483803610924113,
+            1.2774113989075888
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 223.77622764,
+          "stddev": 11.401538007493397,
+          "median": 223.2416325,
+          "p50": 223.2416325,
+          "p95": 238.85344515,
+          "p99": 243.33691148,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            220.53594639045534,
+            227.01650888954467
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    },
+    "policy": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 1.68981582,
+          "stddev": 0.07531889571889566,
+          "median": 1.6783314999999999,
+          "p50": 1.6783314999999999,
+          "p95": 1.8191611,
+          "p99": 1.8687675399999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.668410426677279,
+            1.711221213322721
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_sign_ms": {
+          "n": 50,
+          "mean": 203.55882686,
+          "stddev": 11.93996024628301,
+          "median": 200.717913,
+          "p50": 200.717913,
+          "p95": 230.35143934999996,
+          "p99": 236.53907443,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            200.16552770326237,
+            206.95212601673765
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_verify_ms": {
+          "n": 50,
+          "mean": 25.82938108,
+          "stddev": 3.460437625028,
+          "median": 25.435592,
+          "p50": 25.435592,
+          "p95": 32.22864369999999,
+          "p99": 35.0731411,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            24.845935588327933,
+            26.81282657167207
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.1043679,
+          "stddev": 0.032943265938022374,
+          "median": 0.0909715,
+          "p50": 0.0909715,
+          "p95": 0.18335164999999987,
+          "p99": 0.21469012999999995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.09500552741065446,
+            0.11373027258934554
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 33194,
+          "stddev": 0.0,
+          "median": 33194.0,
+          "p50": 33194.0,
+          "p95": 33194.0,
+          "p99": 33194.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            33194.0,
+            33194.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 1549.96127344,
+          "stddev": 65.33787674464556,
+          "median": 1540.2039325,
+          "p50": 1540.2039325,
+          "p95": 1662.4134413,
+          "p99": 1745.9334439399997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1531.392454324404,
+            1568.530092555596
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.77589944,
+          "stddev": 0.09377434189044528,
+          "median": 0.7561015,
+          "p50": 0.7561015,
+          "p95": 0.972748,
+          "p99": 1.0530045899999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.749249066908554,
+            0.802549813091446
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 107.26561058,
+          "stddev": 6.784321993485066,
+          "median": 107.2716225,
+          "p50": 107.2716225,
+          "p95": 117.74802584999999,
+          "p99": 123.77716037999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            105.33752760278102,
+            109.19369355721898
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 1.5520298,
+          "stddev": 0.3932725382777554,
+          "median": 1.45024,
+          "p50": 1.45024,
+          "p95": 1.8852358999999999,
+          "p99": 3.2977138999999993,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.4402629812686378,
+            1.663796618731362
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 187764.32,
+          "stddev": 5447.266865472397,
+          "median": 186836.0,
+          "p50": 186836.0,
+          "p95": 196212.0,
+          "p99": 197082.72,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            186216.22388578666,
+            189312.41611421335
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 112.89186788001643,
+          "stddev": 10.842302664872383,
+          "median": 109.03896300010274,
+          "p50": 109.03896300010274,
+          "p95": 134.82526269996242,
+          "p99": 146.83760696003898,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            109.81051955632672,
+            115.97321620370614
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "opa_ms": {
+          "n": 50,
+          "mean": 18.85249602,
+          "stddev": 2.8193983318400013,
+          "median": 18.177927,
+          "p50": 18.177927,
+          "p95": 25.055220349999992,
+          "p99": 27.849450089999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            18.051231879701167,
+            19.653760160298834
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.04886418,
+          "stddev": 0.005165749386298259,
+          "median": 0.0477075,
+          "p50": 0.0477075,
+          "p95": 0.05731975,
+          "p99": 0.06691821999999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.04739609026813504,
+            0.05033226973186496
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102088.16,
+          "stddev": 578.5984247670029,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 102953.28,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101923.72414708644,
+            102252.59585291357
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 1.33525054,
+          "stddev": 0.7686551524168347,
+          "median": 1.1823275,
+          "p50": 1.1823275,
+          "p95": 1.6294807499999995,
+          "p99": 4.4524954799999925,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.1168011627225447,
+            1.5536999172774555
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "syft_ms": {
+          "n": 50,
+          "mean": 966.99145612,
+          "stddev": 54.60051302489234,
+          "median": 965.3577205,
+          "p50": 965.3577205,
+          "p95": 1050.1240444,
+          "p99": 1139.1449144699998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            951.4741620098719,
+            982.508750230128
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 223.06853276,
+          "stddev": 15.178476787218623,
+          "median": 218.80181,
+          "p50": 218.80181,
+          "p95": 245.78978145,
+          "p99": 272.47534877,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            218.75485738585755,
+            227.38220813414247
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    },
+    "provenance": {
+      "measuredTrials": 50,
+      "successfulTrials": 50,
+      "discardedWarmups": 5,
+      "failedTrials": 0,
+      "countProtocolMet": true,
+      "metrics": {
+        "child_cpu_seconds": {
+          "n": 50,
+          "mean": 1.66006732,
+          "stddev": 0.07950176385219258,
+          "median": 1.641235,
+          "p50": 1.641235,
+          "p95": 1.7607235499999998,
+          "p99": 1.8999363399999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.637473168706843,
+            1.6826614712931571
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_sign_ms": {
+          "n": 50,
+          "mean": 201.81171032,
+          "stddev": 9.21982315804651,
+          "median": 201.516208,
+          "p50": 201.516208,
+          "p95": 218.65038255,
+          "p99": 222.74084176999997,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            199.19146557025647,
+            204.43195506974354
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "cosign_verify_ms": {
+          "n": 50,
+          "mean": 24.505990099999998,
+          "stddev": 2.552839633446303,
+          "median": 23.962432,
+          "p50": 23.962432,
+          "p95": 29.930598449999998,
+          "p99": 31.039995279999996,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            23.780481103589686,
+            25.23149909641031
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "decrypt_ms": {
+          "n": 50,
+          "mean": 0.10126312,
+          "stddev": 0.03389327882780879,
+          "median": 0.0882225,
+          "p50": 0.0882225,
+          "p95": 0.147146,
+          "p99": 0.23820931999999992,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.09163075673469674,
+            0.11089548326530325
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "disk_growth_bytes": {
+          "n": 50,
+          "mean": 33194,
+          "stddev": 0.0,
+          "median": 33194.0,
+          "p50": 33194.0,
+          "p95": 33194.0,
+          "p99": 33194.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            33194.0,
+            33194.0
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "elapsed_ms": {
+          "n": 50,
+          "mean": 1517.06393684,
+          "stddev": 65.89773356890838,
+          "median": 1504.4806665,
+          "p50": 1504.4806665,
+          "p95": 1589.78151075,
+          "p99": 1731.1057158799995,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1498.3360081754208,
+            1535.7918655045792
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "encrypt_ms": {
+          "n": 50,
+          "mean": 0.7766641,
+          "stddev": 0.10802552829077024,
+          "median": 0.7370985,
+          "p50": 0.7370985,
+          "p95": 0.9788498,
+          "p99": 1.10727947,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.745963584546498,
+            0.8073646154535019
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "gate_ms": {
+          "n": 50,
+          "mean": 106.5159122,
+          "stddev": 12.122939112332999,
+          "median": 102.66564650000001,
+          "p50": 102.66564650000001,
+          "p95": 123.35112819999998,
+          "p99": 152.0861875399999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            103.07061102490877,
+            109.96121337509123
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "identity_attestation_ms": {
+          "n": 50,
+          "mean": 1.57015104,
+          "stddev": 0.3780201879193356,
+          "median": 1.4545295,
+          "p50": 1.4545295,
+          "p95": 2.1018469999999994,
+          "p99": 3.0783319699999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.46271889127942,
+            1.67758318872058
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "largest_child_peak_rss_kib": {
+          "n": 50,
+          "mean": 188487.52,
+          "stddev": 6028.030829654515,
+          "median": 188012.0,
+          "p50": 188012.0,
+          "p95": 197192.0,
+          "p99": 197841.44,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            186774.37259338086,
+            190200.66740661912
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "ocr_ms": {
+          "n": 50,
+          "mean": 110.13735609998093,
+          "stddev": 6.361918516521505,
+          "median": 108.27571349989284,
+          "p50": 108.27571349989284,
+          "p95": 122.74569444999769,
+          "p99": 126.30133610996381,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            108.32931886266546,
+            111.94539333729641
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_cpu_seconds": {
+          "n": 50,
+          "mean": 0.046038539999999996,
+          "stddev": 0.003809293791799851,
+          "median": 0.04489449999999998,
+          "p50": 0.04489449999999998,
+          "p95": 0.05373945,
+          "p99": 0.05578720999999998,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            0.04495595068271107,
+            0.04712112931728892
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "parent_peak_rss_kib": {
+          "n": 50,
+          "mean": 102095.84,
+          "stddev": 576.9527041769913,
+          "median": 101992.0,
+          "p50": 101992.0,
+          "p95": 102888.0,
+          "p99": 103016.0,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            101931.87185570314,
+            102259.80814429685
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "persist_ms": {
+          "n": 50,
+          "mean": 1.27346848,
+          "stddev": 0.3726287954000269,
+          "median": 1.2314105,
+          "p50": 1.2314105,
+          "p95": 1.981462599999999,
+          "p99": 2.6716984399999983,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            1.1675685480801508,
+            1.3793684119198493
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "syft_ms": {
+          "n": 50,
+          "mean": 961.6838841,
+          "stddev": 47.04552870409192,
+          "median": 952.8917265,
+          "p50": 952.8917265,
+          "p95": 1029.60556525,
+          "p99": 1094.0107616999999,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            948.3136927771629,
+            975.0540754228371
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        },
+        "worker_ms": {
+          "n": 50,
+          "mean": 218.67877672,
+          "stddev": 11.87077036045866,
+          "median": 215.317205,
+          "p50": 215.317205,
+          "p95": 240.41058405,
+          "p99": 254.77607861999994,
+          "quantileMethod": "linear interpolation over trial means (R7)",
+          "ci95": [
+            215.30514111124575,
+            222.05241232875426
+          ],
+          "publicationNMet": true,
+          "unit": "independent trial mean",
+          "method": "two-sided Student t"
+        }
+      },
+      "evidenceKinds": [
+        "offchain-stage-ablation"
+      ]
+    }
+  },
+  "pairedComparisons": {
+    "client_revalidation_cost": {
+      "name": "client_revalidation_cost",
+      "control": "full_without_client_revalidation",
+      "treatment": "full",
+      "metric": "elapsed_ms",
+      "difference": {
+        "n": 50,
+        "mean": 39.540557140000004,
+        "stddev": 88.3034381701179,
+        "median": 42.96596599999998,
+        "p50": 42.96596599999998,
+        "p95": 148.57009289999988,
+        "p99": 215.38200495999988,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          14.444997682590891,
+          64.63611659740911
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    },
+    "extra_crypto_cost": {
+      "name": "extra_crypto_cost",
+      "control": "full",
+      "treatment": "full_crypto_x10",
+      "metric": "elapsed_ms",
+      "difference": {
+        "n": 50,
+        "mean": -5.110948459999995,
+        "stddev": 95.79317361983438,
+        "median": 10.314368999999942,
+        "p50": 10.314368999999942,
+        "p95": 116.8572633999999,
+        "p99": 174.07440385999988,
+        "quantileMethod": "linear interpolation over paired differences (R7)",
+        "ci95": [
+          -32.33506718071342,
+          22.113170260713435
+        ],
+        "publicationNMet": true,
+        "unit": "paired trial-block difference: treatment minus control",
+        "method": "two-sided Student t"
+      },
+      "missingOrFailedPairs": [],
+      "complete": true,
+      "note": "Unadjusted per-comparison Student-t interval; local process pairing does not itself establish host isolation."
+    }
+  },
+  "protocol": {
+    "sourceCommit": "4ceaa19f995bdaee92f7a218dd2b3ca0b3d186c3",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "cpuCount": 3,
+    "planSHA256": "126252b5925a33c5faecc35816f9bfbac3c37a10e035c29d2971e6dc778bbc13",
+    "startedNs": 1793934754635582856,
+    "freshProcessPerTrial": true,
+    "execution": "sequential",
+    "isolatedHostAttestedByOperator": false,
+    "noCompetingLoadIndependentlyVerified": false,
+    "smoke": false,
+    "trials": 50,
+    "warmups": 5,
+    "order": "randomized variants within sequential trial blocks",
+    "randomizationSeed": 20261106,
+    "sourceDirty": false,
+    "sourceFilesSHA256": "614a39308a95ab4575bfa55ee40b33e6d04e25c67c2a31b7a1c9337288c306f4",
+    "sourceSnapshotScope": "Git-tracked and unignored untracked repository files before the run; excludes campaign output. Hashes pin bytes but do not archive dirty source or external commands/configuration."
+  },
+  "qualifiedForPaper": false,
+  "qualificationNote": "Review workload, failures, isolation, independence and consensus evidence. Counts alone never confer publication qualification."
+}
