@@ -12,6 +12,12 @@ remains available to reproduce earlier bounded results. Hardened dependencies fa
 closed: real Tesseract, Syft, Cosign and OPA are required. The local ledger is
 explicitly `local-non-consensus` and can never establish consensus performance.
 
+Parser subprocesses receive an allowlisted environment rather than inherited
+API/gateway/Vault credentials. Their resource limits are not OS privilege,
+filesystem or network isolation: separate parser custody/containers remain a
+deployment requirement for claims about containment of arbitrary parser code
+execution. Inert parser fixtures do not establish that containment property.
+
 | Control | Implementation | Validation scope and residual |
 |---|---|---|
 | H1 | Separate identity/decision key roles; signed identity containing GSTIN, checksum, OCR result, document digest, context, time and version | Mutation, role and revocation tests. Identity remains syntactic; no government registry oracle. A compromised authorized identity signer can lie. |
@@ -29,6 +35,10 @@ relative-path/content-digest pairs; it represents a scanned source tree. It is n
 silently presented as the digest of a deployed container image.
 The signed decision snapshot also binds the encryption envelope and associated
 context; changing SQL metadata cannot leave an apparently intact evidence root.
+The signed policy manifest additionally pins the identity-worker trust entry,
+Cosign verification key/validity, OCR algorithm/threshold and replay window. A
+configuration change must be approved and re-signed rather than silently changing
+the meaning of a previously approved policy digest.
 
 The v2 ledger record maps to Equation 14, with `recordID`, `vendorID`, `evidenceRoot`,
 `snapshotHash`, `policyHash`, `decision`, `signatureHash`, `keyID`, `algorithm` and
@@ -116,6 +126,10 @@ The current runner randomizes variant order within sequential trial blocks using
 a recorded seed. The earlier reference campaign at commit `6f510c5` used fixed
 variant cohorts and is labeled accordingly; its differences are not causal
 overhead estimates.
+Plans can predeclare paired comparisons. The current runner reports treatment
+minus control within each randomized trial block, including missing/failed pairs
+and unadjusted 95% Student-t intervals. These are workload-specific contrasts;
+overlapping or non-monotone point estimates are retained as observed.
 
 Outputs include mean, sample standard deviation, median, p50/p95/p99 (R7),
 two-sided Student-t 95% intervals, CSV, LaTeX tables, source/plan provenance and a
@@ -205,3 +219,29 @@ confirmation after a lost acknowledgement. Divergences and lookup failures remai
 visible. It does not invent a transaction ID or finalize on endorsement alone.
 Retain encrypted objects, identity/snapshot evidence, public verification material,
 approved policy versions and authorized unwrap access for the audit window.
+
+## Updating the manuscript
+
+Describe this as a new research implementation: Python workers, a Node Fabric
+gateway and Go chaincode. Update Section 5 and Table A1 from the retained run's
+actual dependency/environment metadata. The original Node/Redis/Solo testbed and
+its historical timings cannot be silently reused as this implementation's results.
+
+For Section 6 and Table 12, state that the new gate performs structural validation
+inside a subprocess; `gate_ms` includes that boundary. It does not reproduce the
+old magic-prefix-only <1.2 ms observation. The full variant includes new signed
+evidence/outbox work. Publish all rejected/failed attempts and keep local SQLite,
+Vault dev-service, Raft and BFT results in separate cohorts.
+
+For Section 8, distinguish implemented controls from operational validation.
+Vault service custody is exercised; hardware custody and evidence-conditional
+signing are not established. Identity is syntactic. Signature approval uses pinned
+keys rather than live certificate-chain/revocation validation. PostgreSQL/Fabric
+recovery tests do not establish an atomic cross-system transaction.
+
+Use Appendix A to link the exact source commit, locks, corpus manifest, raw archive,
+run protocol, CSV/LaTeX tables and CI run. Point artifact availability to this
+repository. Do not state that new tests recover the original 12-suite/44-test logs
+or that one healthy/crash burst establishes production throughput or Byzantine
+attack resilience. Keep the unexecuted full load matrix and reviewed corporate
+corpus in Section 9.4 until their actual evidence is collected.

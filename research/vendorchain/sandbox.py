@@ -40,7 +40,7 @@ def isolated(data, *, ocr=False, expected=()):
         proc = subprocess.run([sys.executable, '-m', 'vendorchain.sandbox'], input=request.encode(),
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=TIMEOUT,
                               cwd=Path(__file__).resolve().parents[1],
-                              env={**os.environ, 'OMP_THREAD_LIMIT':'1', 'OPENBLAS_NUM_THREADS':'1'})
+                              env=parser_environment())
     except subprocess.TimeoutExpired as exc:
         raise Rejected('worker_wall_timeout') from exc
     if proc.returncode:
@@ -51,6 +51,16 @@ def isolated(data, *, ocr=False, expected=()):
         raise Rejected('invalid_worker_response') from exc
     if not result.get('ok'):
         raise Rejected(result.get('reason', 'worker_rejected'))
+    return result
+
+
+def parser_environment():
+    # Do not inherit KEKs, API/gateway/Vault tokens or arbitrary signer secrets.
+    result={'PATH':os.environ.get('PATH',os.defpath),
+            'PYTHONPATH':str(Path(__file__).resolve().parents[1]),'LANG':'C.UTF-8',
+            'OMP_THREAD_LIMIT':'1','OPENBLAS_NUM_THREADS':'1'}
+    for name in ('TESSDATA_PREFIX','LD_LIBRARY_PATH','PYTHONUSERBASE'):
+        if name in os.environ:result[name]=os.environ[name]
     return result
 
 def run_ocr(data, info, expected):
